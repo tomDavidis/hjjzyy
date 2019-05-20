@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.yuntai.pay</groupId>
+    <artifactId>upp-access-demo</artifactId>
+    <version>1.0.0</version>
+
+    <dependencies>
+        <!-- 【架构体系内的模块引用 start】 -->
+        <dependency>
+            <groupId>com.yuntai.pay</groupId>
+            <artifactId>upp-client</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!-- 【架构体系内的模块引用 end】 -->
+        <!-- 【第三方jar引用 start】 -->
+        <!-- 【第三方jar引用 end】 -->
+    </dependencies>
+
+
+</project>
