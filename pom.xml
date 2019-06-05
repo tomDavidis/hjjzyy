@@ -43,41 +43,52 @@
 <!--            <version>3.1.6</version>-->
 <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
-            <version>3.3.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>ch.qos.logback</groupId>
-                    <artifactId>logback-classic</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.logging.log4j</groupId>
-                    <artifactId>log4j-to-slf4j</artifactId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>validation-api</artifactId>
-                    <groupId>javax.validation</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>cxf-rt-frontend-jaxws</artifactId>
-                    <groupId>org.apache.cxf</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>cxf-rt-transports-http</artifactId>
-                    <groupId>org.apache.cxf</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.el</groupId>
-            <artifactId>javax.el-api</artifactId>
-            <version>3.0.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.cxf</groupId>-->
+<!--            <artifactId>cxf-spring-boot-starter-jaxws</artifactId>-->
+<!--            <version>3.3.0</version>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>ch.qos.logback</groupId>-->
+<!--                    <artifactId>logback-classic</artifactId>-->
+<!--                </exclusion>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.apache.logging.log4j</groupId>-->
+<!--                    <artifactId>log4j-to-slf4j</artifactId>-->
+<!--                </exclusion>-->
+<!--                <exclusion>-->
+<!--                    <artifactId>validation-api</artifactId>-->
+<!--                    <groupId>javax.validation</groupId>-->
+<!--                </exclusion>-->
+<!--                <exclusion>-->
+<!--                    <artifactId>cxf-rt-frontend-jaxws</artifactId>-->
+<!--                    <groupId>org.apache.cxf</groupId>-->
+<!--                </exclusion>-->
+<!--                <exclusion>-->
+<!--                    <artifactId>cxf-rt-transports-http</artifactId>-->
+<!--                    <groupId>org.apache.cxf</groupId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
+<!--        -->
+<!--        <dependency>-->
+<!--            <groupId>javax.el</groupId>-->
+<!--            <artifactId>javax.el-api</artifactId>-->
+<!--            <version>3.0.0</version>-->
+<!--        </dependency>-->
 
         <!-- 【第三方jar引用 end】 -->
+
+        <dependency>
+            <groupId>wsdl4j</groupId>
+            <artifactId>wsdl4j</artifactId>
+            <version>1.6.3</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.0</version>
+        </dependency>
     </dependencies>
 
     <profiles>
@@ -117,29 +128,26 @@
         </filters>
         <resources>
             <resource>
-                <filtering>true</filtering>
+                <filtering>false</filtering>
                 <directory>src/main/resources</directory>
                 <includes>
                     <include>*.yml</include>
                     <include>*.xml</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>false</filtering>
-                <includes>
-                    <include>templates/**</include>
+                    <include>wsdl/*</include>
                 </includes>
                 <excludes>
-                    <exclude>assembly.xml</exclude>
-                    <exclude>deploy/**</exclude>
+                    <exclude>deploy/profile.*.properties</exclude>
+                    <exclude>run.sh</exclude>
+                    <exclude>assembly/assembly.xml</exclude>
                 </excludes>
+                <targetPath>${project.build.directory}/${project.artifactId}/conf</targetPath>
             </resource>
         </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.1.5.RELEASE</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -147,6 +155,7 @@
                 <configuration>
                     <skip>true</skip>
                 </configuration>
+                <version>2.8.2</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -169,6 +178,7 @@
                         <exclude>${project.build.directory}/${project.artifactId}/conf</exclude>
                     </excludes>
                 </configuration>
+                <version>3.1.2</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -189,6 +199,7 @@
                         </configuration>
                     </execution>
                 </executions>
+                <version>3.1.1</version>
             </plugin>
         </plugins>
     </build>

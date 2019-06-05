@@ -1,0 +1,85 @@
+<xs:schema targetNamespace="http://service.webservice.openservice.yuntai.com/"
+           version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://service.webservice.openservice.yuntai.com/"
+           elementFormDefault="qualified">
+
+    <!-- 网络测试接口 -->
+    <!-- request start -->
+    <xs:element name="networkRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="FacePayServiceRequest" type="tns:facePayServiceRequest"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- request end -->
+    <xs:element name="networkResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="FacePayServiceResponse" type="tns:facePayServiceResponse"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- response start -->
+
+    <!-- response end -->
+
+    <!-- request basic start -->
+    <xs:complexType name="facePayServiceRequest">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="BizCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="RequestData" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- request basic end -->
+
+    <!-- response basic start -->
+    <xs:complexType name="facePayServiceResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="ResponseData" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- response basic start -->
+
+
+
+<!--    &lt;!&ndash; soapenv:Body内第一层数据包装 &ndash;&gt;-->
+<!--    <xs:element name="wsFacePayService" type="tns:wsFacePayService"/>-->
+
+
+
+<!--    <xs:element name="network" />-->
+
+<!--    <xs:complexType name="wsNetTest">-->
+<!--        <xs:sequence>-->
+<!--        </xs:sequence>-->
+<!--    </xs:complexType>-->
+<!--    &lt;!&ndash; 真实服务接口 &ndash;&gt;-->
+<!--    <xs:complexType name="wsFacePayService">-->
+<!--        <xs:sequence>-->
+<!--            <xs:element minOccurs="0" name="FacePayServiceRequest" type="tns:facePayServiceRequest"/>-->
+<!--        </xs:sequence>-->
+<!--    </xs:complexType>-->
+
+
+<!--   -->
+
+
+
+<!--    <xs:element name="wsFacePayServiceResponse" type="tns:wsFacePayServiceResponse"/>-->
+<!--    <xs:element name="wsNetTest" type="tns:wsNetTest"/>-->
+<!--    <xs:element name="wsNetTestResponse" type="tns:wsNetTestResponse"/>-->
+
+<!--    <xs:complexType name="wsNetTestResponse">-->
+<!--        <xs:sequence>-->
+<!--            <xs:element minOccurs="0" name="FacePayServiceResponse" type="tns:facePayServiceResponse"/>-->
+<!--        </xs:sequence>-->
+<!--    </xs:complexType>-->
+
+
+<!--    <xs:complexType name="wsFacePayServiceResponse">-->
+<!--        <xs:sequence>-->
+<!--            <xs:element minOccurs="0" name="FacePayServiceResponse" type="tns:facePayServiceResponse"/>-->
+<!--        </xs:sequence>-->
+<!--    </xs:complexType>-->
+</xs:schema>
