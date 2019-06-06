@@ -14,6 +14,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
  * @date 2019-06-03 09:58
  * @copyright 版权归 HSYUNTAI 所有
  */
+
 @Slf4j
 @SpringBootApplication(scanBasePackages = {"com.yuntai.upp.access", "com.yuntai.upp.client"})
 public class ProviderBoot {

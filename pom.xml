@@ -27,67 +27,23 @@
         </dependency>
         <!-- 【架构体系内的模块引用 end】 -->
         <!-- 【第三方jar引用 start】 -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-web-services</artifactId>-->
-<!--            <version>2.0.4.RELEASE</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.cxf</groupId>-->
-<!--            <artifactId>cxf-rt-frontend-jaxws</artifactId>-->
-<!--            <version>3.1.6</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.cxf</groupId>-->
-<!--            <artifactId>cxf-rt-transports-http</artifactId>-->
-<!--            <version>3.1.6</version>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>org.apache.cxf</groupId>-->
-<!--            <artifactId>cxf-spring-boot-starter-jaxws</artifactId>-->
-<!--            <version>3.3.0</version>-->
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>ch.qos.logback</groupId>-->
-<!--                    <artifactId>logback-classic</artifactId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <groupId>org.apache.logging.log4j</groupId>-->
-<!--                    <artifactId>log4j-to-slf4j</artifactId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <artifactId>validation-api</artifactId>-->
-<!--                    <groupId>javax.validation</groupId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <artifactId>cxf-rt-frontend-jaxws</artifactId>-->
-<!--                    <groupId>org.apache.cxf</groupId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <artifactId>cxf-rt-transports-http</artifactId>-->
-<!--                    <groupId>org.apache.cxf</groupId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
-<!--        </dependency>-->
-<!--        -->
-<!--        <dependency>-->
-<!--            <groupId>javax.el</groupId>-->
-<!--            <artifactId>javax.el-api</artifactId>-->
-<!--            <version>3.0.0</version>-->
-<!--        </dependency>-->
-
         <!-- 【第三方jar引用 end】 -->
 
         <dependency>
-            <groupId>wsdl4j</groupId>
-            <artifactId>wsdl4j</artifactId>
-            <version>1.6.3</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.3.0</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>logback-classic</artifactId>
+                    <groupId>ch.qos.logback</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j-to-slf4j</artifactId>
+                    <groupId>org.apache.logging.log4j</groupId>
+                </exclusion>
+            </exclusions>
+            <version>2.1.2.RELEASE</version>
         </dependency>
     </dependencies>
 
@@ -127,20 +83,24 @@
             <filter>src/main/resources/deploy/profile.${env}.properties</filter>
         </filters>
         <resources>
+            <!-- 占位符填充 -->
             <resource>
-                <filtering>false</filtering>
+                <filtering>true</filtering>
                 <directory>src/main/resources</directory>
                 <includes>
                     <include>*.yml</include>
                     <include>*.xml</include>
-                    <include>wsdl/*</include>
                 </includes>
+            </resource>
+            <!-- 文件过滤 -->
+            <resource>
+                <filtering>false</filtering>
+                <directory>src/main/resources</directory>
                 <excludes>
                     <exclude>deploy/profile.*.properties</exclude>
                     <exclude>run.sh</exclude>
                     <exclude>assembly/assembly.xml</exclude>
                 </excludes>
-                <targetPath>${project.build.directory}/${project.artifactId}/conf</targetPath>
             </resource>
         </resources>
         <plugins>
