@@ -26,7 +26,7 @@
 //        Sender sender = new Sender();
 //        SenderContent senderContent = new SenderContent();
 //        senderContent.setCode("123123");
-//        senderContent.setContent("1xzsdfa");
+//        senderContent.setCell("1xzsdfa");
 //        sender.setBody(senderContent);
 //        webTestClient.post().uri("/hs-access-facepay/services/facePayWebService")
 //                .contentType(MediaType.TEXT_XML)

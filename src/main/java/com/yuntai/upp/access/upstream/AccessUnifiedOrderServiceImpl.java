@@ -1,6 +1,6 @@
 package com.yuntai.upp.access.upstream;
 
-import com.yuntai.upp.client.service.upstream.AccessUnifiedOrderService;
+import com.yuntai.upp.client.service.passive.UnifiedOrderService;
 
-public class AccessUnifiedOrderServiceImpl implements AccessUnifiedOrderService {
+public class AccessUnifiedOrderServiceImpl implements UnifiedOrderService {
 }

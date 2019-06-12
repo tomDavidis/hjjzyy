@@ -14,16 +14,6 @@
             <groupId>com.yuntai.pay</groupId>
             <artifactId>upp-client</artifactId>
             <version>1.0.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.yuntai</groupId>
-                    <artifactId>hs-hdp-client</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.yuntai</groupId>
-                    <artifactId>hs-hdp-api</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <!-- 【架构体系内的模块引用 end】 -->
         <!-- 【第三方jar引用 start】 -->

@@ -1,2 +1,11 @@
 server:
-  port: 7000
+  port: @server.port@
+
+hdp:
+  ip: @hdp.ip@
+  port: @hdp.port@
+  token: @hdp.token@
+  hosid: @hdp.hosid@
+
+transaction:
+  partner: @transaction.partner@
