@@ -6,6 +6,8 @@ hdp:
   port: @hdp.port@
   token: @hdp.token@
   hosid: @hdp.hosid@
+  delay: @hdp.delay@
+  pool: @hdp.pool@
 
 transaction:
   partner: @transaction.partner@
