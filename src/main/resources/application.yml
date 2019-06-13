@@ -9,5 +9,7 @@ hdp:
   delay: @hdp.delay@
   pool: @hdp.pool@
 
-transaction:
-  partner: @transaction.partner@
+constant:
+  partner: @constant.partner@
+  path: @constant.path@
+  file: @constant.file@
