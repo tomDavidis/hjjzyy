@@ -8,8 +8,5 @@ server:
     delay: @server.hdp.delay@
     pool: @server.hdp.pool@
   constant:
+    model: @server.constant.model@
     partner: @server.constant.partner@
-    path: @server.constant.path@
-    file: @server.constant.file@
-  access:
-    model: @server.access.model@

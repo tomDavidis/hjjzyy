@@ -2,21 +2,22 @@ package com.yuntai.upp.access.access;
 
 import com.alibaba.fastjson.JSON;
 import com.yuntai.hdp.access.RequestPack;
-import com.yuntai.hdp.access.ResultPack;
 import com.yuntai.upp.access.ProviderBoot;
 import com.yuntai.upp.client.export.access.ClientReceiver;
-import com.yuntai.upp.model.dto.access.dilatory.DilatoryDto;
+import com.yuntai.upp.model.dto.access.statement.StatementDto;
 import com.yuntai.upp.support.enums.AccessCmdType;
+import com.yuntai.upp.support.util.DateUtil;
 import org.junit.Test;
-import org.junit.runner.Request;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -48,9 +49,26 @@ public class DilatoryTest {
         request.setClientId(UUID.randomUUID().toString().replace("-", ""));
         request.setHosId(hosid);
         request.setSendTime(System.currentTimeMillis());
-        request.setBody(JSON.toJSONString(DilatoryDto.builder()
-                .date(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+        request.setBody(JSON.toJSONString(StatementDto.builder()
+                .url("114.215.200.225")
+                .port(21)
+                .user("dzftp")
+                .password("dzxqq")
+                .path(MessageFormat.format("/upp/bills/{0}/current/triple/partner/{1}/", "999", DateUtil.formateDate(LocalDateTime.now(), DateUtil.FORMAT_YYMMDD)))
+                .file(MessageFormat.format("{0}-triple-partner-{1}-bills.csv", "999", DateUtil.formateDate(LocalDateTime.now(), DateUtil.FORMAT_YYMMDD)))
+                .partners(new ArrayList<String>(10) {
+                    private static final long serialVersionUID = -2147265207196198394L;
+                    {
+                        add("999");
+                    }
+                })
+                .isMerge("N")
+                .isConvert("N")
+                .start(LocalDateTime.now())
+                .end(LocalDateTime.now().minusHours(2))
                 .build()));
+
+        System.out.println(JSON.toJSONString(request));
 
         receiver.getHospitalResult(request);
 

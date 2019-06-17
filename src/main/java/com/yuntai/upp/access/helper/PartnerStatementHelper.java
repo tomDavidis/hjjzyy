@@ -1,8 +1,8 @@
 package com.yuntai.upp.access.helper;
 
-import com.yuntai.upp.client.handler.active.operate.inherit.AbstractBillDilatory;
-import com.yuntai.upp.model.dto.access.dilatory.DilatoryDto;
-import com.yuntai.upp.model.vo.access.dilatory.DilatoryVo;
+import com.yuntai.upp.client.handler.active.operate.inherit.AbstractPartnerStatement;
+import com.yuntai.upp.model.dto.access.statement.StatementDto;
+import com.yuntai.upp.model.vo.access.statement.StatementVo;
 import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @description 账单数据工具类
- * @className BillDilatoryHelper
+ * @description 延时账单数据
+ * @className PartnerStatementHelper
  * @package com.yuntai.upp.access.helper
  * @author jinren@hsyuntai.com
  * @date 2019-06-14 15:20
@@ -19,10 +19,15 @@ import java.util.List;
  */
 
 @Component
-public class BillDilatoryHelper extends AbstractBillDilatory {
+public class PartnerStatementHelper extends AbstractPartnerStatement {
 
     /**
      * @description 账单数据转换
+     *              大多情况下,实时账单&延时账单均调用 HIS 相同视图
+     *              若存在 HIS 实时账单与延时账单调用不同的视图、逻辑时,可通过 dto 中的 type 属性进行分类判断
+     *              prompt : 实时
+     *              delay : 延时
+     *
      *              调用 HIS 接口获取账单包装成为 List<DilatoryVo>[非空]
      *              若接口无任何返回数据或调用结果出错,则直接抛出异常
      * @param dto 云端下载 bean
@@ -31,12 +36,12 @@ public class BillDilatoryHelper extends AbstractBillDilatory {
      * @date 2019-06-14 15:20
      */
     @Override
-    protected List<DilatoryVo> data(@NonNull DilatoryDto dto) {
-        List<DilatoryVo> vos = new ArrayList<>();
+    protected List<StatementVo> data(@NonNull StatementDto dto) {
+        List<StatementVo> vos = new ArrayList<>();
 
         /* 模拟数据,仅供无 HIS 接口时,工程测试使用 - start */
         for (int i = 0; i < 100; i++) {
-            vos.add(new DilatoryVo());
+            vos.add(new StatementVo());
         }
         /* 模拟数据,仅供无 HIS 接口时,工程测试使用 - end */
 
