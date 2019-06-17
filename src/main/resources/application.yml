@@ -1,15 +1,15 @@
 server:
   port: @server.port@
-
-hdp:
-  ip: @hdp.ip@
-  port: @hdp.port@
-  token: @hdp.token@
-  hosid: @hdp.hosid@
-  delay: @hdp.delay@
-  pool: @hdp.pool@
-
-constant:
-  partner: @constant.partner@
-  path: @constant.path@
-  file: @constant.file@
+  hdp:
+    ip: @server.hdp.ip@
+    port: @server.hdp.port@
+    token: @server.hdp.token@
+    hosid: @server.hdp.hosid@
+    delay: @server.hdp.delay@
+    pool: @server.hdp.pool@
+  constant:
+    partner: @server.constant.partner@
+    path: @server.constant.path@
+    file: @server.constant.file@
+  access:
+    model: @server.access.model@

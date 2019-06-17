@@ -1,0 +1,11 @@
+server:
+  port: 7000
+
+hdp:
+  ip: 127.0.0.1
+  port: 8080
+  token: sakljhakdfowyelrhqlhrlqjwelkq
+  hosid: 999
+
+constant:
+  partner: 13hdfah23oouivfeq
