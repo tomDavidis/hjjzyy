@@ -9,7 +9,7 @@ import com.yuntai.upp.support.enums.CheckBillsPayType;
 import com.yuntai.upp.support.enums.CheckBillsStatType;
 import com.yuntai.upp.support.enums.SourceType;
 import com.yuntai.upp.support.enums.TradeType;
-import com.yuntai.upp.support.util.EnumUtil;
+import com.yuntai.upp.support.interfaces.Enumable;
 import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
@@ -67,7 +67,7 @@ public class PartnerStatementHelper extends AbstractPartnerStatement {
             vo.setTime(LocalDateTime.now());
 
             // 芸泰流水
-            vo.setOutSerialNo((TradeType.REFUND.equals(EnumUtil.getEnumByCode(vo.getType(), TradeType.class)) && Math.random() > 0.3D)
+            vo.setOutSerialNo((TradeType.REFUND.equals(Enumable.getEnumByCode(vo.getType(), TradeType.class)) && Math.random() > 0.3D)
                     ? "YT_dad3d9ece5s145n25skr" : UUID.randomUUID().toString().replace("-", ""));
             // 第三方流水
             vo.setInSerialNo(UUID.randomUUID().toString().replace("-", ""));
