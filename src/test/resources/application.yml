@@ -1,11 +1,12 @@
 server:
   port: 7000
-
-hdp:
-  ip: 127.0.0.1
-  port: 8080
-  token: sakljhakdfowyelrhqlhrlqjwelkq
-  hosid: 999
-
-constant:
-  partner: 13hdfah23oouivfeq
+  hdp:
+    ip: 127.0.0.1
+    port: 8080
+    token: ${random.value}
+    hosid: 999
+    delay: 5
+    pool: 25
+  constant:
+    model: 0
+    partner: ${random.uuid}

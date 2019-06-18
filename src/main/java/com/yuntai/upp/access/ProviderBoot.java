@@ -2,8 +2,10 @@ package com.yuntai.upp.access;
 
 import com.yuntai.upp.support.util.LoggerUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.scheduling.annotation.EnableAsync;
 
@@ -18,7 +20,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 @Slf4j
 @EnableAsync
-@SpringBootApplication(scanBasePackages = {"com.yuntai.upp.access", "com.yuntai.upp.client"})
+@SpringBootApplication(scanBasePackages = {"com.yuntai.upp.access", "com.yuntai.upp.client"},
+        exclude = {DataSourceAutoConfiguration.class})
+@MapperScan("com.yuntai.upp.access.mapper")
 public class ProviderBoot {
 
     public static void main(String[] args) {

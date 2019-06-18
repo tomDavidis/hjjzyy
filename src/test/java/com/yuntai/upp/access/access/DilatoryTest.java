@@ -6,6 +6,7 @@ import com.yuntai.upp.access.ProviderBoot;
 import com.yuntai.upp.client.export.access.ClientReceiver;
 import com.yuntai.upp.model.dto.access.statement.StatementDto;
 import com.yuntai.upp.support.enums.AccessCmdType;
+import com.yuntai.upp.support.enums.YesOrNo;
 import com.yuntai.upp.support.util.DateUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,7 +38,7 @@ public class DilatoryTest {
     @Resource(name = "clientReceiver")
     private ClientReceiver receiver;
 
-    @Value("${hdp.hosid}")
+    @Value("${server.hdp.hosid}")
     private String hosid;
 
     @Test
@@ -62,8 +63,7 @@ public class DilatoryTest {
                         add("999");
                     }
                 })
-                .isMerge("N")
-                .isConvert("N")
+                .isMerge(YesOrNo.YES.getCode())
                 .start(LocalDateTime.now())
                 .end(LocalDateTime.now().minusHours(2))
                 .build()));
