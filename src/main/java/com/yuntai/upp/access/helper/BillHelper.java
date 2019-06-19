@@ -1,9 +1,9 @@
 package com.yuntai.upp.access.helper;
 
 import com.yuntai.upp.client.config.constant.ConstantInstance;
-import com.yuntai.upp.client.handler.active.operate.inherit.AbstractPartnerStatement;
-import com.yuntai.upp.model.dto.access.statement.StatementDto;
-import com.yuntai.upp.model.vo.access.statement.StatementVo;
+import com.yuntai.upp.client.handler.active.bill.serivce.impl.AbstractBill;
+import com.yuntai.upp.model.dto.access.bill.BillDto;
+import com.yuntai.upp.model.vo.access.bill.BillVo;
 import com.yuntai.upp.support.enums.BizType;
 import com.yuntai.upp.support.enums.CheckBillsPayType;
 import com.yuntai.upp.support.enums.CheckBillsStatType;
@@ -14,6 +14,7 @@ import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,15 +22,15 @@ import java.util.UUID;
 
 /**
  * @description 延时账单数据
- * @className PartnerStatementHelper
+ * @className BillHelper
  * @package com.yuntai.upp.access.helper
  * @author jinren@hsyuntai.com
  * @date 2019-06-14 15:20
  * @copyright 版权归 HSYUNTAI 所有
  */
 
-@Component
-public class PartnerStatementHelper extends AbstractPartnerStatement {
+@Component("billService")
+public class BillHelper extends AbstractBill {
 
     /**
      * @description 账单数据转换
@@ -46,19 +47,19 @@ public class PartnerStatementHelper extends AbstractPartnerStatement {
      * @date 2019-06-14 15:20
      */
     @Override
-    protected List<StatementVo> data(@NonNull StatementDto dto) {
-        List<StatementVo> vos = new ArrayList<>();
+    protected List<BillVo> data(@NonNull BillDto dto) {
+        List<BillVo> vos = new ArrayList<>();
 
         /* 模拟数据,仅供无 HIS 接口时,工程测试使用 - start */
         for (int i = 0; i < 100; i ++) {
             /*
              * 以下各值请务必按规则|枚举进行赋值(上层有规则校验限制)
              */
-            StatementVo vo = new StatementVo();
+            BillVo vo = new BillVo();
             // 商户标识
             vo.setPartner(ConstantInstance.PARTNER);
             // 账单日期
-            vo.setDate(LocalDateTime.now());
+            vo.setDate(LocalDate.now());
             // pay:支付 refund:退款
             vo.setType(Math.random() > 0.3D ? TradeType.PAY.getCode() : TradeType.REFUND.getCode());
             // 注意!!! 金额数字没有负数,取绝对值

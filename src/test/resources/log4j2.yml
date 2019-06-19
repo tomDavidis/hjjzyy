@@ -8,7 +8,7 @@ Configuration:
     - name: log.path
       value: /Users/jinren/Desktop/upp-client
     - name: layout.pattern
-      value: "%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} %highlight{${LOG_LEVEL_PATTERN:-%5p}}{FATAL=red blink, ERROR=red, WARN=yellow bold, INFO=green, DEBUG=green bold, TRACE=blue} %style{${sys:PID}}{magenta} --- [%15.15t] %style{%-40.40c{1.}}{cyan} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
+      value: "%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} %highlight{${LOG_LEVEL_PATTERN:-%5p}}{FATAL=red blink, ERROR=red, WARN=yellow bold, INFO=green, DEBUG=green bold, TRACE=blue} %style{${sys:PID}}{magenta} --- [%15.15t] %style{%-40.40c{1.}}{cyan} : [TraceId:%X{traceId}]%m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
     - name: file.size
       value: "128M"
     - name: file.max

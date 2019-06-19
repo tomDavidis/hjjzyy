@@ -10,7 +10,8 @@ server:
   constant:
     model: @server.constant.model@
     partner: @server.constant.partner@
-
+    private-key: @server.constant.private.key@
+    public-key: @server.constant.public.key@
 spring:
   aop:
     proxy-target-class: true
@@ -65,3 +66,4 @@ mybatis:
   mapper-locations: classpath*:mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
+
