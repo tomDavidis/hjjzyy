@@ -60,3 +60,8 @@ spring:
           username: @spring.datasource.dynamic.druid.datasource.master.username@
           password: @spring.datasource.dynamic.druid.datasource.master.password@
           driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
