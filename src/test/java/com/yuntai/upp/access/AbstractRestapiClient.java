@@ -1,17 +1,8 @@
 package com.yuntai.upp.access;
 
+import com.yuntai.upp.support.util.TraceIdUtil;
+import org.junit.After;
 import org.junit.Before;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
-
-import javax.annotation.Resource;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * @description 单元测试抽象类
@@ -24,31 +15,27 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public abstract class AbstractRestapiClient {
 
-    private MockMvc mock;
+    protected static final String TEMPLATE =
+            "BizCode={0}&RequestData={1}";
 
-    @Resource
-    private WebApplicationContext context;
+    protected  static final String REQUEST =
+            "<Request>\n" +
+            "    <Header>\n" +
+            "        <RequestSn>{0}</RequestSn>\n" +
+            "        <BizName>{1}</BizName>\n" +
+            "        <SecurityCode>{2}</SecurityCode>\n" +
+            "    </Header>\n" +
+            "    {3}\n" +
+            "</Request>\n";
+
 
     @Before
-    public void setup() {
-        this.mock = MockMvcBuilders.webAppContextSetup(this.context).build();
+    public void before() {
+        TraceIdUtil.createLocalTraceId();
     }
 
-    protected String done(String url, String data) {
-        try {
-            return mock.perform(post(url)
-                    .content(data)
-                    .contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(status().isOk())
-                    .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                    .andDo(MockMvcResultHandlers.print())
-                    .andReturn()
-                    .getResponse()
-                    .getContentAsString();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
+    @After
+    public void after() {
+        TraceIdUtil.clearLocalTraceId();
     }
 }

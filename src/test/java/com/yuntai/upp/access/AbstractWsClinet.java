@@ -23,6 +23,7 @@ public abstract class AbstractWsClinet {
             "       {0}" +
             "   </soapenv:Body>\n" +
             "</soapenv:Envelope>";
+
     protected  static final String REQUEST =
             "<![CDATA[\n" +
             "   <Request>\n" +
@@ -34,7 +35,6 @@ public abstract class AbstractWsClinet {
             "       {3}\n" +
             "   </Request>\n" +
             "]]>\n";
-
 
     @Before
     public void before() {

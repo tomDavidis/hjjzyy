@@ -1,6 +1,7 @@
 package com.yuntai.upp.access;
 
 import com.yuntai.upp.support.util.LoggerUtil;
+import com.yuntai.upp.support.util.TraceIdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -32,6 +33,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 public class ProviderBoot {
 
     public static void main(String[] args) {
+        TraceIdUtil.createLocalTraceId("前置机主线程");
         System.setProperty("log4j.skipJansi", "false");
         SpringApplication.run(ProviderBoot.class, args);
         LoggerUtil.info(LOGGER, "对接程序正常启动");
