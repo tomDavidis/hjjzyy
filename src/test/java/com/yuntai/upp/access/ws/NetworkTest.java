@@ -9,6 +9,7 @@ import com.yuntai.upp.support.enums.AccessCmdType;
 import com.yuntai.upp.support.util.DateUtil;
 import com.yuntai.upp.support.util.HttpUtil;
 import com.yuntai.upp.support.util.JaxbUtil;
+import com.yuntai.upp.support.util.UUIDUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +18,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.UUID;
 
 /**
  * @description 单元测试-网络测试
@@ -42,9 +42,9 @@ public class NetworkTest extends AbstractWsClinet {
                         .pack(SenderPack.builder()
                                 .code(AccessCmdType.S0000.getCode())
                                 .cell(MessageFormat.format(REQUEST,
-                                        UUID.randomUUID().toString().replace("-", ""),
+                                        UUIDUtil.createUUID(),
                                         AccessCmdType.S0000.getDesc(),
-                                        UUID.randomUUID().toString().replace("-", ""),
+                                        UUIDUtil.createUUID(),
                                         JaxbUtil.xml(NetworkDto.builder()
                                                 .field(LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
                                                 .build())))

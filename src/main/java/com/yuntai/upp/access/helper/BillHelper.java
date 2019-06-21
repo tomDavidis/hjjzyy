@@ -1,6 +1,5 @@
 package com.yuntai.upp.access.helper;
 
-import com.yuntai.upp.client.config.constant.ConstantInstance;
 import com.yuntai.upp.client.handler.active.bill.serivce.impl.AbstractBill;
 import com.yuntai.upp.model.dto.access.bill.BillDto;
 import com.yuntai.upp.model.vo.access.bill.BillVo;
@@ -10,6 +9,7 @@ import com.yuntai.upp.support.enums.CheckBillsStatType;
 import com.yuntai.upp.support.enums.SourceType;
 import com.yuntai.upp.support.enums.TradeType;
 import com.yuntai.upp.support.interfaces.Enumable;
+import com.yuntai.upp.support.util.UUIDUtil;
 import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +18,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @description 延时账单数据
@@ -57,7 +56,7 @@ public class BillHelper extends AbstractBill {
              */
             BillVo vo = new BillVo();
             // 商户标识
-            vo.setPartner(ConstantInstance.PARTNER);
+            vo.setPartner(dto.getPartners().get(0));
             // 账单日期
             vo.setDate(LocalDate.now());
             // pay:支付 refund:退款
@@ -69,16 +68,16 @@ public class BillHelper extends AbstractBill {
 
             // 芸泰流水
             vo.setOutSerialNo((TradeType.REFUND.equals(Enumable.getEnumByCode(vo.getType(), TradeType.class)) && Math.random() > 0.3D)
-                    ? "YT_dad3d9ece5s145n25skr" : UUID.randomUUID().toString().replace("-", ""));
+                    ? "YT_dad3d9ece5s145n25skr" : UUIDUtil.createUUID());
             // 第三方流水
-            vo.setInSerialNo(UUID.randomUUID().toString().replace("-", ""));
+            vo.setInSerialNo(UUIDUtil.createUUID());
             // HIS 流水
-            vo.setSerialNo(Math.random() > 0.5D ? "028d6fd950ac487dad3d9ece5beb2446" : UUID.randomUUID().toString().replace("-", ""));
+            vo.setSerialNo(Math.random() > 0.5D ? "028d6fd950ac487dad3d9ece5beb2446" : UUIDUtil.createUUID());
 
             // 业务类型 请参照 BizType 枚举类
             vo.setBussiness(BizType.REGISTER.getCode());
             // 院区标识(存在这赋值,部分商户需要)
-            vo.setDistrict(UUID.randomUUID().toString().replace("-", ""));
+            vo.setDistrict(UUIDUtil.createUUID());
             // 来源 outpatient:门诊 inpatient:住院
             vo.setSource(SourceType.INPATIENT.getCode());
             // 类型 self:自费 medical:医保

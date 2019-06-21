@@ -12,7 +12,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 /**
  * @author jinren@hsyuntai.com
  * @description 程序启动入口
- *              若前置机业务处理(如账单下载,无需经过 前置机 DB 数据整合)
+ *              若客户端业务处理(如账单下载,无需经过 客户端 DB 数据整合)
  *              则
  *                  @SpringBootApplication(scanBasePackages = {"com.yuntai.upp.access", "com.yuntai.upp.client"},
  *                      exclude = {DataSourceAutoConfiguration.class})
@@ -33,7 +33,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 public class ProviderBoot {
 
     public static void main(String[] args) {
-        TraceIdUtil.createLocalTraceId("前置机主线程");
+        TraceIdUtil.createLocalTraceId("客户端主线程");
         System.setProperty("log4j.skipJansi", "false");
         SpringApplication.run(ProviderBoot.class, args);
         LoggerUtil.info(LOGGER, "对接程序正常启动");
