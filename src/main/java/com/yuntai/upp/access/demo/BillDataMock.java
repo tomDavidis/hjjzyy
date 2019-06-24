@@ -5,7 +5,7 @@ import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.sdk.enums.BizType;
 import com.yuntai.upp.sdk.enums.CheckBillsPayType;
 import com.yuntai.upp.sdk.enums.CheckBillsStatType;
-import com.yuntai.upp.sdk.enums.CheckTradeType;
+import com.yuntai.upp.sdk.enums.TradeType;
 import com.yuntai.upp.sdk.enums.SourceType;
 
 import java.math.BigDecimal;
@@ -48,7 +48,7 @@ public class BillDataMock {
                     // 账单日期
                     .billsDate(LocalDate.now())
                     // pay:支付 refundFee:退款
-                    .tradeType(Math.random() > 0.5D ? CheckTradeType.PAY.getCode() : CheckTradeType.REFUND.getCode())
+                    .tradeType(Math.random() > 0.5D ? TradeType.PAY.getCode() : TradeType.REFUND.getCode())
                     // 注意!!! 金额数字没有负数,取绝对值
                     .tradeFee(new BigDecimal(Math.random() * 100).abs().setScale(2, BigDecimal.ROUND_HALF_UP))
                     // 交易时间

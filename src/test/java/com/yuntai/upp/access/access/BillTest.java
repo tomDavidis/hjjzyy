@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @description 单元测试-账单下载(延时)
+ * @description 单元测试-账单下载
  * @className BillTest
  * @package com.yuntai.upp.access.access
  * @author jinren@hsyuntai.com
