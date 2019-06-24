@@ -2,14 +2,14 @@ package com.yuntai.upp.access.ws;
 
 import com.yuntai.upp.access.AbstractWsClinet;
 import com.yuntai.upp.access.ProviderBoot;
-import com.yuntai.upp.model.dto.access.network.NetworkDto;
-import com.yuntai.upp.model.ws.SenderObject;
-import com.yuntai.upp.model.ws.SenderPack;
-import com.yuntai.upp.support.enums.AccessCmdType;
-import com.yuntai.upp.support.util.DateUtil;
-import com.yuntai.upp.support.util.HttpUtil;
-import com.yuntai.upp.support.util.JaxbUtil;
-import com.yuntai.upp.support.util.UUIDUtil;
+import com.yuntai.upp.client.basic.model.dto.network.NetworkDto;
+import com.yuntai.upp.client.basic.enums.CmdType;
+import com.yuntai.upp.client.basic.model.ws.SenderObject;
+import com.yuntai.upp.client.basic.model.ws.SenderPack;
+import com.yuntai.upp.client.basic.util.DateUtil;
+import com.yuntai.upp.client.basic.util.HttpUtil;
+import com.yuntai.upp.client.basic.util.JaxbUtil;
+import com.yuntai.upp.client.basic.util.UUIDUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -40,10 +40,10 @@ public class NetworkTest extends AbstractWsClinet {
                 .accept(HttpUtil.ACCEPT_XML)
                 .data(MessageFormat.format(TEMPLATE, JaxbUtil.xml(SenderObject.builder()
                         .pack(SenderPack.builder()
-                                .code(AccessCmdType.S0000.getCode())
+                                .code(CmdType.S0000.getCode())
                                 .cell(MessageFormat.format(REQUEST,
                                         UUIDUtil.createUUID(),
-                                        AccessCmdType.S0000.getDesc(),
+                                        CmdType.S0000.getDesc(),
                                         UUIDUtil.createUUID(),
                                         JaxbUtil.xml(NetworkDto.builder()
                                                 .field(LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))

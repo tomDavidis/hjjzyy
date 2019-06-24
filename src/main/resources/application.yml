@@ -6,13 +6,14 @@ server:
     ip: @server.hdp.ip@
     port: @server.hdp.port@
     token: @server.hdp.token@
-    hosid: @server.hdp.hosid@
+    resource_id: @server.hdp.resouce_id@
     delay: @server.hdp.delay@
     pool: @server.hdp.pool@
   constant:
     model: @server.constant.model@
-    partner: @server.constant.partner@
-    isv: @server.constant.isv@
+    partner_id: @server.constant.partner_id@
+    isv_id: @server.constant.isv_id@
+    security: @server.constant.security@
   keys:
     999:
       private-key: @server.keys.999.private.key@
@@ -22,50 +23,11 @@ spring:
     proxy-target-class: true
     auto: true
   datasource:
-    dynamic:
-      druid:
-        # 以下是全局默认值,可以全局更改
-        initial-size: 2
-        max-active: 10
-        min-idle: 1
-        max-wait: 45000
-      #        time-between-eviction-runs-millis:
-      #        time-between-log-stats-millis:
-      #        stat-sqlmax-size:
-      #        min-evictable-idle-time-millis:
-      #        max-evictable-idle-time-millis:
-      #        test-while-idle:
-      #        test-on-borrow: false
-      #        test-on-return: false
-      #        validation-query: SELECT 'x'
-      #        validation-query-timeout:
-      #        use-global-datasource-stat:
-      #        async-init:
-      #        clear-filters-enable:
-      #        reset-stat-enable: false
-      #        not-full-timeout-retry-count:
-      #        max-wait-thread-count:
-      #        fail-fast:
-      #        phyTimeout-millis:
-      #        keep-alive:
-      #        pool-prepared-statements:
-      #        init-variants:
-      #        init-global-variants:
-      #        use-unfair-lock:
-      #        kill-when-socket-read-timeout:
-      #        connection-properties:
-      #        max-pool-prepared-statement-per-connection-size:
-      #        init-connection-sqls:
-      #        share-prepared-statements:
-      #        connection-errorretry-attempts:
-      #        break-after-acquire-failure:
-      #        filters: stat,wall
-      datasource:
-        master:
-          url: @spring.datasource.dynamic.druid.datasource.master.url@
-          username: @spring.datasource.dynamic.druid.datasource.master.username@
-          password: @spring.datasource.dynamic.druid.datasource.master.password@
-          driver-class-name: com.mysql.cj.jdbc.Driver
+    url: @spring.datasource.url@
+    username: @spring.datasource.username@
+    password: @spring.datasource.password@
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
 
 mybatis:
   mapper-locations: classpath*:mapper/*.xml

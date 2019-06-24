@@ -1,12 +1,11 @@
 package com.yuntai.upp.access;
 
-import com.yuntai.upp.support.util.LoggerUtil;
-import com.yuntai.upp.support.util.TraceIdUtil;
+import com.yuntai.upp.client.basic.util.LoggerUtil;
+import com.yuntai.upp.client.basic.util.TraceIdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
@@ -14,11 +13,10 @@ import org.springframework.scheduling.annotation.EnableAsync;
  * @description 程序启动入口
  *              若客户端业务处理(如账单下载,无需经过 客户端 DB 数据整合)
  *              则
- *                  @SpringBootApplication(scanBasePackages = {"com.yuntai.upp.access", "com.yuntai.upp.client"},
- *                      exclude = {DataSourceAutoConfiguration.class})
+ *                  @SpringBootApplication(scanBasePackages = {"com.yuntai.upp.access", "com.yuntai.upp.client"})
  *              修改为
  *                  @SpringBootApplication(scanBasePackages = {"com.yuntai.upp.access", "com.yuntai.upp.client"},
- *                      exclude = {DataSourceAutoConfiguration.class, DynamicDataSourceAutoConfiguration.class})
+ *                      exclude = {DataSourceAutoConfiguration.class})
  * @className SpringBootApplication
  * @package com.yuntai.upp.access
  * @date 2019-06-03 09:58
@@ -27,8 +25,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 @Slf4j
 @EnableAsync
-@SpringBootApplication(scanBasePackages = {"com.yuntai.upp.access", "com.yuntai.upp.client"},
-        exclude = {DataSourceAutoConfiguration.class})
+@SpringBootApplication(scanBasePackages = {"com.yuntai.upp.access", "com.yuntai.upp.client"})
 @MapperScan("com.yuntai.upp.access.mapper")
 public class ProviderBoot {
 

@@ -4,12 +4,13 @@ import com.alibaba.fastjson.JSON;
 import com.yuntai.hdp.access.RequestPack;
 import com.yuntai.upp.access.ProviderBoot;
 import com.yuntai.upp.client.export.access.ClientReceiver;
-import com.yuntai.upp.model.dto.access.bill.BillDto;
-import com.yuntai.upp.support.enums.AccessCmdType;
-import com.yuntai.upp.support.enums.YesOrNo;
-import com.yuntai.upp.support.util.DateUtil;
-import com.yuntai.upp.support.util.TraceIdUtil;
-import com.yuntai.upp.support.util.UUIDUtil;
+import com.yuntai.upp.client.basic.model.dto.bill.BillDto;
+import com.yuntai.upp.client.basic.enums.CmdType;
+import com.yuntai.upp.client.basic.enums.YesOrNo;
+import com.yuntai.upp.client.basic.util.DESUtil;
+import com.yuntai.upp.client.basic.util.DateUtil;
+import com.yuntai.upp.client.basic.util.TraceIdUtil;
+import com.yuntai.upp.client.basic.util.UUIDUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,8 +41,12 @@ public class BillTest {
     @Resource(name = "clientReceiver")
     private ClientReceiver receiver;
 
-    @Value("${server.hdp.hosid}")
-    private String hosid;
+    @Value("${server.hdp.resource-id}")
+    private String resourceId;
+
+    @Value("${server.constant.security}")
+    private String security;
+
 
     @Before
     public void before() {
@@ -57,33 +62,32 @@ public class BillTest {
     public void test() throws Exception {
         RequestPack request = new RequestPack();
 
-        request.setCmd(AccessCmdType.I0001.getCode());
+        request.setCmd(CmdType.I0001.getCode());
         request.setSeqno(UUIDUtil.createUUID());
         request.setClientId(UUIDUtil.createUUID());
-        request.setHosId(hosid);
+        request.setHosId(resourceId);
         request.setSendTime(System.currentTimeMillis());
 
         BillDto dto = BillDto.builder()
-                .url("114.215.200.225")
-                .port(21)
-                .user("dzftp")
-                .password("dzxqq")
-                .path(MessageFormat.format("/upp/bills/{0}/current/triple/partner/{1}/", "{0}", DateUtil.formateDate(LocalDateTime.now(), DateUtil.FORMAT_YYMMDD)))
-                .file(MessageFormat.format("{0}-triple-partner-{1}-bills.csv", "{0}", DateUtil.formateDate(LocalDateTime.now(), DateUtil.FORMAT_YYMMDD)))
-                .partners(new ArrayList<Long>(10) {
+                .ftpUrl("114.215.200.225")
+                .ftpPort(21)
+                .ftpUser("dzftp")
+                .ftpPwd("dzxqq")
+                .filePath(MessageFormat.format("/upp/bills/{0}/current/triple/partnerId/{1}/", "{0}", DateUtil.formateDate(LocalDateTime.now(), DateUtil.FORMAT_YYMMDD)))
+                .fileName(MessageFormat.format("{0}-triple-partnerId-{1}-bills.csv", "{0}", DateUtil.formateDate(LocalDateTime.now(), DateUtil.FORMAT_YYMMDD)))
+                .partnerIds(new ArrayList<Long>(10) {
                     private static final long serialVersionUID = -2147265207196198394L;
                     {
                         add(999L);
                     }
                 })
-                .trace(UUIDUtil.createUUID())
-                .isMerge(YesOrNo.YES.getCode())
-                .start(LocalDateTime.now())
-                .end(LocalDateTime.now().minusHours(2))
-                .trace(UUIDUtil.createUUID())
+                .traceId(UUIDUtil.createUUID())
+                .isMergeRefund(YesOrNo.YES.getCode())
+                .startTime(LocalDateTime.now())
+                .endTime(LocalDateTime.now().minusHours(2))
+                .traceId(UUIDUtil.createUUID())
                 .build();
-        request.setBody(JSON.toJSONString(dto));
-
+        request.setBody(DESUtil.encrypt(JSON.toJSONString(dto), security));
         receiver.getHospitalResult(request);
         // 需要预留一部分时候给异步线程处理&上传文件,否则 jvm 关闭后线程池生命周期也立即结束
         TimeUnit.SECONDS.sleep(60);

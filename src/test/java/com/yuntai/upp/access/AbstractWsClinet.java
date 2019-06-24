@@ -1,6 +1,6 @@
 package com.yuntai.upp.access;
 
-import com.yuntai.upp.support.util.TraceIdUtil;
+import com.yuntai.upp.client.basic.util.TraceIdUtil;
 import org.junit.After;
 import org.junit.Before;
 

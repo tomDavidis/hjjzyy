@@ -5,12 +5,15 @@ server:
   hdp:
     ip: 127.0.0.1
     port: 8080
-    token: ${random.value}
-    hosid: 999
+    token: ${random.uuid}
+    resource_id: 999
+    delay: 5
+    pool: 25
   constant:
     model: 1
-    partner: ${random.uuid}
-    isv: 999
+    partner_id: ${random.long}
+    isv_id: 999
+    security: cb1dc9980f164b08a12ac821494b89ed
   keys:
     999:
       private-key: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDC1nTM5IciewiIAglOipo3ubOFBsF3nuRZmG3N8MIz0oVSPjW4pAiO1JaYdk6YrDaqZdeCH6GZMNK88lETM+Y1tqBMHtJQy4jC/QyxARJRXyfJINsikx1EteaM9ivpd+SOWuaxJVXTqh2CvVSV2Dvzz+fJTJ6XAiYD9A6v2WBvCDpuQE8hzCzZN/2irg5kDAviFedv0eALJACuIVl0ITu+ib5EtokBPXUE/qlp4kMRxfZy5SVUNicxqk+u4+840hMUOk/RUpc1+hKnZl5BRzGzI7DniZzU0Rs2G36AzoplHmtim692fDzrJm1lnyD4utxfikn2mbU4ufTOb67CRiSrAgMBAAECggEBAILwtZZtjxPxM46UL8UFCReiSa+BFsxZkIVWF5Vr1FgXh1n6TQhF1SqIXJ0iBTg9pI9n2imtMGFPmpE5GJubKX+3uIrvu9BouQSyI7FhUvo0xPw6hIr765Od28+oMWK6HHQ/SwKKYN/bV/HhY9NAeyoj81Ypk/tQilPl1WkA4fo7lGeh/StVGsdIefR9jldhRlAPEsORG7FfzuRetPoq5LrK/gVBOrpJcCNAoQcCQZkxsf51pwkD/GIHqLff4/3IGxqWQNw7fntDfP5Mah3gkjF/Fcfm6NVvtS7V0Y9lB6NHpGq2Jxr8n+HO0CaQvrwbFjF49MKCnwxI1Bsodo2cFuECgYEA8HHiEIGlOUjE/I30zQ0Raal9gbY6KQBPB6ijuXH2CJSFTMZs6PmPUEF6mAtfKkJNyrPay6wBQmgjXnJICv9gQyXYQf5xhNvqnAFP0VR1LuZtpThJ2nG607SLv0IticwoV1bu92FJd12RlHuUZWZaCr70aPcrQ7tyfeXuOlXp0H0CgYEAz3FAqqiCPWb/73PFNlZagTL1+70Ou79d9QWBMpdieGQqeYlEBagB95YDH+b3qpCJhQvtsrvJ0lymSjcYZKsEiNeFWZRQEnmrEhuPPHIAQPTs30K9Xznc0IwHkpNJ2H2H8oGUwvT54wTtt/wl515to6L2PCl+Slf25xw7gqnFOkcCgYA5D73Hjwzn8FYXXZUICJ7mRXvsiZN54YHf3mykeOAbnyuXUcvM6lTRhgiTBrfZ7oxJm69EAJj36oDiTBq+yWZN6TBOURUdo5ck2MbZdcKtk6/XsukL90uQLFux0wG9nv6/43ioqqTluAXxh/ZqrgSWYkTcmDPjShvctvF3VKY9fQKBgA/jwOxRlAhYB2q0F3seCjizSpxJ0wMWmX/XOBpD9kr6gTZmCUvVnrD0ULD05CuwfpguXbq/H6p5ZlNw/PFZGDPTLme6MJf5sdzlN4eNw+81058WYaMVr5BZ6YqUtadbljpBKr/0O9/j1MGvEsgyN3u9U9cv5niTXFo/k19i2bSpAoGAPx3bF3dsFxg7Kp9t6avOyUz+Hs5uL0gz1/ioRhrw+v+L72Q2h1cpoy9aErCyeRaCZu0S+rFmHagZ/oB24C4tSgQv9vDFPkETcKZC9HPAZiXa8Ei+MV4ebdnFGCb5+NEVcSjCUI/qmhxYePMJhGK6mv/jnMlPPLFzhg2vaRoWeiw=
@@ -20,50 +23,11 @@ spring:
     proxy-target-class: true
     auto: true
   datasource:
-    dynamic:
-      druid:
-        # 以下是全局默认值,可以全局更改
-        initial-size: 2
-        max-active: 10
-        min-idle: 1
-        max-wait: 45000
-      #        time-between-eviction-runs-millis:
-      #        time-between-log-stats-millis:
-      #        stat-sqlmax-size:
-      #        min-evictable-idle-time-millis:
-      #        max-evictable-idle-time-millis:
-      #        test-while-idle:
-      #        test-on-borrow: false
-      #        test-on-return: false
-      #        validation-query: SELECT 'x'
-      #        validation-query-timeout:
-      #        use-global-datasource-stat:
-      #        async-init:
-      #        clear-filters-enable:
-      #        reset-stat-enable: false
-      #        not-full-timeout-retry-count:
-      #        max-wait-thread-count:
-      #        fail-fast:
-      #        phyTimeout-millis:
-      #        keep-alive:
-      #        pool-prepared-statements:
-      #        init-variants:
-      #        init-global-variants:
-      #        use-unfair-lock:
-      #        kill-when-socket-read-timeout:
-      #        connection-properties:
-      #        max-pool-prepared-statement-per-connection-size:
-      #        init-connection-sqls:
-      #        share-prepared-statements:
-      #        connection-errorretry-attempts:
-      #        break-after-acquire-failure:
-      #        filters: stat,wall
-      datasource:
-        master:
-          url:
-          username:
-          password:
-          driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://112.124.33.7:3306/upp?zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: med
+    password: medicalcore01
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
 
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
