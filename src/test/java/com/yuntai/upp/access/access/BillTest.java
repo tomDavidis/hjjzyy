@@ -11,6 +11,7 @@ import com.yuntai.upp.client.basic.util.DESUtil;
 import com.yuntai.upp.client.basic.util.DateUtil;
 import com.yuntai.upp.client.basic.util.TraceIdUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
+import com.yuntai.upp.sdk.enums.CheckBillsDownloadType;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -86,6 +87,7 @@ public class BillTest {
                 .startTime(LocalDateTime.now())
                 .endTime(LocalDateTime.now().minusHours(2))
                 .traceId(UUIDUtil.createUUID())
+                .type(CheckBillsDownloadType.DIRECT.getCode())
                 .build();
         request.setBody(DESUtil.encrypt(JSON.toJSONString(dto), security));
         receiver.getHospitalResult(request);

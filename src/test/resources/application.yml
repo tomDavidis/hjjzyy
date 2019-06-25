@@ -6,13 +6,13 @@ server:
     ip: 127.0.0.1
     port: 8080
     token: ${random.uuid}
-    resource_id: 999
+    resource-id: 999
     delay: 5
     pool: 25
   constant:
     model: 1
-    partner_id: ${random.long}
-    isv_id: 999
+    partner-id: ${random.long}
+    isv-id: 999
     security: cb1dc9980f164b08a12ac821494b89ed
   keys:
     999:

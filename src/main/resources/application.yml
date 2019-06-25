@@ -6,13 +6,13 @@ server:
     ip: @server.hdp.ip@
     port: @server.hdp.port@
     token: @server.hdp.token@
-    resource_id: @server.hdp.resouce_id@
+    resource-id: @server.hdp.resouce-id@
     delay: @server.hdp.delay@
     pool: @server.hdp.pool@
   constant:
     model: @server.constant.model@
-    partner_id: @server.constant.partner_id@
-    isv_id: @server.constant.isv_id@
+    partner-id: @server.constant.partner-id@
+    isv-id: @server.constant.isv-id@
     security: @server.constant.security@
   keys:
     999:
