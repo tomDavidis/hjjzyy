@@ -34,24 +34,24 @@ public class BillHelper extends AbstractBill {
     protected List<BillVo> data(@NonNull BillDto dto) {
         /* 在此对 DTO 中的字段进行详细介绍
          *
-         * 字段         - 详细介绍
+         * 字段                      详细介绍
          *
-         * partnerIds  - 存放的为商户标识, 数据类型为 List<Long>,
-         *             但上层处理之后, 进入到该方法时, List 的 size 一定为 1
-         *             非空必填(上层已校验)
+         * partnerIds               - 存放的为商户标识, 数据类型为 List<Long>,
+         *                          但上层处理之后, 进入到该方法时, List 的 size 一定为 1
+         *                          非空必填(上层已校验)
          *
-         * startTime   - 需要导出账单数据的起始时间, 数据类型为 LocalTimeDate[可使用DateUtil.formateDate()方法进行格式化]
-         *             非空必填(上层已校验)
-         *             格式为yyyy-MM-dd HH:mm:ss, 无需要校验格式正确性(上层已校验)
+         * startTime                - 需要导出账单数据的起始时间, 数据类型为 LocalTimeDate[可使用DateUtil.formateDate()方法进行格式化]
+         *                          非空必填(上层已校验)
+         *                          格式为yyyy-MM-dd HH:mm:ss, 无需要校验格式正确性(上层已校验)
          *
-         * endTime     - 需要导出账单数据的终止时间, 数据类型为 LocalTimeDate[可使用DateUtil.formateDate()方法进行格式化]
-         *             非空必填(上层已校验)
-         *             格式为yyyy-MM-dd HH:mm:ss, 无需要校验格式正确性(上层已校验)
+         * endTime                  - 需要导出账单数据的终止时间, 数据类型为 LocalTimeDate[可使用DateUtil.formateDate()方法进行格式化]
+         *                          非空必填(上层已校验)
+         *                          格式为yyyy-MM-dd HH:mm:ss, 无需要校验格式正确性(上层已校验)
          *
-         * [tradeType] - 账单下载类型()大多情况下,实时账单&延时账单均调用 HIS 相同视图
-         *             若存在 HIS 实时账单与延时账单调用不同的视图、逻辑时,可通过 dto 中的 tradeType 属性进行分类判断
-         *               prompt : 实时
-         *               delay : 延时
+         * [checkBillsDownloadType] - 账单下载类型()大多情况下,实时账单&延时账单均调用 HIS 相同视图
+         *                          若存在 HIS 实时账单与延时账单调用不同的视图、逻辑时,可通过 dto 中的 tradeType 属性进行分类判断
+         *                              prompt : 实时
+         *                              delay : 延时
          */
         return BillDataMock.mock();
     }

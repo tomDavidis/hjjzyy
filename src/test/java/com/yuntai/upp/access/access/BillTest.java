@@ -70,7 +70,7 @@ public class BillTest {
         request.setSendTime(System.currentTimeMillis());
 
         BillDto dto = BillDto.builder()
-                .ftpUrl("114.215.200.225")
+                .ftpIp("114.215.200.225")
                 .ftpPort(21)
                 .ftpUser("dzftp")
                 .ftpPwd("dzxqq")
@@ -87,7 +87,7 @@ public class BillTest {
                 .startTime(LocalDateTime.now())
                 .endTime(LocalDateTime.now().minusHours(2))
                 .traceId(UUIDUtil.createUUID())
-                .type(CheckBillsDownloadType.DIRECT.getCode())
+                .checkBillsDownloadType(CheckBillsDownloadType.DIRECT.getCode())
                 .build();
         request.setBody(DESUtil.encrypt(JSON.toJSONString(dto), security));
         receiver.getHospitalResult(request);
