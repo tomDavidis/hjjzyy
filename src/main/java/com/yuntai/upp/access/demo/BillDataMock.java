@@ -55,11 +55,11 @@ public class BillDataMock {
                     .tradeTime(LocalDateTime.now())
 
                     // 芸泰流水
-                    .outSerialNo(UUIDUtil.createUUID())
+                    .outTradeNo(UUIDUtil.createUUID())
                     // 第三方流水
-                    .inSerialNo(UUIDUtil.createUUID())
+                    .inTradeNo(UUIDUtil.createUUID())
                     // HIS 流水
-                    .serialNo(UUIDUtil.createUUID())
+                    .tradeNo(UUIDUtil.createUUID())
 
                     // 业务类型 请参照 BizType 枚举类
                     .bizType(BizType.REGISTER.getCode())

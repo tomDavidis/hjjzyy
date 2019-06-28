@@ -67,7 +67,7 @@ public class PresentTest {
         PresentDto dto = PresentDto.builder()
                 .isvId(999L)
                 .partnerId((new Random()).nextLong())
-                .outSerialNo(UUIDUtil.createUUID())
+                .outTradeNo(UUIDUtil.createUUID())
                 .traceId(UUIDUtil.createUUID())
                 .tradeType(TradeType.PAY.getCode())
                 .build();

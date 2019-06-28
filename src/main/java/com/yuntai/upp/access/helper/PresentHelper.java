@@ -32,20 +32,20 @@ public class PresentHelper extends AbstractPresent {
          *               非空必填(上层已校验)
          *               有效枚举已校验(上层已校验), 可通过Enumable.getEnumByCode(dto.getTradeType(), TradeType.class)直接过去枚举类型
          *
-         * outSerialNo   - 芸泰流水
-         *               非必填(outSerialNo | inSerialNo | serialNo 3 流水要素必有一项非空)
+         * outTradeNo   - 芸泰流水
+         *               非必填(outTradeNo | inTradeNo | tradeNo 3 流水要素必有一项非空)
          *
-         * inSerialNo    - 商户流水
-         *               非必填(outSerialNo | inSerialNo | serialNo 3 流水要素必有一项非空)
+         * inTradeNo    - 商户流水
+         *               非必填(outTradeNo | inTradeNo | tradeNo 3 流水要素必有一项非空)
          *
-         * serialNo      - HIS流水
-         *               非必填(outSerialNo | inSerialNo | serialNo 3 流水要素必有一项非空)
+         * tradeNo      - HIS流水
+         *               非必填(outTradeNo | inTradeNo | tradeNo 3 流水要素必有一项非空)
          *
-         * 针对outSerialNo & inSerialNo & serialNo 字段进行进一步具体例子解释
+         * 针对outTradeNo & inTradeNo & tradeNo 字段进行进一步具体例子解释
          *
-         * outSerialNo      : 芸泰云端服务针对某笔订单的唯一流水标识
-         * inSerialNo       : 商户(如支付宝、微信等)对某笔订单的唯一流水标识
-         * serialNo         : HIS 内部服务队某笔订单的唯一流水标识
+         * outTradeNo      : 芸泰云端服务针对某笔订单的唯一流水标识
+         * inTradeNo       : 商户(如支付宝、微信等)对某笔订单的唯一流水标识
+         * tradeNo         : HIS 内部服务队某笔订单的唯一流水标识
          *
          * 注意!!! 正交易与负交易的流水不一定相同的
          * 举例: 芸泰的正交易流水(YT 开头)与负交易流水(退款批次号[YTR 开头])

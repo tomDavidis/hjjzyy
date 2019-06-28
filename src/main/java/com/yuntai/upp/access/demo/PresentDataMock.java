@@ -34,11 +34,11 @@ public class PresentDataMock {
         /* 模拟数据,仅供无 HIS 接口时,工程测试使用 - start */
         vos.add(PresentVo.builder()
                 // 芸泰流水
-                .outSerialNo(UUIDUtil.createUUID())
+                .outTradeNo(UUIDUtil.createUUID())
                 // 第三方流水
-                .inSerialNo(UUIDUtil.createUUID())
+                .inTradeNo(UUIDUtil.createUUID())
                 // HIS 流水
-                .serialNo(UUIDUtil.createUUID())
+                .tradeNo(UUIDUtil.createUUID())
                 // 交易金额(BigDecimal 类型, 保留 2 位小数)
                 .tradeFee((new BigDecimal(Math.random()).setScale(2, RoundingMode.HALF_UP)))
                 // 交易时间(LocalDateTime 类型)
