@@ -74,14 +74,9 @@ public class BillTest {
                 .ftpPort(21)
                 .ftpUser("dzftp")
                 .ftpPwd("dzxqq")
-                .filePath(MessageFormat.format("/upp/bills/{0}/current/triple/partnerId/{1}/", "{0}", DateUtil.formateDate(LocalDateTime.now(), DateUtil.FORMAT_YYMMDD)))
-                .fileName(MessageFormat.format("{0}-triple-partnerId-{1}-bills.csv", "{0}", DateUtil.formateDate(LocalDateTime.now(), DateUtil.FORMAT_YYMMDD)))
-                .partnerIds(new ArrayList<Long>(10) {
-                    private static final long serialVersionUID = -2147265207196198394L;
-                    {
-                        add(999L);
-                    }
-                })
+                .filePath(MessageFormat.format("/upp/bills/{0}/current/triple/partner/{1}/", 999L,DateUtil.formateDate(LocalDateTime.now(), DateUtil.FORMAT_YYMMDD)))
+                .fileName(MessageFormat.format("{0}-triple-partner-{1}-bills.csv", 999L, DateUtil.formateDate(LocalDateTime.now(), DateUtil.FORMAT_YYMMDD)))
+                .partnerId(999L)
                 .traceId(UUIDUtil.createUUID())
                 .isMergeRefund(YesOrNo.YES.getCode())
                 .startTime(LocalDateTime.now())

@@ -31,8 +31,8 @@ Configuration:
         onMatch: accept
         onMismatch: deny
       ignoreExceptions: false
-      fileName: /Users/jinren/Desktop/upp-client/upp-access-test/default.log
-      filePattern: "/Users/jinren/Desktop/upp-client/upp-access-demo/$${date:yyyy-MM}/default_%d{yyyy-MM-dd}-%i.log.gz"
+      fileName: ${log.path}/${project.name}/default.log
+      filePattern: "${log.path}/${project.name}/$${date:yyyy-MM}/default_%d{yyyy-MM-dd}-%i.log.gz"
       PatternLayout:
         pattern: ${layout.pattern}
       Policies:
@@ -46,8 +46,8 @@ Configuration:
         onMatch: accept
         onMismatch: deny
       ignoreExceptions: false
-      fileName: /Users/jinren/Desktop/upp-client/upp-access-test/error.log
-      filePattern: "/Users/jinren/Desktop/upp-client/upp-access-demo/$${date:yyyy-MM}/default_%d{yyyy-MM-dd}-%i.log.gz"
+      fileName: ${log.path}/${project.name}/error.log
+      filePattern: "${log.path}/${project.name}/$${date:yyyy-MM}/default_%d{yyyy-MM-dd}-%i.log.gz"
       PatternLayout:
         pattern: ${layout.pattern}
       Policies:

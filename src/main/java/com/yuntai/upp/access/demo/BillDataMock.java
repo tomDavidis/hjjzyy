@@ -43,7 +43,7 @@ public class BillDataMock {
             vos.add(BillVo.builder()
                     // 商户标识
                     // 该值可直接通过 BillHelper 中的 data 方法中的形参 dto 中直接获取
-                    // partnerId = dto.getPartnerIds().get(0)
+                    // partnerId = dto.getPartnerId().get(0)
                     .partnerId(999L)
                     // 账单日期
                     .billsDate(LocalDate.now())

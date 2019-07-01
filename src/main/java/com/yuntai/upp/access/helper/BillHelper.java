@@ -36,9 +36,7 @@ public class BillHelper extends AbstractBill {
          *
          * 字段                      详细介绍
          *
-         * partnerIds               - 存放的为商户标识, 数据类型为 List<Long>,
-         *                          但上层处理之后, 进入到该方法时, List 的 size 一定为 1
-         *                          非空必填(上层已校验)
+         * partnerId                - 存放的为商户标识, 数据类型为 Long
          *
          * startTime                - 需要导出账单数据的起始时间, 数据类型为 LocalTimeDate[可使用DateUtil.formateDate()方法进行格式化]
          *                          非空必填(上层已校验)
