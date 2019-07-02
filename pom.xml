@@ -98,24 +98,14 @@
             <filter>src/main/resources/deploy/profile.${env}.properties</filter>
         </filters>
         <resources>
-            <!-- 占位符填充 -->
             <resource>
                 <filtering>true</filtering>
                 <directory>src/main/resources</directory>
                 <includes>
                     <include>*.yml</include>
                     <include>*.xml</include>
+                    <include>mapper/*.xml</include>
                 </includes>
-            </resource>
-            <!-- 文件过滤 -->
-            <resource>
-                <filtering>false</filtering>
-                <directory>src/main/resources</directory>
-                <excludes>
-                    <exclude>deploy/profile.*.properties</exclude>
-                    <exclude>run.sh</exclude>
-                    <exclude>assembly/assembly.xml</exclude>
-                </excludes>
             </resource>
         </resources>
         <plugins>
@@ -155,13 +145,7 @@
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                         </manifest>
-                        <manifestEntries>
-                            <Class-Path>./conf/</Class-Path>
-                        </manifestEntries>
                     </archive>
-                    <excludes>
-                        <exclude>${project.build.directory}/${project.artifactId}/conf</exclude>
-                    </excludes>
                 </configuration>
                 <version>3.1.2</version>
             </plugin>
