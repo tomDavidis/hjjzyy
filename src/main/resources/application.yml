@@ -15,9 +15,10 @@ server:
     isv-id: @server.constant.isv-id@
     security: @server.constant.security@
   keys:
-    999:
-      private-key: @server.keys.999.private.key@
-      public-key: @server.keys.999.public.key@
+    10000-999:
+      private-key: @server.keys.10000-999.private.key@
+      public-key: @server.keys.10000-999.public.key@
+
 spring:
   aop:
     proxy-target-class: true

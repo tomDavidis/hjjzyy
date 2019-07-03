@@ -3,6 +3,7 @@ package com.yuntai.upp.access.demo;
 import com.yuntai.upp.client.basic.model.vo.bill.BillVo;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.sdk.enums.BizType;
+import com.yuntai.upp.sdk.enums.ChannelType;
 import com.yuntai.upp.sdk.enums.CheckBillsPayType;
 import com.yuntai.upp.sdk.enums.CheckBillsStatType;
 import com.yuntai.upp.sdk.enums.TradeType;
@@ -71,6 +72,8 @@ public class BillDataMock {
                     .payType(CheckBillsPayType.SELF.getCode())
                     // 对账类型 改值 @服务端对账开发人员,按照服务端配置赋值
                     .statType(CheckBillsStatType.ONE.getCode())
+                    // 支付渠道
+                    .channelType(ChannelType.ALI.getCode())
                     .build());
         }
         /* 模拟数据,仅供无 HIS 接口时,工程测试使用 - end */
