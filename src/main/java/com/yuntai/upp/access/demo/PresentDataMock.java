@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @description 实时账单数据模拟
+ * @description 实时交易数据模拟
  * @className PresentDataMock
  * @package com.yuntai.upp.access.demo
  * @author jinren@hsyuntai.com

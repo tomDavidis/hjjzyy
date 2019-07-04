@@ -2,9 +2,8 @@ package com.yuntai.upp.access.restapi;
 
 import com.yuntai.upp.access.AbstractRestapiClient;
 import com.yuntai.upp.access.ProviderBoot;
-import com.yuntai.upp.client.basic.model.dto.network.NetworkDto;
 import com.yuntai.upp.client.basic.enums.CmdType;
-import com.yuntai.upp.client.basic.util.DateUtil;
+import com.yuntai.upp.client.basic.model.dto.query.QueryDto;
 import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.JaxbUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
@@ -14,21 +13,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.MessageFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
- * @description 单元测试-网络测试
- * @className NetworkTest
+ * @description 单元测试-查询
+ * @className QueryTest
  * @package com.yuntai.upp.access.restapi
  * @author jinren@hsyuntai.com
- * @date 2019-06-20 09:14
+ * @date 2019-07-04 10:25
  * @copyright 版权归 HSYUNTAI 所有
  */
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {ProviderBoot.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class NetworkTest extends AbstractRestapiClient {
+public class QueryTest extends AbstractRestapiClient {
 
     @Test
     public void testXml() {
@@ -37,13 +34,18 @@ public class NetworkTest extends AbstractRestapiClient {
                 .content(HttpUtil.CONTENT_TEXT)
                 .accept(HttpUtil.ACCEPT_JSON)
                 .data(MessageFormat.format(TEMPLATE,
-                        CmdType.S0000.getCode(),
+                        CmdType.S0003.getCode(),
                         MessageFormat.format(REQUEST,
                                 UUIDUtil.createUUID(),
-                                CmdType.S0000.getDesc(),
+                                CmdType.S0003.getDesc(),
                                 UUIDUtil.createUUID(),
-                                JaxbUtil.xml(NetworkDto.builder()
-                                        .field(LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
+                                JaxbUtil.xml(QueryDto.builder()
+                                        /* 当前配置为单机, isv 标识与商户标识可为空 */
+//                                                .isvId(0L)
+//                                                .partnerId(0L)
+                                        .paymentNo(UUIDUtil.createUUID())
+                                        /* 以下为特殊渠道|附加参数, 可为空 */
+//                                                .expandData("")
                                         .build()))))
                 .build());
     }
@@ -55,13 +57,18 @@ public class NetworkTest extends AbstractRestapiClient {
                 .content(HttpUtil.CONTENT_TEXT)
                 .accept(HttpUtil.ACCEPT_JSON)
                 .data(MessageFormat.format(TEMPLATE,
-                        CmdType.S0000.getCode(),
+                        CmdType.S0003.getCode(),
                         MessageFormat.format(REQUEST,
                                 UUIDUtil.createUUID(),
-                                CmdType.S0000.getDesc(),
+                                CmdType.S0003.getDesc(),
                                 UUIDUtil.createUUID(),
-                                JaxbUtil.xml(NetworkDto.builder()
-                                        .field(LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
+                                JaxbUtil.xml(QueryDto.builder()
+                                        /* 当前配置为单机, isv 标识与商户标识可为空 */
+//                                                .isvId(0L)
+//                                                .partnerId(0L)
+                                        .paymentNo(UUIDUtil.createUUID())
+                                        /* 以下为特殊渠道|附加参数, 可为空 */
+//                                                .expandData("")
                                         .build()))))
                 .build());
     }

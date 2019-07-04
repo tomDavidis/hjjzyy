@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * @description 实时账单-真实实现(禁止修改 bean 名)
+ * @description 实时交易-真实实现(禁止修改 bean 名)
  * @className PresentHelper
  * @package com.yuntai.upp.access.helper
  * @author jinren@hsyuntai.com
