@@ -9,7 +9,6 @@ import com.yuntai.upp.client.basic.util.TraceIdUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.export.access.ClientReceiver;
 import com.yuntai.upp.sdk.enums.SignType;
-import com.yuntai.upp.sdk.enums.TradeType;
 import com.yuntai.upp.sdk.util.SignUtil;
 import org.junit.After;
 import org.junit.Before;
@@ -87,9 +86,8 @@ public class PresentTest {
         PresentDto dto = PresentDto.builder()
                 .isvId(999L)
                 .partnerId((new Random()).nextLong())
-                .outTradeNo(UUIDUtil.createUUID())
+                .paymentNo(UUIDUtil.createUUID())
                 .traceId(UUIDUtil.createUUID())
-                .tradeType(TradeType.PAY.getCode())
                 .build();
 
         dto.setSign(SignUtil.signRSA(dto, PRIVATW_KEY, SignType.RSA2));
