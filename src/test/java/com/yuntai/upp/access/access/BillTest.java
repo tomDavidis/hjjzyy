@@ -34,7 +34,6 @@ import java.util.concurrent.TimeUnit;
  * @date 2019-06-14 13:47
  * @copyright 版权归 HSYUNTAI 所有
  */
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {ProviderBoot.class})
 public class BillTest {

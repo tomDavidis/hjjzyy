@@ -18,7 +18,6 @@ import java.util.List;
  * @date 2019-06-22 10:16
  * @copyright 版权归 HSYUNTAI 所有
  */
-
 public class PresentDataMock {
 
     /**
@@ -47,7 +46,6 @@ public class PresentDataMock {
                 .tradeType(TradeType.PAY.getCode())
                 .build());
         /* 模拟数据,仅供无 HIS 接口时,工程测试使用 - end */
-
-        return vos;
+return vos;
     }
 }

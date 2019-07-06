@@ -12,7 +12,6 @@ import org.junit.Before;
  * @date 2019-06-14 13:38
  * @copyright 版权归 HSYUNTAI 所有
  */
-
 public abstract class AbstractWsClinet {
 
     protected static final String URL_WS = "http://pay.hsyuntai.com:7000/hs-access-facepay/services/facePayWebService";

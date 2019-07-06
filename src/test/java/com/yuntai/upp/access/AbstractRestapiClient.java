@@ -12,7 +12,6 @@ import org.junit.Before;
  * @date 2019-06-13 17:40
  * @copyright 版权归 HSYUNTAI 所有
  */
-
 public abstract class AbstractRestapiClient {
 
     protected static final String URL_XML = "http://pay.hsyuntai.com:7000/hs-access-facepay/FacePayRestService/facePayService";

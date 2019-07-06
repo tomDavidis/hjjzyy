@@ -8,7 +8,6 @@ package com.yuntai.upp.access.service;
  * @date 2019-06-19 09:21
  * @copyright 版权归 HSYUNTAI 所有
  */
-
 public interface DemoService {
 
     Boolean ping();

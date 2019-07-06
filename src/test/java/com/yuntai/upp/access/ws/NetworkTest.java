@@ -27,7 +27,6 @@ import java.time.format.DateTimeFormatter;
  * @date 2019-06-14 13:40
  * @copyright 版权归 HSYUNTAI 所有
  */
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {ProviderBoot.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class NetworkTest extends AbstractWsClinet {

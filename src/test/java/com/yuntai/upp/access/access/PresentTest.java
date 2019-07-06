@@ -30,7 +30,6 @@ import java.util.concurrent.TimeUnit;
  * @date 2019-06-24 16:27
  * @copyright 版权归 HSYUNTAI 所有
  */
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {ProviderBoot.class})
 public class PresentTest {

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
  * @date 2019-06-19 09:21
  * @copyright 版权归 HSYUNTAI 所有
  */
-
 @Repository
 public interface DemoMapper {
 
