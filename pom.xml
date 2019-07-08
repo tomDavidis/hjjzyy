@@ -95,7 +95,7 @@
     <build>
         <finalName>${project.artifactId}</finalName>
         <filters>
-            <filter>src/main/resources/deploy/profile.${env}.properties</filter>
+            <filter>src/main/resources/deploy/${env}.properties</filter>
         </filters>
         <resources>
             <resource>
