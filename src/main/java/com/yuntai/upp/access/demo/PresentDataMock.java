@@ -46,6 +46,6 @@ public class PresentDataMock {
                 .tradeType(TradeType.PAY.getCode())
                 .build());
         /* 模拟数据,仅供无 HIS 接口时,工程测试使用 - end */
-return vos;
+        return vos;
     }
 }
