@@ -1,6 +1,7 @@
 package com.yuntai.upp.access.demo;
 
 import com.yuntai.upp.client.basic.model.vo.bill.BillVo;
+import com.yuntai.upp.client.basic.util.DateUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.sdk.enums.BizType;
 import com.yuntai.upp.sdk.enums.ChannelType;
@@ -12,6 +13,7 @@ import com.yuntai.upp.sdk.enums.SourceType;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +48,8 @@ public class BillDataMock {
                     // partnerId = dto.getPartnerId().get(0)
                     .partnerId(999L)
                     // 账单日期
+                    // 真实场景可通过起始时间进行转换
+                    // end_time - start_time <= 24H && start_time >= 00:00
                     .billsDate(LocalDate.now())
                     // pay:支付 refundFee:退款
                     .tradeType(Math.random() > 0.5D ? TradeType.PAY.getCode() : TradeType.REFUND.getCode())
