@@ -6,16 +6,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
  * @author jinren@hsyuntai.com
  * @description 程序启动入口
  *              若客户端业务处理(如账单下载,无需经过 客户端 DB 数据整合)
  *              则
- *                  @SpringBootApplication(scanBasePackages = {"com.yuntai.upp.access", "com.yuntai.upp.client"})
+ *                  @SpringBootApplication(scanBasePackages = {"com.yuntai.upp.access"})
  *              修改为
- *                  @SpringBootApplication(scanBasePackages = {"com.yuntai.upp.access", "com.yuntai.upp.client"},
+ *                  @SpringBootApplication(scanBasePackages = {"com.yuntai.upp.access"},
  *                      exclude = {DataSourceAutoConfiguration.class})
  * @className SpringBootApplication
  * @package com.yuntai.upp.access
@@ -23,8 +22,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  * @copyright 版权归 HSYUNTAI 所有
  */
 @Slf4j
-@EnableAsync
-@SpringBootApplication(scanBasePackages = {"com.yuntai.upp.access", "com.yuntai.upp.client"})
+@SpringBootApplication(scanBasePackages = {"com.yuntai.upp.access"})
 @MapperScan("com.yuntai.upp.access.mapper")
 public class ProviderBoot {
 

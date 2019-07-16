@@ -3,26 +3,23 @@ package com.yuntai.upp.access.helper;
 import com.yuntai.upp.access.demo.PresentDataMock;
 import com.yuntai.upp.client.basic.model.dto.present.PresentDto;
 import com.yuntai.upp.client.basic.model.vo.present.PresentVo;
-import com.yuntai.upp.client.handler.active.present.AbstractPresent;
+import com.yuntai.upp.client.config.strategy.DataConvert;
 import lombok.NonNull;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
- * @description 实时交易-真实实现(禁止修改 bean 名)
+ * @description 实时交易-真实实现
  * @className PresentHelper
  * @package com.yuntai.upp.access.helper
  * @author jinren@hsyuntai.com
  * @date 2019-06-21 15:32
  * @copyright 版权归 HSYUNTAI 所有
  */
-@Component("presentHandler")
-public class PresentHelper extends AbstractPresent {
-
+public class PresentHelper implements DataConvert<List<PresentVo>, PresentDto> {
 
     @Override
-    protected List<PresentVo> data(@NonNull PresentDto dto) {
+    public List<PresentVo> data(@NonNull PresentDto dto) {
         /*
          * 在此对 DTO 中的字段进行详细介绍
          *

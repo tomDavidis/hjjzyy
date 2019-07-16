@@ -90,6 +90,7 @@ public class PresentTest {
                 .build();
 
         dto.setSign(SignUtil.signRSA(dto, PRIVATW_KEY, SignType.RSA2));
+        request.setCmd(CmdType.I0001.getCmd());
         request.setBody(JSON.toJSONString(dto));
 
         receiver.getHospitalResult(request);

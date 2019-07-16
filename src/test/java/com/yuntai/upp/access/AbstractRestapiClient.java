@@ -14,8 +14,8 @@ import org.junit.Before;
  */
 public abstract class AbstractRestapiClient {
 
-    protected static final String URL_XML = "http://pay.hsyuntai.com:7000/hs-access-facepay/FacePayRestService/facePayService";
-    protected static final String URL_JSON = "http://pay.hsyuntai.com:7000/hs-access-facepay/FacePayRestService/facePayService/JSON";
+    protected static final String URL_XML = "http://127.0.0.1:7000/hs-access-facepay/FacePayRestService/facePayService";
+    protected static final String URL_JSON = "http://127.0.0.1:7000/hs-access-facepay/FacePayRestService/facePayService/JSON";
 
     protected static final String TEMPLATE =
             "BizCode={0}&RequestData={1}";
