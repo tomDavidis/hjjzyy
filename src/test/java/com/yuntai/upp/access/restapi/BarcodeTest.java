@@ -1,5 +1,6 @@
 package com.yuntai.upp.access.restapi;
 
+import com.alibaba.fastjson.JSON;
 import com.yuntai.upp.access.AbstractRestapiClient;
 import com.yuntai.upp.access.ProviderBoot;
 import com.yuntai.upp.client.basic.enums.CmdType;
@@ -27,6 +28,8 @@ import java.text.MessageFormat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {ProviderBoot.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class BarcodeTest extends AbstractRestapiClient {
+
+    private static final String URL = "http://127.0.0.1:7000/hs-access-facepay/access/barcode";
 
     @Test
     public void testXml() {
@@ -87,6 +90,31 @@ public class BarcodeTest extends AbstractRestapiClient {
 //                                                .expandData("")
 //                                                .districtId("")
                                         .build()))))
+                .build());
+    }
+
+    @Test
+    public void testJSON2() {
+        HttpUtil.post(HttpUtil.Atom.builder()
+                .url(URL)
+                .content(HttpUtil.CONTENT_JSON)
+                .accept(HttpUtil.ACCEPT_JSON)
+                .data(JSON.toJSONString(BarcodeDto.builder()
+                        /* 当前配置为单机, isv 标识与商户标识可为空 */
+//                                                .isvId(0L)
+//                                                .partnerId(0L)
+                        /* 真实条码 */
+                        .authCode("")
+                        .paymentNo(UUIDUtil.createUUID())
+                        .tradeFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
+                        .channelProduct(ChannelProductType.ALI_BAR_CODE.getValue())
+                        .subject("条码支付(upp-client)")
+                        /* 以下为特殊渠道|附加参数, 可为空 */
+//                                                .terminalNo("")
+//                                                .expireTime("")
+//                                                .expandData("")
+//                                                .districtId("")
+                        .build()))
                 .build());
     }
 }

@@ -32,7 +32,7 @@ public abstract class AbstractRestapiClient {
 
     @Before
     public void before() {
-        TraceIdUtil.createLocalTraceId();
+        TraceIdUtil.createLocalTraceId(this.getClass().getName());
     }
 
     @After

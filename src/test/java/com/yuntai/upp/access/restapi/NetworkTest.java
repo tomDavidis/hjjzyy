@@ -1,5 +1,6 @@
 package com.yuntai.upp.access.restapi;
 
+import com.alibaba.fastjson.JSON;
 import com.yuntai.upp.access.AbstractRestapiClient;
 import com.yuntai.upp.access.ProviderBoot;
 import com.yuntai.upp.client.basic.model.dto.network.NetworkDto;
@@ -28,6 +29,8 @@ import java.time.format.DateTimeFormatter;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {ProviderBoot.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class NetworkTest extends AbstractRestapiClient {
+
+    private static final String URL = "http://127.0.0.1:7000/hs-access-facepay/access/network";
 
     @Test
     public void testXml() {
@@ -62,6 +65,18 @@ public class NetworkTest extends AbstractRestapiClient {
                                 JaxbUtil.xml(NetworkDto.builder()
                                         .field(LocalDateTime.now().plusSeconds(0).format(DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
                                         .build()))))
+                .build());
+    }
+
+    @Test
+    public void testJSON2() {
+        HttpUtil.post(HttpUtil.Atom.builder()
+                .url(URL)
+                .content(HttpUtil.CONTENT_JSON)
+                .accept(HttpUtil.ACCEPT_JSON)
+                .data(JSON.toJSONString(NetworkDto.builder()
+                        .field(LocalDateTime.now().plusSeconds(0).format(DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
+                        .build()))
                 .build());
     }
 }

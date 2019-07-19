@@ -3,8 +3,9 @@ package com.yuntai.upp.access.helper;
 import com.yuntai.upp.access.demo.PresentDataMock;
 import com.yuntai.upp.client.basic.model.dto.present.PresentDto;
 import com.yuntai.upp.client.basic.model.vo.present.PresentVo;
-import com.yuntai.upp.client.config.strategy.DataConvert;
+import com.yuntai.upp.client.handler.active.present.AbstractPresent;
 import lombok.NonNull;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -16,7 +17,8 @@ import java.util.List;
  * @date 2019-06-21 15:32
  * @copyright 版权归 HSYUNTAI 所有
  */
-public class PresentHelper implements DataConvert<List<PresentVo>, PresentDto> {
+@Component("presentService")
+public class PresentHelper extends AbstractPresent {
 
     @Override
     public List<PresentVo> data(@NonNull PresentDto dto) {

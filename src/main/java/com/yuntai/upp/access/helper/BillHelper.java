@@ -3,20 +3,22 @@ package com.yuntai.upp.access.helper;
 import com.yuntai.upp.access.demo.BillDataMock;
 import com.yuntai.upp.client.basic.model.dto.bill.BillDto;
 import com.yuntai.upp.client.basic.model.vo.bill.BillVo;
-import com.yuntai.upp.client.config.strategy.DataConvert;
+import com.yuntai.upp.client.handler.active.bill.AbstractBill;
 import lombok.NonNull;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
- * @description 账单下载-真实实现
+ * @description 账单下载-真实实现(禁止修改 bean 名)
  * @className BillHelper
  * @package com.yuntai.upp.access.helper
  * @author jinren@hsyuntai.com
  * @date 2019-06-14 15:20
  * @copyright 版权归 HSYUNTAI 所有
  */
-public class BillHelper implements DataConvert<List<BillVo>, BillDto> {
+@Component("billService")
+public class BillHelper extends AbstractBill {
 
     /**
      * @description 账单数据转换

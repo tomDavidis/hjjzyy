@@ -39,7 +39,7 @@ public abstract class AbstractWsClinet {
 
     @Before
     public void before() {
-        TraceIdUtil.createLocalTraceId();
+        TraceIdUtil.createLocalTraceId(this.getClass().getName());
     }
 
     @After

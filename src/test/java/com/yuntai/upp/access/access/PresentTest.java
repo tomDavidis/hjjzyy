@@ -64,7 +64,7 @@ public class PresentTest {
 
     @Before
     public void before() {
-        TraceIdUtil.createLocalTraceId();
+        TraceIdUtil.createLocalTraceId(this.getClass().getName());
     }
 
     @After
@@ -86,7 +86,6 @@ public class PresentTest {
                 .isvId(999L)
                 .partnerId((new Random()).nextLong())
                 .paymentNo(UUIDUtil.createUUID())
-                .traceId(UUIDUtil.createUUID())
                 .build();
 
         dto.setSign(SignUtil.signRSA(dto, PRIVATW_KEY, SignType.RSA2));

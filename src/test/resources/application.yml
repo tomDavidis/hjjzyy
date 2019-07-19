@@ -7,33 +7,14 @@ server:
     port: 8088
     token: ${random.uuid}
     resource-id: 999
-#    delay: 5
-#    pool: 25
   constant:
     model: 0
     partner-id: 999
     isv-id: 10000
-#    security: cb1dc9980f164b08a12ac821494b89ed
-#  convert:
-#    bill: com.yuntai.upp.access.helper.BillHelper
-#    present: com.yuntai.upp.access.helper.PresentHelper
   keys:
     10000-999:
       private-key: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDC1nTM5IciewiIAglOipo3ubOFBsF3nuRZmG3N8MIz0oVSPjW4pAiO1JaYdk6YrDaqZdeCH6GZMNK88lETM+Y1tqBMHtJQy4jC/QyxARJRXyfJINsikx1EteaM9ivpd+SOWuaxJVXTqh2CvVSV2Dvzz+fJTJ6XAiYD9A6v2WBvCDpuQE8hzCzZN/2irg5kDAviFedv0eALJACuIVl0ITu+ib5EtokBPXUE/qlp4kMRxfZy5SVUNicxqk+u4+840hMUOk/RUpc1+hKnZl5BRzGzI7DniZzU0Rs2G36AzoplHmtim692fDzrJm1lnyD4utxfikn2mbU4ufTOb67CRiSrAgMBAAECggEBAILwtZZtjxPxM46UL8UFCReiSa+BFsxZkIVWF5Vr1FgXh1n6TQhF1SqIXJ0iBTg9pI9n2imtMGFPmpE5GJubKX+3uIrvu9BouQSyI7FhUvo0xPw6hIr765Od28+oMWK6HHQ/SwKKYN/bV/HhY9NAeyoj81Ypk/tQilPl1WkA4fo7lGeh/StVGsdIefR9jldhRlAPEsORG7FfzuRetPoq5LrK/gVBOrpJcCNAoQcCQZkxsf51pwkD/GIHqLff4/3IGxqWQNw7fntDfP5Mah3gkjF/Fcfm6NVvtS7V0Y9lB6NHpGq2Jxr8n+HO0CaQvrwbFjF49MKCnwxI1Bsodo2cFuECgYEA8HHiEIGlOUjE/I30zQ0Raal9gbY6KQBPB6ijuXH2CJSFTMZs6PmPUEF6mAtfKkJNyrPay6wBQmgjXnJICv9gQyXYQf5xhNvqnAFP0VR1LuZtpThJ2nG607SLv0IticwoV1bu92FJd12RlHuUZWZaCr70aPcrQ7tyfeXuOlXp0H0CgYEAz3FAqqiCPWb/73PFNlZagTL1+70Ou79d9QWBMpdieGQqeYlEBagB95YDH+b3qpCJhQvtsrvJ0lymSjcYZKsEiNeFWZRQEnmrEhuPPHIAQPTs30K9Xznc0IwHkpNJ2H2H8oGUwvT54wTtt/wl515to6L2PCl+Slf25xw7gqnFOkcCgYA5D73Hjwzn8FYXXZUICJ7mRXvsiZN54YHf3mykeOAbnyuXUcvM6lTRhgiTBrfZ7oxJm69EAJj36oDiTBq+yWZN6TBOURUdo5ck2MbZdcKtk6/XsukL90uQLFux0wG9nv6/43ioqqTluAXxh/ZqrgSWYkTcmDPjShvctvF3VKY9fQKBgA/jwOxRlAhYB2q0F3seCjizSpxJ0wMWmX/XOBpD9kr6gTZmCUvVnrD0ULD05CuwfpguXbq/H6p5ZlNw/PFZGDPTLme6MJf5sdzlN4eNw+81058WYaMVr5BZ6YqUtadbljpBKr/0O9/j1MGvEsgyN3u9U9cv5niTXFo/k19i2bSpAoGAPx3bF3dsFxg7Kp9t6avOyUz+Hs5uL0gz1/ioRhrw+v+L72Q2h1cpoy9aErCyeRaCZu0S+rFmHagZ/oB24C4tSgQv9vDFPkETcKZC9HPAZiXa8Ei+MV4ebdnFGCb5+NEVcSjCUI/qmhxYePMJhGK6mv/jnMlPPLFzhg2vaRoWeiw=
       public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAh9Hox/lvO+jk8MnHEaz7O9U6VLmjirIY2BNTBBfwjs4wn5JiU+cQpOgf/EwMKMD1gIWeq/XkoBvg6f/QkP7iPqXfC0Cq0TYHqPKp+w8DfM642kepCFx3mSs5V3PfT3e1NY34VZMDJcfI7xlSB0Tx5+GAGc94aX2sIaHg3gJENoSTh1UVR2ngTaklZPpMmWhodhhEMvWpCy0iiQHD3hxxL4kcT7deOkOvgx7YgK7XNJaeGGn7IOeb712tQs1QoWqwloeyVzdw/TpxG2uok9WFV1qAAmCxOCg6hqJQXws8elWMj+OtxdRtGPg+GZl8HIikvt9Q0fKSTR9xlH7u1402ZQIDAQAB
-
 spring:
-  aop:
-    proxy-target-class: true
-    auto: true
   datasource:
-    url: jdbc:mysql://112.124.33.7:3306/upp?zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
-    username: med
-    password: medicalcore01
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    type: com.alibaba.druid.pool.DruidDataSource
-
-mybatis:
-  mapper-locations: classpath*:mapper/*.xml
-  configuration:
-    map-underscore-to-camel-case: true
+    enabled: false
