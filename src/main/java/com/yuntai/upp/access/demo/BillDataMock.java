@@ -7,8 +7,8 @@ import com.yuntai.upp.sdk.enums.BizType;
 import com.yuntai.upp.sdk.enums.ChannelType;
 import com.yuntai.upp.sdk.enums.CheckBillsPayType;
 import com.yuntai.upp.sdk.enums.CheckBillsStatType;
-import com.yuntai.upp.sdk.enums.TradeType;
 import com.yuntai.upp.sdk.enums.SourceType;
+import com.yuntai.upp.sdk.enums.TradeType;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -80,6 +80,146 @@ public class BillDataMock {
                     .build());
         }
         /* 模拟数据,仅供无 HIS 接口时,工程测试使用 - end */
+        return vos;
+    }
+
+    /**
+     * @description  999 测试数据模拟
+     * @param
+     * @return java.util.List<com.yuntai.upp.client.basic.model.vo.bill.BillVo>
+     * @author jinren@hsyuntai.com
+     * @date 2019-07-22 19:05
+     */
+    public static List<BillVo> mock999() {
+        List<BillVo> vos = new ArrayList<>();
+        vos.add(BillVo.builder()
+                .partnerId(999L)
+                .billsDate(LocalDate.parse("2019-07-15", DateTimeFormatter.ofPattern(DateUtil.FORMAT_DATE)))
+                .tradeType(TradeType.PAY.getCode()).tradeFee(new BigDecimal(0.01D).abs().setScale(2, BigDecimal.ROUND_HALF_UP))
+                .tradeTime(LocalDateTime.parse("2019-07-15 14:14:47", DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
+                .outTradeNo("YT100099900500572231719071501958")
+                .inTradeNo("4200000342201907156160305001")
+                .tradeNo("123").build());
+        vos.add(BillVo.builder()
+                .partnerId(999L)
+                .billsDate(LocalDate.parse("2019-07-15", DateTimeFormatter.ofPattern(DateUtil.FORMAT_DATE)))
+                .tradeType(TradeType.PAY.getCode())
+                .tradeFee(new BigDecimal(0.01D).abs().setScale(2, BigDecimal.ROUND_HALF_UP))
+                .tradeTime(LocalDateTime.parse("2019-07-15 14:53:55", DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
+                .outTradeNo("YT100099900500573200119071501442")
+                .inTradeNo("4200000357201907153890460203")
+                .tradeNo("456")
+                .build());
+        vos.add(BillVo.builder()
+                .partnerId(999L)
+                .billsDate(LocalDate.parse("2019-07-15", DateTimeFormatter.ofPattern(DateUtil.FORMAT_DATE)))
+                .tradeType(TradeType.PAY.getCode())
+                .tradeFee(new BigDecimal(0.01D).abs().setScale(2, BigDecimal.ROUND_HALF_UP))
+                .tradeTime(LocalDateTime.parse("2019-07-15 15:11:06", DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
+                .outTradeNo("YT100099900500573210119071501469")
+                .inTradeNo("2019071522001463981044814123")
+                .tradeNo("789")
+                .build());
+        vos.add(BillVo.builder()
+                .partnerId(999L)
+                .billsDate(LocalDate.parse("2019-07-15", DateTimeFormatter.ofPattern(DateUtil.FORMAT_DATE)))
+                .tradeType(TradeType.PAY.getCode())
+                .tradeFee(new BigDecimal(0.01D).abs().setScale(2, BigDecimal.ROUND_HALF_UP))
+                .tradeTime(LocalDateTime.parse("2019-07-15 15:23:20", DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
+                .outTradeNo("YT100099900500573220119071501218")
+                .inTradeNo("2019071522001463981044802091")
+                .tradeNo("1234")
+                .build());
+        vos.add(BillVo.builder()
+                .partnerId(999L)
+                .billsDate(LocalDate.parse("2019-07-15", DateTimeFormatter.ofPattern(DateUtil.FORMAT_DATE)))
+                .tradeType(TradeType.PAY.getCode())
+                .tradeFee(new BigDecimal(0.01D).abs().setScale(2, BigDecimal.ROUND_HALF_UP))
+                .tradeTime(LocalDateTime.parse("2019-07-15 19:49:16", DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
+                .outTradeNo("YT100099900500573270219071503883")
+                .inTradeNo("4200000343201907156881959395")
+                .tradeNo("5678")
+                .build());
+        vos.add(BillVo.builder()
+                .partnerId(999L)
+                .billsDate(LocalDate.parse("2019-07-15", DateTimeFormatter.ofPattern(DateUtil.FORMAT_DATE)))
+                .tradeType(TradeType.PAY.getCode())
+                .tradeFee(new BigDecimal(0.02D).abs().setScale(2, BigDecimal.ROUND_HALF_UP))
+                .tradeTime(LocalDateTime.parse("2019-07-15 19:52:09", DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
+                .outTradeNo("YT100099900500573280119071503835")
+                .inTradeNo("2019071522001448921052601669")
+                .tradeNo("6789")
+                .build());
+        vos.add(BillVo.builder()
+                .partnerId(999L)
+                .billsDate(LocalDate.parse("2019-07-15", DateTimeFormatter.ofPattern(DateUtil.FORMAT_DATE)))
+                .tradeType(TradeType.REFUND.getCode())
+                .tradeFee(new BigDecimal(0.01D).abs().setScale(2, BigDecimal.ROUND_HALF_UP))
+                .tradeTime(LocalDateTime.parse("2019-07-15 15:23:21", DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
+                .outTradeNo("YT100099900500573220119071501218")
+                .inTradeNo("2019071522001463981044802091")
+                .tradeNo("7890")
+                .build());
+        vos.add(BillVo.builder()
+                .partnerId(999L)
+                .billsDate(LocalDate.parse("2019-07-15", DateTimeFormatter.ofPattern(DateUtil.FORMAT_DATE)))
+                .tradeType(TradeType.REFUND.getCode())
+                .tradeFee(new BigDecimal(0.02D).abs().setScale(2, BigDecimal.ROUND_HALF_UP))
+                .tradeTime(LocalDateTime.parse("2019-07-15 19:09:34", DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
+                .outTradeNo("YT100099900500010760119070603592")
+                .inTradeNo("2019070622001472791041225972")
+                .tradeNo("12345")
+                .build());
+        vos.add(BillVo.builder()
+                .partnerId(999L)
+                .billsDate(LocalDate.parse("2019-07-15", DateTimeFormatter.ofPattern(DateUtil.FORMAT_DATE)))
+                .tradeType(TradeType.REFUND.getCode())
+                .tradeFee(new BigDecimal(0.01D).abs().setScale(2, BigDecimal.ROUND_HALF_UP))
+                .tradeTime(LocalDateTime.parse("2019-07-15 15:12:51", DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
+                .outTradeNo("YT100099900500573210119071501469")
+                .inTradeNo("2019071522001463981044814123")
+                .tradeNo("23456")
+                .build());
+        vos.add(BillVo.builder()
+                .partnerId(999L)
+                .billsDate(LocalDate.parse("2019-07-15", DateTimeFormatter.ofPattern(DateUtil.FORMAT_DATE)))
+                .tradeType(TradeType.REFUND.getCode())
+                .tradeFee(new BigDecimal(0.01D).abs().setScale(2, BigDecimal.ROUND_HALF_UP))
+                .tradeTime(LocalDateTime.parse("2019-07-15 14:46:21", DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
+                .outTradeNo("YT100099900500572231719071501958")
+                .inTradeNo("4200000342201907156160305001")
+                .tradeNo("34567")
+                .build());
+        vos.add(BillVo.builder()
+                .partnerId(999L)
+                .billsDate(LocalDate.parse("2019-07-15", DateTimeFormatter.ofPattern(DateUtil.FORMAT_DATE)))
+                .tradeType(TradeType.REFUND.getCode())
+                .tradeFee(new BigDecimal(0.01D).abs().setScale(2, BigDecimal.ROUND_HALF_UP))
+                .tradeTime(LocalDateTime.parse("2019-07-15 17:53:42", DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
+                .outTradeNo("YT100099900500572200119071001950")
+                .inTradeNo("2019071022001408381048156955")
+                .tradeNo("78901")
+                .build());
+        vos.add(BillVo.builder()
+                .partnerId(999L)
+                .billsDate(LocalDate.parse("2019-07-15", DateTimeFormatter.ofPattern(DateUtil.FORMAT_DATE)))
+                .tradeType(TradeType.REFUND.getCode())
+                .tradeFee(new BigDecimal(0.01D).abs().setScale(2, BigDecimal.ROUND_HALF_UP))
+                .tradeTime(LocalDateTime.parse("2019-07-15 14:59:09", DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
+                .outTradeNo("YT100099900500573200119071501442")
+                .inTradeNo("4200000357201907153890460203")
+                .tradeNo("2345678")
+                .build());
+        vos.add(BillVo.builder()
+                .partnerId(999L)
+                .billsDate(LocalDate.parse("2019-07-15", DateTimeFormatter.ofPattern(DateUtil.FORMAT_DATE)))
+                .tradeType(TradeType.REFUND.getCode())
+                .tradeFee(new BigDecimal(0.08D).abs().setScale(2, BigDecimal.ROUND_HALF_UP))
+                .tradeTime(LocalDateTime.parse("2019-07-15 18:47:32", DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
+                .outTradeNo("YT100099900500010770119070603217")
+                .inTradeNo("2019070622001441021041758740")
+                .tradeNo("1245788")
+                .build());
         return vos;
     }
 }
