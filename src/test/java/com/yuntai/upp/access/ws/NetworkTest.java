@@ -3,7 +3,7 @@ package com.yuntai.upp.access.ws;
 import com.yuntai.upp.access.AbstractWsClinet;
 import com.yuntai.upp.access.ProviderBoot;
 import com.yuntai.upp.client.basic.model.dto.network.NetworkDto;
-import com.yuntai.upp.client.basic.enums.CmdType;
+import com.yuntai.upp.client.basic.enums.inner.CmdType;
 import com.yuntai.upp.client.basic.model.ws.SenderObject;
 import com.yuntai.upp.client.basic.model.ws.SenderPack;
 import com.yuntai.upp.client.basic.util.DateUtil;

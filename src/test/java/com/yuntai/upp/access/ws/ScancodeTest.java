@@ -2,7 +2,7 @@ package com.yuntai.upp.access.ws;
 
 import com.yuntai.upp.access.AbstractWsClinet;
 import com.yuntai.upp.access.ProviderBoot;
-import com.yuntai.upp.client.basic.enums.CmdType;
+import com.yuntai.upp.client.basic.enums.inner.CmdType;
 import com.yuntai.upp.client.basic.model.dto.barcode.BarcodeDto;
 import com.yuntai.upp.client.basic.model.ws.SenderObject;
 import com.yuntai.upp.client.basic.model.ws.SenderPack;

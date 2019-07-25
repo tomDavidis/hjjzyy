@@ -2,8 +2,7 @@ package com.yuntai.upp.access.ws;
 
 import com.yuntai.upp.access.AbstractWsClinet;
 import com.yuntai.upp.access.ProviderBoot;
-import com.yuntai.upp.client.basic.enums.CmdType;
-import com.yuntai.upp.client.basic.model.dto.query.QueryDto;
+import com.yuntai.upp.client.basic.enums.inner.CmdType;
 import com.yuntai.upp.client.basic.model.dto.refund.RefundDto;
 import com.yuntai.upp.client.basic.model.ws.SenderObject;
 import com.yuntai.upp.client.basic.model.ws.SenderPack;
@@ -17,7 +16,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
 import java.text.MessageFormat;
-import java.util.UUID;
 
 /**
  * @description 单元测试-负交易

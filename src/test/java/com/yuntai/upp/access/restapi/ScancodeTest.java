@@ -3,7 +3,7 @@ package com.yuntai.upp.access.restapi;
 import com.alibaba.fastjson.JSON;
 import com.yuntai.upp.access.AbstractRestapiClient;
 import com.yuntai.upp.access.ProviderBoot;
-import com.yuntai.upp.client.basic.enums.CmdType;
+import com.yuntai.upp.client.basic.enums.inner.CmdType;
 import com.yuntai.upp.client.basic.model.dto.barcode.BarcodeDto;
 import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.JaxbUtil;

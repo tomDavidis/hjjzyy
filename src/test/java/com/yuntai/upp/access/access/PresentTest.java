@@ -3,7 +3,7 @@ package com.yuntai.upp.access.access;
 import com.alibaba.fastjson.JSON;
 import com.yuntai.hdp.access.RequestPack;
 import com.yuntai.upp.access.ProviderBoot;
-import com.yuntai.upp.client.basic.enums.CmdType;
+import com.yuntai.upp.client.basic.enums.inner.CmdType;
 import com.yuntai.upp.client.basic.model.dto.present.PresentDto;
 import com.yuntai.upp.client.basic.util.TraceIdUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
