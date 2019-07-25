@@ -10,13 +10,10 @@ server:
     port: @server.hdp.port@
     token: @server.hdp.token@
     resource-id: @server.hdp.resouce-id@
-#    delay: 5
-#    pool: 25
   constant:
     model: @server.constant.model@
     partner-id: @server.constant.partner-id@
     isv-id: @server.constant.isv-id@
-#    security: cb1dc9980f164b08a12ac821494b89ed
   keys:
     10000-999:
       private-key: @server.keys.10000-999.private.key@
