@@ -3,14 +3,13 @@ package com.yuntai.upp.access.access;
 import com.alibaba.fastjson.JSON;
 import com.yuntai.hdp.access.RequestPack;
 import com.yuntai.upp.access.ProviderBoot;
-import com.yuntai.upp.client.basic.enums.inner.CmdType;
-import com.yuntai.upp.client.basic.model.dto.bill.BillDto;
 import com.yuntai.upp.client.basic.util.DESUtil;
 import com.yuntai.upp.client.basic.util.DateUtil;
 import com.yuntai.upp.client.basic.util.TraceIdUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.config.keypair.KeypairInstance;
-import com.yuntai.upp.client.export.access.ClientReceiver;
+import com.yuntai.upp.client.fresh.export.access.ClientReceiver;
+import com.yuntai.upp.client.fresh.model.dto.bill.BillDto;
 import com.yuntai.upp.sdk.enums.CheckBillsDownloadType;
 import com.yuntai.upp.sdk.enums.YesOrNo;
 import org.junit.After;
@@ -58,7 +57,7 @@ public class BillTest {
     public void test() throws Exception {
         RequestPack request = new RequestPack();
 
-        request.setCmd(CmdType.I0001.getCode());
+//        request.setCmd(CmdType.I0001.getCode());
         request.setSeqno(UUIDUtil.createUUID());
         request.setClientId(UUIDUtil.createUUID());
         request.setHosId(resourceId);
@@ -69,8 +68,8 @@ public class BillTest {
                 .ftpPort(21)
                 .ftpUser("dzftp")
                 .ftpPwd("dzxqq")
-                .filePath(MessageFormat.format("/upp/bills/{0}/current/triple/partner/{1}/", 999L,DateUtil.formateDate(LocalDateTime.now(), DateUtil.FORMAT_DATE)))
-                .fileName(MessageFormat.format("{0}-triple-partner-{1}-bills.csv", 999L, DateUtil.formateDate(LocalDateTime.now(), DateUtil.FORMAT_DATE)))
+                .filePath(MessageFormat.format("/upp/bills/{0}/current/triple/partner/{1}/", 999L,DateUtil.format(LocalDateTime.now(), DateUtil.FORMAT_DATE)))
+                .fileName(MessageFormat.format("{0}-triple-partner-{1}-bills.csv", 999L, DateUtil.format(LocalDateTime.now(), DateUtil.FORMAT_DATE)))
                 .partnerId(999L)
                 .isMergeRefund(YesOrNo.YES.getCode())
                 .startTime(LocalDateTime.now())
@@ -78,7 +77,6 @@ public class BillTest {
                 .checkBillsDownloadType(CheckBillsDownloadType.DIRECT.getCode())
                 .build();
         request.setBody(DESUtil.encrypt(JSON.toJSONString(dto), KeypairInstance.SECURITY));
-        request.setCmd(CmdType.I0000.getCmd());
         receiver.getHospitalResult(request);
         // 需要预留一部分时候给异步线程处理&上传文件,否则 jvm 关闭后线程池生命周期也立即结束
         TimeUnit.SECONDS.sleep(60);

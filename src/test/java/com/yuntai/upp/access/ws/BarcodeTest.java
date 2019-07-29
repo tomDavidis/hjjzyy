@@ -2,10 +2,10 @@ package com.yuntai.upp.access.ws;
 
 import com.yuntai.upp.access.AbstractWsClinet;
 import com.yuntai.upp.access.ProviderBoot;
-import com.yuntai.upp.client.basic.enums.inner.CmdType;
-import com.yuntai.upp.client.basic.model.dto.barcode.BarcodeDto;
-import com.yuntai.upp.client.basic.model.ws.SenderObject;
-import com.yuntai.upp.client.basic.model.ws.SenderPack;
+import com.yuntai.upp.client.basic.enums.outer.BizCodeType;
+import com.yuntai.upp.client.outdated.model.dto.barcode.BarcodeDto;
+import com.yuntai.upp.client.outdated.model.ws.SenderObject;
+import com.yuntai.upp.client.outdated.model.ws.SenderPack;
 import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.JaxbUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
@@ -38,10 +38,10 @@ public class BarcodeTest extends AbstractWsClinet {
                 .accept(HttpUtil.ACCEPT_XML)
                 .data(MessageFormat.format(TEMPLATE, JaxbUtil.xml(SenderObject.builder()
                         .pack(SenderPack.builder()
-                                .code(CmdType.S0002.getCode())
+                                .code(BizCodeType.S0002.getCode())
                                 .cell(MessageFormat.format(REQUEST,
                                         UUIDUtil.createUUID(),
-                                        CmdType.S0002.getDesc(),
+                                        BizCodeType.S0002.getCmdType().getDesc(),
                                         UUIDUtil.createUUID(),
                                         JaxbUtil.xml(BarcodeDto.builder()
                                                 /* 当前配置为单机, isv 标识与商户标识可为空 */

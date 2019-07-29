@@ -3,11 +3,10 @@ package com.yuntai.upp.access.access;
 import com.alibaba.fastjson.JSON;
 import com.yuntai.hdp.access.RequestPack;
 import com.yuntai.upp.access.ProviderBoot;
-import com.yuntai.upp.client.basic.enums.inner.CmdType;
-import com.yuntai.upp.client.basic.model.dto.present.PresentDto;
 import com.yuntai.upp.client.basic.util.TraceIdUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
-import com.yuntai.upp.client.export.access.ClientReceiver;
+import com.yuntai.upp.client.fresh.export.access.ClientReceiver;
+import com.yuntai.upp.client.fresh.model.dto.present.PresentDto;
 import com.yuntai.upp.sdk.enums.SignType;
 import com.yuntai.upp.sdk.util.SignUtil;
 import org.junit.After;
@@ -76,7 +75,7 @@ public class PresentTest {
     public void test() throws Exception {
         RequestPack request = new RequestPack();
 
-        request.setCmd(CmdType.I0001.getCode());
+//        request.setCmd(CmdType.I0001.getCode());
         request.setSeqno(UUIDUtil.createUUID());
         request.setClientId(UUIDUtil.createUUID());
         request.setHosId(resourceId);
@@ -89,7 +88,6 @@ public class PresentTest {
                 .build();
 
         dto.setSign(SignUtil.signRSA(dto, PRIVATW_KEY, SignType.RSA2));
-        request.setCmd(CmdType.I0001.getCmd());
         request.setBody(JSON.toJSONString(dto));
 
         receiver.getHospitalResult(request);

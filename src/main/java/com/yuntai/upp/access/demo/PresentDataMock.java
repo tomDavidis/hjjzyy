@@ -1,7 +1,7 @@
 package com.yuntai.upp.access.demo;
 
-import com.yuntai.upp.client.basic.model.vo.present.PresentVo;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
+import com.yuntai.upp.client.fresh.model.vo.present.PresentVo;
 import com.yuntai.upp.sdk.enums.TradeType;
 
 import java.math.BigDecimal;

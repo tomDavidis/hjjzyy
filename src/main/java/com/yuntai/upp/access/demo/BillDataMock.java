@@ -1,8 +1,8 @@
 package com.yuntai.upp.access.demo;
 
-import com.yuntai.upp.client.basic.model.vo.bill.BillVo;
 import com.yuntai.upp.client.basic.util.DateUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
+import com.yuntai.upp.client.fresh.model.vo.bill.BillVo;
 import com.yuntai.upp.sdk.enums.BizType;
 import com.yuntai.upp.sdk.enums.ChannelType;
 import com.yuntai.upp.sdk.enums.CheckBillsPayType;

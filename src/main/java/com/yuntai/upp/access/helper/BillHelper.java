@@ -1,9 +1,9 @@
 package com.yuntai.upp.access.helper;
 
 import com.yuntai.upp.access.demo.BillDataMock;
-import com.yuntai.upp.client.basic.model.dto.bill.BillDto;
-import com.yuntai.upp.client.basic.model.vo.bill.BillVo;
-import com.yuntai.upp.client.handler.active.bill.AbstractBill;
+import com.yuntai.upp.client.fresh.handler.active.bill.AbstractBill;
+import com.yuntai.upp.client.fresh.model.dto.bill.BillDto;
+import com.yuntai.upp.client.fresh.model.vo.bill.BillVo;
 import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
