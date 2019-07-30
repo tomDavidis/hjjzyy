@@ -60,9 +60,9 @@ Configuration:
     Root:
       level: all
       AppenderRef:
-      - ref: console
-      - ref: default
-      - ref: error
+        - ref: console
+        - ref: default
+        - ref: error
     Logger:
     - name: org.springframework
       level: error
