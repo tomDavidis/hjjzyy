@@ -41,9 +41,9 @@ public class NetworkTest extends AbstractWsClinet {
                         .pack(SenderPack.builder()
                                 .code(BizCodeType.S0000.getCode())
                                 .cell(MessageFormat.format(REQUEST,
-                                        UUIDUtil.createUUID(),
+                                        UUIDUtil.create(),
                                         BizCodeType.S0000.getCmdType().getDesc(),
-                                        UUIDUtil.createUUID(),
+                                        UUIDUtil.create(),
                                         JaxbUtil.xml(NetworkDto.builder()
                                                 .field(LocalDateTime.now().plusSeconds(0).format(DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
                                                 .build())))

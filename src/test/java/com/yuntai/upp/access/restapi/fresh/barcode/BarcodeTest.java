@@ -3,17 +3,10 @@ package com.yuntai.upp.access.restapi.fresh.barcode;
 import com.alibaba.fastjson.TypeReference;
 import com.yuntai.upp.access.ProviderBoot;
 import com.yuntai.upp.access.restapi.fresh.AbstractControllerTest;
-import com.yuntai.upp.client.basic.enums.inner.CmdType;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
-import com.yuntai.upp.client.config.hdp.HdpClientInstance;
-import com.yuntai.upp.client.fresh.handler.passive.barcode.BarcodeParam;
-import com.yuntai.upp.client.fresh.handler.passive.barcode.BarcodeResult;
-import com.yuntai.upp.client.fresh.handler.passive.barcode.BarcodeVerify;
 import com.yuntai.upp.client.fresh.model.dto.barcode.BarcodeDto;
 import com.yuntai.upp.client.fresh.model.vo.barcode.BarcodeVo;
 import com.yuntai.upp.sdk.core.ResultObject;
-import com.yuntai.upp.sdk.param.UnitedPaymentParam;
-import com.yuntai.upp.sdk.result.UnitedPaymentResult;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,7 +34,7 @@ public class BarcodeTest extends AbstractControllerTest<BarcodeVo> {
     public void normalAllRoute() {
         ResultObject result = tcp(URI, BarcodeDto.builder()
                 .authCode("")
-                .paymentNo(UUIDUtil.createUUID())
+                .paymentNo(UUIDUtil.create())
                 .tradeFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
                 .subject("条码支付(upp-client)")
                 .expireTime(LocalDateTime.now().plusMinutes(5))
@@ -56,7 +49,7 @@ public class BarcodeTest extends AbstractControllerTest<BarcodeVo> {
 //    public void normalAllBussiness() {
 //        BarcodeDto dto = BarcodeDto.builder()
 //                .authCode("")
-//                .paymentNo(UUIDUtil.createUUID())
+//                .paymentNo(UUIDUtil.create())
 //                .tradeFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
 //                .subject("条码支付(upp-client)")
 //                .expireTime(LocalDateTime.now().plusMinutes(5))

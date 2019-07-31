@@ -76,15 +76,15 @@ public class PresentTest {
         RequestPack request = new RequestPack();
 
 //        request.setCmd(CmdType.I0001.getCode());
-        request.setSeqno(UUIDUtil.createUUID());
-        request.setClientId(UUIDUtil.createUUID());
+        request.setSeqno(UUIDUtil.create());
+        request.setClientId(UUIDUtil.create());
         request.setHosId(resourceId);
         request.setSendTime(System.currentTimeMillis());
 
         PresentDto dto = PresentDto.builder()
                 .isvId(999L)
                 .partnerId((new Random()).nextLong())
-                .paymentNo(UUIDUtil.createUUID())
+                .paymentNo(UUIDUtil.create())
                 .build();
 
         dto.setSign(SignUtil.signRSA(dto, PRIVATW_KEY, SignType.RSA2));

@@ -11,7 +11,6 @@ server:
     model: 0
     partner-id: 999
     isv-id: 10000
-    channel-list: http://115.29.247.235:8380/pay/channel/list
   partners:
     - partner-id: 999
       isvs:

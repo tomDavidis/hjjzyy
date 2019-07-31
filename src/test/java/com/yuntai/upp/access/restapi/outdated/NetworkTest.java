@@ -38,9 +38,9 @@ public class NetworkTest extends AbstractRestapiClient {
                 .data(MessageFormat.format(TEMPLATE,
                         BizCodeType.S0000.getCode(),
                         MessageFormat.format(REQUEST,
-                                UUIDUtil.createUUID(),
+                                UUIDUtil.create(),
                                 BizCodeType.S0000.getCmdType().getDesc(),
-                                UUIDUtil.createUUID(),
+                                UUIDUtil.create(),
                                 JaxbUtil.xml(NetworkDto.builder()
                                         .field(LocalDateTime.now().plusSeconds(0).format(DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
                                         .build()))))
@@ -56,9 +56,9 @@ public class NetworkTest extends AbstractRestapiClient {
                 .data(MessageFormat.format(TEMPLATE,
                         BizCodeType.S0000.getCode(),
                         MessageFormat.format(REQUEST,
-                                UUIDUtil.createUUID(),
+                                UUIDUtil.create(),
                                 BizCodeType.S0000.getCmdType().getDesc(),
-                                UUIDUtil.createUUID(),
+                                UUIDUtil.create(),
                                 JaxbUtil.xml(NetworkDto.builder()
                                         .field(LocalDateTime.now().plusSeconds(0).format(DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
                                         .build()))))

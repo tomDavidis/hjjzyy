@@ -36,7 +36,7 @@ public class ScancodeTest extends AbstractRestapiClient {
                 .content(HttpUtil.CONTENT_JSON)
                 .accept(HttpUtil.ACCEPT_JSON)
                 .data(JSON.toJSONString(ScancodeDto.builder()
-                        .paymentNo(UUIDUtil.createUUID())
+                        .paymentNo(UUIDUtil.create())
                         .tradeFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
                         .channelProduct(ChannelProductType.ALI_BAR_CODE.getCode())
                         .subject("条码支付(upp-client)")

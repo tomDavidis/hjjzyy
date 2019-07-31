@@ -59,16 +59,16 @@ public class BillDataMock {
                     .tradeTime(LocalDateTime.now())
 
                     // 芸泰流水
-                    .outTradeNo(UUIDUtil.createUUID())
+                    .outTradeNo(UUIDUtil.create())
                     // 第三方流水
-                    .inTradeNo(UUIDUtil.createUUID())
+                    .inTradeNo(UUIDUtil.create())
                     // HIS 流水
-                    .tradeNo(UUIDUtil.createUUID())
+                    .tradeNo(UUIDUtil.create())
 
                     // 业务类型 请参照 BizType 枚举类
                     .bizType(BizType.REGISTER.getCode())
                     // 院区标识(存在这赋值,部分商户需要)
-                    .districtId(UUIDUtil.createUUID())
+                    .districtId(UUIDUtil.create())
                     // 来源 outpatient:门诊 inpatient:住院
                     .sourceType(SourceType.INPATIENT.getCode())
                     // 类型 self:自费 medical:医保

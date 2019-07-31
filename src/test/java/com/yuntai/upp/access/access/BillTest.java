@@ -3,7 +3,7 @@ package com.yuntai.upp.access.access;
 import com.alibaba.fastjson.JSON;
 import com.yuntai.hdp.access.RequestPack;
 import com.yuntai.upp.access.ProviderBoot;
-import com.yuntai.upp.client.basic.util.DESUtil;
+import com.yuntai.upp.client.basic.util.DesUtil;
 import com.yuntai.upp.client.basic.util.DateUtil;
 import com.yuntai.upp.client.basic.util.TraceIdUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
@@ -58,8 +58,8 @@ public class BillTest {
         RequestPack request = new RequestPack();
 
 //        request.setCmd(CmdType.I0001.getCode());
-        request.setSeqno(UUIDUtil.createUUID());
-        request.setClientId(UUIDUtil.createUUID());
+        request.setSeqno(UUIDUtil.create());
+        request.setClientId(UUIDUtil.create());
         request.setHosId(resourceId);
         request.setSendTime(System.currentTimeMillis());
 
@@ -76,7 +76,7 @@ public class BillTest {
                 .endTime(LocalDateTime.now().minusHours(2))
                 .checkBillsDownloadType(CheckBillsDownloadType.DIRECT.getCode())
                 .build();
-        request.setBody(DESUtil.encrypt(JSON.toJSONString(dto), PartnerInstance.SECURITY));
+        request.setBody(DesUtil.encrypt(JSON.toJSONString(dto), PartnerInstance.SECURITY));
         receiver.getHospitalResult(request);
         // 需要预留一部分时候给异步线程处理&上传文件,否则 jvm 关闭后线程池生命周期也立即结束
         TimeUnit.SECONDS.sleep(60);

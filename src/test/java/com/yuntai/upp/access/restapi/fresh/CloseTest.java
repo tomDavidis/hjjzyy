@@ -33,7 +33,7 @@ public class CloseTest extends AbstractRestapiClient {
                 .content(HttpUtil.CONTENT_JSON)
                 .accept(HttpUtil.ACCEPT_JSON)
                 .data(JSON.toJSONString(CloseDto.builder()
-                        .paymentNo(UUIDUtil.createUUID())
+                        .paymentNo(UUIDUtil.create())
                         .bizType(BizType.SCAN_PAY.getCode())
                         .build()))
                 .build());

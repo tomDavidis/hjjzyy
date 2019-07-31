@@ -33,7 +33,7 @@ public class RefundQueryTest extends AbstractRestapiClient {
                 .content(HttpUtil.CONTENT_JSON)
                 .accept(HttpUtil.ACCEPT_JSON)
                 .data(JSON.toJSONString(RefundQueryDto.builder()
-                        .requestNo(UUIDUtil.createUUID())
+                        .requestNo(UUIDUtil.create())
                         .build()))
                 .build());
     }

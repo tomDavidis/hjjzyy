@@ -38,14 +38,14 @@ public class QueryTest extends AbstractWsClinet {
                         .pack(SenderPack.builder()
                                 .code(BizCodeType.S0003.getCode())
                                 .cell(MessageFormat.format(REQUEST,
-                                        UUIDUtil.createUUID(),
+                                        UUIDUtil.create(),
                                         BizCodeType.S0003.getCmdType().getDesc(),
-                                        UUIDUtil.createUUID(),
+                                        UUIDUtil.create(),
                                         JaxbUtil.xml(QueryDto.builder()
                                                 /* 当前配置为单机, isv 标识与商户标识可为空 */
 //                                                .isvId(0L)
 //                                                .partnerId(0L)
-                                                .paymentNo(UUIDUtil.createUUID())
+                                                .paymentNo(UUIDUtil.create())
                                                 /* 以下为特殊渠道|附加参数, 可为空 */
 //                                                .expandData("")
                                                 .build())))

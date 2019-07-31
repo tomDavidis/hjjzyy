@@ -37,16 +37,16 @@ public class ScancodeTest extends AbstractRestapiClient {
                 .data(MessageFormat.format(TEMPLATE,
                         BizCodeType.S0001_1.getCode(),
                         MessageFormat.format(REQUEST,
-                                UUIDUtil.createUUID(),
+                                UUIDUtil.create(),
                                 BizCodeType.S0001_1.getCmdType().getDesc(),
-                                UUIDUtil.createUUID(),
+                                UUIDUtil.create(),
                                 JaxbUtil.xml(BarcodeDto.builder()
                                         /* 当前配置为单机, isv 标识与商户标识可为空 */
 //                                                .isvId(0L)
 //                                                .partnerId(0L)
                                         /* 真实条码 */
                                         .authCode("")
-                                        .paymentNo(UUIDUtil.createUUID())
+                                        .paymentNo(UUIDUtil.create())
                                         .tradeFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
                                         .channelProduct(ChannelProductType.ALI_BAR_CODE.getValue())
                                         .subject("条码支付(upp-client)")
@@ -68,16 +68,16 @@ public class ScancodeTest extends AbstractRestapiClient {
                 .data(MessageFormat.format(TEMPLATE,
                         BizCodeType.S0001_1.getCmdType().getCode(),
                         MessageFormat.format(REQUEST,
-                                UUIDUtil.createUUID(),
+                                UUIDUtil.create(),
                                 BizCodeType.S0001_1.getCmdType().getDesc(),
-                                UUIDUtil.createUUID(),
+                                UUIDUtil.create(),
                                 JaxbUtil.xml(BarcodeDto.builder()
                                         /* 当前配置为单机, isv 标识与商户标识可为空 */
 //                                                .isvId(0L)
 //                                                .partnerId(0L)
                                         /* 真实条码 */
                                         .authCode("")
-                                        .paymentNo(UUIDUtil.createUUID())
+                                        .paymentNo(UUIDUtil.create())
                                         .tradeFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
                                         .channelProduct(ChannelProductType.ALI_BAR_CODE.getValue())
                                         .subject("条码支付(upp-client)")

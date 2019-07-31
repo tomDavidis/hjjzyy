@@ -36,16 +36,16 @@ public class RefundTest extends AbstractRestapiClient {
                 .data(MessageFormat.format(TEMPLATE,
                         BizCodeType.S0005.getCode(),
                         MessageFormat.format(REQUEST,
-                                UUIDUtil.createUUID(),
+                                UUIDUtil.create(),
                                 BizCodeType.S0005.getCmdType().getDesc(),
-                                UUIDUtil.createUUID(),
+                                UUIDUtil.create(),
                                 JaxbUtil.xml(RefundDto.builder()
                                         /* 当前配置为单机, isv 标识与商户标识可为空 */
 //                                                .isvId(0L)
 //                                                .partnerId(0L)
                                         /* 大多数医院 payment_no = refund_no */
-                                        .paymentNo(UUIDUtil.createUUID())
-                                        .refundNo(UUIDUtil.createUUID())
+                                        .paymentNo(UUIDUtil.create())
+                                        .refundNo(UUIDUtil.create())
                                         .refundFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
                                         /* 以下为特殊渠道|附加参数, 可为空 */
 //                                                .expandData("")
@@ -62,16 +62,16 @@ public class RefundTest extends AbstractRestapiClient {
                 .data(MessageFormat.format(TEMPLATE,
                         BizCodeType.S0005.getCode(),
                         MessageFormat.format(REQUEST,
-                                UUIDUtil.createUUID(),
+                                UUIDUtil.create(),
                                 BizCodeType.S0005.getCmdType().getDesc(),
-                                UUIDUtil.createUUID(),
+                                UUIDUtil.create(),
                                 JaxbUtil.xml(RefundDto.builder()
                                         /* 当前配置为单机, isv 标识与商户标识可为空 */
 //                                                .isvId(0L)
 //                                                .partnerId(0L)
                                         /* 大多数医院 payment_no = refund_no */
-                                        .paymentNo(UUIDUtil.createUUID())
-                                        .refundNo(UUIDUtil.createUUID())
+                                        .paymentNo(UUIDUtil.create())
+                                        .refundNo(UUIDUtil.create())
                                         .refundFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
                                         /* 以下为特殊渠道|附加参数, 可为空 */
 //                                                .expandData("")
