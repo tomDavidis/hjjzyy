@@ -14,10 +14,15 @@ server:
     model: @server.constant.model@
     partner-id: @server.constant.partner-id@
     isv-id: @server.constant.isv-id@
-  keys:
-    10000-999:
-      private-key: @server.keys.10000-999.private.key@
-      public-key: @server.keys.10000-999.public.key@
+    channel-list: @server.path.channel-list@
+  partners:
+    - partner-id: @server.constant.partner-id@
+      isvs:
+      - isv-id: @server.constant.isv-id@
+        key:
+          private-key: @server.keys.10000-999.private.key@
+          public-key: @server.keys.10000-999.public.key@
+
 spring:
   datasource:
     enabled: false

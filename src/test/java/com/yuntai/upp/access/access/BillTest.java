@@ -7,7 +7,7 @@ import com.yuntai.upp.client.basic.util.DESUtil;
 import com.yuntai.upp.client.basic.util.DateUtil;
 import com.yuntai.upp.client.basic.util.TraceIdUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
-import com.yuntai.upp.client.config.keypair.KeypairInstance;
+import com.yuntai.upp.client.config.partner.PartnerInstance;
 import com.yuntai.upp.client.fresh.export.access.ClientReceiver;
 import com.yuntai.upp.client.fresh.model.dto.bill.BillDto;
 import com.yuntai.upp.sdk.enums.CheckBillsDownloadType;
@@ -76,7 +76,7 @@ public class BillTest {
                 .endTime(LocalDateTime.now().minusHours(2))
                 .checkBillsDownloadType(CheckBillsDownloadType.DIRECT.getCode())
                 .build();
-        request.setBody(DESUtil.encrypt(JSON.toJSONString(dto), KeypairInstance.SECURITY));
+        request.setBody(DESUtil.encrypt(JSON.toJSONString(dto), PartnerInstance.SECURITY));
         receiver.getHospitalResult(request);
         // 需要预留一部分时候给异步线程处理&上传文件,否则 jvm 关闭后线程池生命周期也立即结束
         TimeUnit.SECONDS.sleep(60);
