@@ -10,17 +10,10 @@ server:
     port: @server.hdp.port@
     token: @server.hdp.token@
     resource-id: @server.hdp.resouce-id@
-  constant:
-    model: @server.constant.model@
-    partner-id: @server.constant.partner-id@
-    isv-id: @server.constant.isv-id@
-  partners:
-    - partner-id: @server.constant.partner-id@
-      isvs:
-      - isv-id: @server.constant.isv-id@
-        key:
-          private-key: @server.keys.10000-999.private.key@
-          public-key: @server.keys.10000-999.public.key@
+  partner:
+    - partner-id: @server.partner.999.partner-id@
+      isv:
+        - isv-id: @server.partner.999.isv.isv-id@
 
 spring:
   mvc:
