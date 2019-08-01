@@ -3,11 +3,11 @@ package com.yuntai.upp.access.restapi.outdated;
 import com.yuntai.upp.access.AbstractRestapiClient;
 import com.yuntai.upp.access.ProviderBoot;
 import com.yuntai.upp.client.basic.enums.outer.OuterBizCodeType;
+import com.yuntai.upp.client.basic.enums.outer.OuterChannelType;
 import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.JaxbUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.outdated.model.dto.barcode.BarcodeDto;
-import com.yuntai.upp.sdk.enums.ChannelProductType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -38,7 +38,7 @@ public class ScancodeTest extends AbstractRestapiClient {
                         OuterBizCodeType.S0001_1.getCode(),
                         MessageFormat.format(REQUEST,
                                 UUIDUtil.create(),
-                                OuterBizCodeType.S0001_1.getCmdType().getDesc(),
+                                OuterBizCodeType.S0001_1.getInnerCmdType().getDesc(),
                                 UUIDUtil.create(),
                                 JaxbUtil.xml(BarcodeDto.builder()
                                         /* 当前配置为单机, isv 标识与商户标识可为空 */
@@ -48,7 +48,7 @@ public class ScancodeTest extends AbstractRestapiClient {
                                         .authCode("")
                                         .paymentNo(UUIDUtil.create())
                                         .tradeFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
-                                        .channelProduct(ChannelProductType.ALI_BAR_CODE.getValue())
+                                        .channelProduct(OuterChannelType.ALI_BAR_CODE.getValue())
                                         .subject("条码支付(upp-client)")
                                         /* 以下为特殊渠道|附加参数, 可为空 */
 //                                                .terminalNo("")
@@ -66,10 +66,10 @@ public class ScancodeTest extends AbstractRestapiClient {
                 .content(HttpUtil.CONTENT_TEXT)
                 .accept(HttpUtil.ACCEPT_JSON)
                 .data(MessageFormat.format(TEMPLATE,
-                        OuterBizCodeType.S0001_1.getCmdType().getCode(),
+                        OuterBizCodeType.S0001_1.getInnerCmdType().getCode(),
                         MessageFormat.format(REQUEST,
                                 UUIDUtil.create(),
-                                OuterBizCodeType.S0001_1.getCmdType().getDesc(),
+                                OuterBizCodeType.S0001_1.getInnerCmdType().getDesc(),
                                 UUIDUtil.create(),
                                 JaxbUtil.xml(BarcodeDto.builder()
                                         /* 当前配置为单机, isv 标识与商户标识可为空 */
@@ -79,7 +79,7 @@ public class ScancodeTest extends AbstractRestapiClient {
                                         .authCode("")
                                         .paymentNo(UUIDUtil.create())
                                         .tradeFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
-                                        .channelProduct(ChannelProductType.ALI_BAR_CODE.getValue())
+                                        .channelProduct(OuterChannelType.ALI_BAR_CODE.getValue())
                                         .subject("条码支付(upp-client)")
                                         /* 以下为特殊渠道|附加参数, 可为空 */
 //                                                .terminalNo("")

@@ -10,7 +10,7 @@ server:
   partner:
     - partner-id: 999
       isv:
-        - isv-id: 20000
+        - isv-id: 10000
 
 spring:
   mvc:

@@ -39,7 +39,7 @@ public class QueryTest extends AbstractWsClinet {
                                 .code(OuterBizCodeType.S0003.getCode())
                                 .cell(MessageFormat.format(REQUEST,
                                         UUIDUtil.create(),
-                                        OuterBizCodeType.S0003.getCmdType().getDesc(),
+                                        OuterBizCodeType.S0003.getInnerCmdType().getDesc(),
                                         UUIDUtil.create(),
                                         JaxbUtil.xml(QueryDto.builder()
                                                 /* 当前配置为单机, isv 标识与商户标识可为空 */

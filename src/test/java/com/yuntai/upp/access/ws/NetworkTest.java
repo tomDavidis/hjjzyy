@@ -42,7 +42,7 @@ public class NetworkTest extends AbstractWsClinet {
                                 .code(OuterBizCodeType.S0000.getCode())
                                 .cell(MessageFormat.format(REQUEST,
                                         UUIDUtil.create(),
-                                        OuterBizCodeType.S0000.getCmdType().getDesc(),
+                                        OuterBizCodeType.S0000.getInnerCmdType().getDesc(),
                                         UUIDUtil.create(),
                                         JaxbUtil.xml(NetworkDto.builder()
                                                 .field(LocalDateTime.now().plusSeconds(0).format(DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))

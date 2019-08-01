@@ -37,7 +37,7 @@ public class RefundTest extends AbstractRestapiClient {
                         OuterBizCodeType.S0005.getCode(),
                         MessageFormat.format(REQUEST,
                                 UUIDUtil.create(),
-                                OuterBizCodeType.S0005.getCmdType().getDesc(),
+                                OuterBizCodeType.S0005.getInnerCmdType().getDesc(),
                                 UUIDUtil.create(),
                                 JaxbUtil.xml(RefundDto.builder()
                                         /* 当前配置为单机, isv 标识与商户标识可为空 */
@@ -63,7 +63,7 @@ public class RefundTest extends AbstractRestapiClient {
                         OuterBizCodeType.S0005.getCode(),
                         MessageFormat.format(REQUEST,
                                 UUIDUtil.create(),
-                                OuterBizCodeType.S0005.getCmdType().getDesc(),
+                                OuterBizCodeType.S0005.getInnerCmdType().getDesc(),
                                 UUIDUtil.create(),
                                 JaxbUtil.xml(RefundDto.builder()
                                         /* 当前配置为单机, isv 标识与商户标识可为空 */
