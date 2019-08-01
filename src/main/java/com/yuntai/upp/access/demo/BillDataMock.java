@@ -25,6 +25,8 @@ import java.util.List;
  */
 public class BillDataMock {
 
+    private static final Integer LENGTH = 100;
+
     /**
      * @description 数据模拟(真实场景禁止使用,仅供开发使用)
      * @param
@@ -36,7 +38,7 @@ public class BillDataMock {
         List<BillVo> vos = new ArrayList<>();
 
         /* 模拟数据,仅供无 HIS 接口时,工程测试使用 - start */
-        for (int i = 0; i < 100; i ++) {
+        for (int i = 0; i < LENGTH; i ++) {
             /*
              * 以下各值请务必按规则|枚举进行赋值(上层有规则校验限制)
              */

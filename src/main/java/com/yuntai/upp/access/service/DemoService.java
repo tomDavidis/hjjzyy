@@ -10,5 +10,12 @@ package com.yuntai.upp.access.service;
  */
 public interface DemoService {
 
+    /**
+     * @description 链路测试
+     * @param
+     * @return java.lang.Boolean
+     * @author jinren@hsyuntai.com
+     * @date 2019-08-01 14:03
+     */
     Boolean ping();
 }
