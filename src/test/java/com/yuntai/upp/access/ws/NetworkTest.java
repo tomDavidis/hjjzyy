@@ -2,7 +2,7 @@ package com.yuntai.upp.access.ws;
 
 import com.yuntai.upp.access.AbstractWsClinet;
 import com.yuntai.upp.access.ProviderBoot;
-import com.yuntai.upp.client.basic.enums.outer.BizCodeType;
+import com.yuntai.upp.client.basic.enums.outer.OuterBizCodeType;
 import com.yuntai.upp.client.outdated.model.dto.network.NetworkDto;
 import com.yuntai.upp.client.outdated.model.ws.SenderObject;
 import com.yuntai.upp.client.outdated.model.ws.SenderPack;
@@ -39,10 +39,10 @@ public class NetworkTest extends AbstractWsClinet {
                 .accept(HttpUtil.ACCEPT_XML)
                 .data(MessageFormat.format(TEMPLATE, JaxbUtil.xml(SenderObject.builder()
                         .pack(SenderPack.builder()
-                                .code(BizCodeType.S0000.getCode())
+                                .code(OuterBizCodeType.S0000.getCode())
                                 .cell(MessageFormat.format(REQUEST,
                                         UUIDUtil.create(),
-                                        BizCodeType.S0000.getCmdType().getDesc(),
+                                        OuterBizCodeType.S0000.getCmdType().getDesc(),
                                         UUIDUtil.create(),
                                         JaxbUtil.xml(NetworkDto.builder()
                                                 .field(LocalDateTime.now().plusSeconds(0).format(DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))

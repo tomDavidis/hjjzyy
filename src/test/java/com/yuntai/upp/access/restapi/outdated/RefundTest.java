@@ -2,7 +2,7 @@ package com.yuntai.upp.access.restapi.outdated;
 
 import com.yuntai.upp.access.AbstractRestapiClient;
 import com.yuntai.upp.access.ProviderBoot;
-import com.yuntai.upp.client.basic.enums.outer.BizCodeType;
+import com.yuntai.upp.client.basic.enums.outer.OuterBizCodeType;
 import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.JaxbUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
@@ -34,10 +34,10 @@ public class RefundTest extends AbstractRestapiClient {
                 .content(HttpUtil.CONTENT_TEXT)
                 .accept(HttpUtil.ACCEPT_JSON)
                 .data(MessageFormat.format(TEMPLATE,
-                        BizCodeType.S0005.getCode(),
+                        OuterBizCodeType.S0005.getCode(),
                         MessageFormat.format(REQUEST,
                                 UUIDUtil.create(),
-                                BizCodeType.S0005.getCmdType().getDesc(),
+                                OuterBizCodeType.S0005.getCmdType().getDesc(),
                                 UUIDUtil.create(),
                                 JaxbUtil.xml(RefundDto.builder()
                                         /* 当前配置为单机, isv 标识与商户标识可为空 */
@@ -60,10 +60,10 @@ public class RefundTest extends AbstractRestapiClient {
                 .content(HttpUtil.CONTENT_TEXT)
                 .accept(HttpUtil.ACCEPT_JSON)
                 .data(MessageFormat.format(TEMPLATE,
-                        BizCodeType.S0005.getCode(),
+                        OuterBizCodeType.S0005.getCode(),
                         MessageFormat.format(REQUEST,
                                 UUIDUtil.create(),
-                                BizCodeType.S0005.getCmdType().getDesc(),
+                                OuterBizCodeType.S0005.getCmdType().getDesc(),
                                 UUIDUtil.create(),
                                 JaxbUtil.xml(RefundDto.builder()
                                         /* 当前配置为单机, isv 标识与商户标识可为空 */

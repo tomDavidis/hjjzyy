@@ -2,7 +2,7 @@ package com.yuntai.upp.access.ws;
 
 import com.yuntai.upp.access.AbstractWsClinet;
 import com.yuntai.upp.access.ProviderBoot;
-import com.yuntai.upp.client.basic.enums.outer.BizCodeType;
+import com.yuntai.upp.client.basic.enums.outer.OuterBizCodeType;
 import com.yuntai.upp.client.outdated.model.dto.query.QueryDto;
 import com.yuntai.upp.client.outdated.model.ws.SenderObject;
 import com.yuntai.upp.client.outdated.model.ws.SenderPack;
@@ -36,10 +36,10 @@ public class QueryTest extends AbstractWsClinet {
                 .accept(HttpUtil.ACCEPT_XML)
                 .data(MessageFormat.format(TEMPLATE, JaxbUtil.xml(SenderObject.builder()
                         .pack(SenderPack.builder()
-                                .code(BizCodeType.S0003.getCode())
+                                .code(OuterBizCodeType.S0003.getCode())
                                 .cell(MessageFormat.format(REQUEST,
                                         UUIDUtil.create(),
-                                        BizCodeType.S0003.getCmdType().getDesc(),
+                                        OuterBizCodeType.S0003.getCmdType().getDesc(),
                                         UUIDUtil.create(),
                                         JaxbUtil.xml(QueryDto.builder()
                                                 /* 当前配置为单机, isv 标识与商户标识可为空 */

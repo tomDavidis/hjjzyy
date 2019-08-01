@@ -2,7 +2,7 @@ package com.yuntai.upp.access.restapi.outdated;
 
 import com.yuntai.upp.access.AbstractRestapiClient;
 import com.yuntai.upp.access.ProviderBoot;
-import com.yuntai.upp.client.basic.enums.outer.BizCodeType;
+import com.yuntai.upp.client.basic.enums.outer.OuterBizCodeType;
 import com.yuntai.upp.client.basic.util.DateUtil;
 import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.JaxbUtil;
@@ -36,10 +36,10 @@ public class NetworkTest extends AbstractRestapiClient {
                 .content(HttpUtil.CONTENT_TEXT)
                 .accept(HttpUtil.ACCEPT_JSON)
                 .data(MessageFormat.format(TEMPLATE,
-                        BizCodeType.S0000.getCode(),
+                        OuterBizCodeType.S0000.getCode(),
                         MessageFormat.format(REQUEST,
                                 UUIDUtil.create(),
-                                BizCodeType.S0000.getCmdType().getDesc(),
+                                OuterBizCodeType.S0000.getCmdType().getDesc(),
                                 UUIDUtil.create(),
                                 JaxbUtil.xml(NetworkDto.builder()
                                         .field(LocalDateTime.now().plusSeconds(0).format(DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
@@ -54,10 +54,10 @@ public class NetworkTest extends AbstractRestapiClient {
                 .content(HttpUtil.CONTENT_TEXT)
                 .accept(HttpUtil.ACCEPT_JSON)
                 .data(MessageFormat.format(TEMPLATE,
-                        BizCodeType.S0000.getCode(),
+                        OuterBizCodeType.S0000.getCode(),
                         MessageFormat.format(REQUEST,
                                 UUIDUtil.create(),
-                                BizCodeType.S0000.getCmdType().getDesc(),
+                                OuterBizCodeType.S0000.getCmdType().getDesc(),
                                 UUIDUtil.create(),
                                 JaxbUtil.xml(NetworkDto.builder()
                                         .field(LocalDateTime.now().plusSeconds(0).format(DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
