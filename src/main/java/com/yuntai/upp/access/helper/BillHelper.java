@@ -50,7 +50,6 @@ public class BillHelper extends AbstractBill {
          *                              prompt : 实时
          *                              delay : 延时
          */
-//        return BillDataMock.mock();
-        return BillDataMock.mock999();
+        return BillDataMock.mock();
     }
 }

@@ -75,4 +75,4 @@ Configuration:
     - name: org.hibernate
       level: error
     - name: com.yuntai.hdp.client
-      level: info
+      level: error

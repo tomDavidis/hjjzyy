@@ -23,6 +23,8 @@ server:
           public-key: @server.keys.10000-999.public.key@
 
 spring:
+  mvc:
+    locale: zh_CN
   datasource:
     enabled: false
     url: @spring.datasource.url@
