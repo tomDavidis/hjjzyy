@@ -46,7 +46,7 @@ public class BillHelper extends AbstractBill {
          *                          格式为yyyy-MM-dd HH:mm:ss, 无需要校验格式正确性(上层已校验)
          *
          * [checkBillsDownloadType] - 账单下载类型()大多情况下,实时交易&延时账单均调用 HIS 相同视图
-         *                          若存在 HIS 实时交易与延时账单调用不同的视图、逻辑时,可通过 dto 中的 tradeType 属性进行分类判断
+         *                          若存在 HIS 实时交易与延时账单调用不同的视图、逻辑时,可通过 dto 中的 checkBillsDownloadType 属性进行分类判断
          *                              prompt : 实时
          *                              delay : 延时
          */

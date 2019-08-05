@@ -77,6 +77,10 @@ public class BillDataMock {
                     .statType(CheckBillsStatType.ONE.getCode())
                     // 支付渠道
                     .channelType(ChannelType.ALI.getCode())
+                    // 收款员工号
+                    .empno("")
+                    // 收款设备编号
+                    .deviceNo("")
                     .build());
         }
         /* 模拟数据,仅供无 HIS 接口时,工程测试使用 - end */
