@@ -13,6 +13,7 @@ server:
     - partner-id: 999
       isv:
         - isv-id: 10000
+          need-verify: false
 
 spring:
   mvc:

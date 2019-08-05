@@ -16,6 +16,7 @@ server:
     - partner-id: @server.partner.999.partner-id@
       isv:
         - isv-id: @server.partner.999.isv.isv-id@
+          need-verify: false
 
 spring:
   mvc:
