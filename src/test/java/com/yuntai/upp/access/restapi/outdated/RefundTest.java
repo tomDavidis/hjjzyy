@@ -1,7 +1,7 @@
 package com.yuntai.upp.access.restapi.outdated;
 
 import com.yuntai.upp.access.AbstractRestapiClient;
-import com.yuntai.upp.access.ProviderBoot;
+import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.client.basic.enums.outer.OuterBizCodeType;
 import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.JaxbUtil;
@@ -24,7 +24,7 @@ import java.text.MessageFormat;
  * @copyright 版权归 HSYUNTAI 所有
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {ProviderBoot.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class RefundTest extends AbstractRestapiClient {
 
     @Test

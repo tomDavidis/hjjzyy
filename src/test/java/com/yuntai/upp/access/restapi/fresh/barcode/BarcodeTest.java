@@ -1,7 +1,7 @@
 package com.yuntai.upp.access.restapi.fresh.barcode;
 
 import com.alibaba.fastjson.TypeReference;
-import com.yuntai.upp.access.ProviderBoot;
+import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.access.restapi.fresh.AbstractControllerTest;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.fresh.model.dto.barcode.BarcodeDto;
@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
  * @copyright 版权归 HSYUNTAI 所有
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {ProviderBoot.class})
+@SpringBootTest(classes = {UppAccessApplication.class})
 public class BarcodeTest extends AbstractControllerTest<BarcodeVo> {
 
     private static final String URI = "/access/barcode";

@@ -1,14 +1,13 @@
 package com.yuntai.upp.access.restapi.outdated;
 
 import com.yuntai.upp.access.AbstractRestapiClient;
-import com.yuntai.upp.access.ProviderBoot;
+import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.client.basic.enums.outer.OuterBizCodeType;
 import com.yuntai.upp.client.basic.enums.outer.OuterChannelType;
 import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.JaxbUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.outdated.model.dto.barcode.BarcodeDto;
-import com.yuntai.upp.sdk.enums.ChannelProductType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,7 +25,7 @@ import java.text.MessageFormat;
  * @copyright 版权归 HSYUNTAI 所有
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {ProviderBoot.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class BarcodeTest extends AbstractRestapiClient {
 
     @Test

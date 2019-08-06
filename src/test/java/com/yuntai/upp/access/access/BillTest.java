@@ -2,7 +2,7 @@ package com.yuntai.upp.access.access;
 
 import com.alibaba.fastjson.JSON;
 import com.yuntai.hdp.access.RequestPack;
-import com.yuntai.upp.access.ProviderBoot;
+import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.client.basic.util.DesUtil;
 import com.yuntai.upp.client.basic.util.DateUtil;
 import com.yuntai.upp.client.basic.util.TraceIdUtil;
@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
  * @copyright 版权归 HSYUNTAI 所有
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {ProviderBoot.class})
+@SpringBootTest(classes = {UppAccessApplication.class})
 public class BillTest {
 
     @Resource(name = "clientReceiver")

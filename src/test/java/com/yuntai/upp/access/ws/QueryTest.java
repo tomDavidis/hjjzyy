@@ -1,7 +1,7 @@
 package com.yuntai.upp.access.ws;
 
 import com.yuntai.upp.access.AbstractWsClinet;
-import com.yuntai.upp.access.ProviderBoot;
+import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.client.basic.enums.outer.OuterBizCodeType;
 import com.yuntai.upp.client.outdated.model.dto.query.QueryDto;
 import com.yuntai.upp.client.outdated.model.ws.SenderObject;
@@ -25,7 +25,7 @@ import java.text.MessageFormat;
  * @copyright 版权归 HSYUNTAI 所有
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {ProviderBoot.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class QueryTest extends AbstractWsClinet {
 
     @Test

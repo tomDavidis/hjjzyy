@@ -2,7 +2,7 @@ package com.yuntai.upp.access.restapi.fresh;
 
 import com.alibaba.fastjson.JSON;
 import com.yuntai.upp.access.AbstractRestapiClient;
-import com.yuntai.upp.access.ProviderBoot;
+import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.fresh.model.dto.close.CloseDto;
@@ -21,7 +21,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @copyright 版权归 HSYUNTAI 所有
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {ProviderBoot.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class CloseTest extends AbstractRestapiClient {
 
     private static final String URL = "http://127.0.0.1:7000/hs-access-facepay/access/close";
