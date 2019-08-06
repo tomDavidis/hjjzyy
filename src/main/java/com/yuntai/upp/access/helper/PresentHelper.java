@@ -27,14 +27,11 @@ public class PresentHelper extends AbstractPresent {
          *
          * 字段           - 详细介绍
          *
-         * outPaymentNo  - 芸泰流水
-         *               非必填(outPaymentNo | inPaymentNo | payemntNo 3 流水要素必有一项非空)
+         * outPaymentNo  - 芸泰流水(必填)
          *
-         * inPaymentNo   - 商户流水
-         *               非必填(outPaymentNo | inPaymentNo | payemntNo 3 流水要素必有一项非空)
+         * inPaymentNo   - 商户流水(可空)
          *
-         * payemntNo     - HIS流水
-         *               非必填(outPaymentNo | inPaymentNo | payemntNo 3 流水要素必有一项非空)
+         * payemntNo     - HIS流水(可空)
          *
          * outPaymentNo & inPaymentNo & payemntNo 字段进行进一步具体例子解释
          *

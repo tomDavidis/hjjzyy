@@ -33,16 +33,22 @@ public class PresentDataMock {
         /* 模拟数据,仅供无 HIS 接口时,工程测试使用 - start */
         vos.add(PresentVo.builder()
                 // 芸泰流水
+                // [不可为空, 参数返回后必校验]
                 .outTradeNo(UUIDUtil.create())
                 // 第三方流水
+                // [不可为空, 参数返回后必校验]
                 .inTradeNo(UUIDUtil.create())
                 // HIS 流水
+                // [不可为空, 参数返回后必校验]
                 .tradeNo(UUIDUtil.create())
                 // 交易金额(BigDecimal 类型, 保留 2 位小数)
+                // [不可为空, 参数返回后必校验]
                 .tradeFee((new BigDecimal(Math.random()).setScale(2, RoundingMode.HALF_UP)))
                 // 交易时间(LocalDateTime 类型)
+                // [不可为空, 参数返回后必校验]
                 .tradeTime(LocalDateTime.now())
                 // 交易类型(TradeType 枚举类内 payment/refund)
+                // [不可为空, 参数返回后必校验]
                 .tradeType(TradeType.PAY.getCode())
                 .build());
         /* 模拟数据,仅供无 HIS 接口时,工程测试使用 - end */

@@ -45,41 +45,55 @@ public class BillDataMock {
             vos.add(BillVo.builder()
                     // 商户标识
                     // 该值可直接通过 BillHelper 中的 data 方法中的形参 dto 中直接获取
-                    // partnerId = dto.getPartnerId().get(0)
+                    // partnerId = dto.getPartnerId()
+                    // [不可为空, 参数返回后必校验]
                     .partnerId(999L)
                     // 账单日期
                     // 真实场景可通过起始时间进行转换
                     // end_time - start_time <= 24H && start_time >= 00:00
+                    // [不可为空, 参数返回后必校验]
                     .billsDate(LocalDate.now())
                     // pay:支付 refundFee:退款
+                    // [不可为空, 参数返回后必校验]
                     .tradeType(Math.random() > 0.5D ? TradeType.PAY.getCode() : TradeType.REFUND.getCode())
                     // 注意!!! 金额数字没有负数,取绝对值
+                    // [不可为空, 参数返回后必校验]
                     .tradeFee(new BigDecimal(Math.random() * 100).abs().setScale(2, BigDecimal.ROUND_HALF_UP))
                     // 交易时间
+                    // [不可为空, 参数返回后必校验]
                     .tradeTime(LocalDateTime.now())
-
                     // 芸泰流水
+                    // [不可为空, 参数返回后必校验]
                     .outTradeNo(UUIDUtil.create())
                     // 第三方流水
+                    // [不可为空, 参数返回后必校验]
                     .inTradeNo(UUIDUtil.create())
                     // HIS 流水
+                    // [不可为空, 参数返回后必校验]
                     .tradeNo(UUIDUtil.create())
-
                     // 业务类型 请参照 BizType 枚举类
+                    // [不可为空, 参数返回后必校验]
                     .bizType(BizType.REGISTER.getCode())
                     // 院区标识(存在这赋值,部分商户需要)
+                    // [可为空, 上层将校验非空时的参数值]
                     .districtId(UUIDUtil.create())
                     // 来源 outpatient:门诊 inpatient:住院
+                    // [可为空, 上层将校验非空时的参数值]
                     .sourceType(SourceType.INPATIENT.getCode())
                     // 类型 self:自费 medical:医保
+                    // [可为空, 上层将校验非空时的参数值]
                     .payType(CheckBillsPayType.SELF.getCode())
                     // 对账类型 改值 @服务端对账开发人员,按照服务端配置赋值
+                    // [可为空, 上层将校验非空时的参数值]
                     .statType(CheckBillsStatType.ONE.getCode())
                     // 支付渠道
+                    // [可为空, 上层将校验非空时的参数值]
                     .channelType(ChannelType.ALI.getCode())
                     // 收款员工号
+                    // [可为空]
                     .empno("")
                     // 收款设备编号
+                    // [可为空]
                     .deviceNo("")
                     .build());
         }
