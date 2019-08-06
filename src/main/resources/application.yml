@@ -14,8 +14,6 @@ server:
           need-verify: false
 
 spring:
-  mvc:
-    locale: zh_CN
   datasource:
     enabled: false
     url: @spring.datasource.url@
