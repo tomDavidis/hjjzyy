@@ -1,10 +1,9 @@
 package com.yuntai.upp.access.service.impl;
 
-//import com.yuntai.upp.access.mapper.DemoMapper;
-//import com.yuntai.upp.access.service.DemoService;
-//import org.apache.commons.lang3.StringUtils;
-//import org.springframework.beans.factory.annotation.Autowired;
+import com.yuntai.upp.access.mapper.DemoMapper;
 import com.yuntai.upp.access.service.DemoService;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,8 +19,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class DemoServiceImpl implements DemoService {
 
-//    @Autowired
-//    private DemoMapper demoMapper;
+    @Autowired
+    private DemoMapper demoMapper;
 
     /**
      * @description 测试数据库连接是否正常
@@ -32,11 +31,11 @@ public class DemoServiceImpl implements DemoService {
      */
     @Override
     public Boolean ping() {
-//        try {
-//            return StringUtils.isNotBlank(demoMapper.ping());
-//        } catch (Exception exception) {
-//            exception.printStackTrace();
-//        }
+        try {
+            return StringUtils.isNotBlank(demoMapper.ping());
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
         return Boolean.FALSE;
     }
 }
