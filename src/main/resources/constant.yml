@@ -1,0 +1,17 @@
+constant:
+  partner:
+    - partner-id: 999
+    # 院区标识, 非必填, 若无需配置则注释
+    # district-id:
+    # 资源标识, 非必填, 若无需配置则注释
+    # resource-id:
+      isv:
+        - isv-id: 20000
+        - isv-id: 10000
+    - partner-id: 999
+      # 院区标识, 非必填, 若无需配置则注释
+      district-id: 123
+      # 资源标识, 非必填, 若无需配置则注释
+      # resource-id:
+      isv:
+        - isv-id: 20000

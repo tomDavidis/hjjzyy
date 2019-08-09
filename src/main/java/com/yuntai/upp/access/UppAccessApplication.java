@@ -5,9 +5,15 @@ import com.yuntai.upp.client.basic.util.TraceIdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
+import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.io.ClassPathResource;
+
+import java.util.Objects;
 
 /**
  * @author jinren@hsyuntai.com
@@ -26,6 +32,15 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
                 MybatisAutoConfiguration.class})
 @MapperScan("com.yuntai.upp.access.mapper")
 public class UppAccessApplication {
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer properties() {
+        PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
+        YamlPropertiesFactoryBean yaml = new YamlPropertiesFactoryBean();
+        yaml.setResources(new ClassPathResource("constant.yml"));
+        configurer.setProperties(Objects.requireNonNull(yaml.getObject()));
+        return configurer;
+    }
 
     public static void main(String[] args) {
         TraceIdUtil.createLocalTraceId("客户端主线程");

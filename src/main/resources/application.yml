@@ -2,27 +2,42 @@ server:
   servlet:
     context-path: /hs-access-facepay
   port: @server.port@
-  hdp:
-    ip: @server.hdp.ip@
-    port: @server.hdp.port@
-    token: @server.hdp.token@
-    resource-id: @server.hdp.resouce-id@
-  partner:
-    - partner-id: @server.partner.999.partner-id@
-      isv:
-        - isv-id: @server.partner.999.isv.isv-id@
-          need-verify: false
+hdp:
+  ip: @hdp.ip@
+  port: @hdp.port@
+  token: @hdp.token@
+  resource-id: @hdp.resouce-id@
+  delay: @hdp.delay@
+  pool: @hdp.pool@
 
 spring:
   datasource:
-    enabled: false
-    url: @spring.datasource.url@
-    username: @spring.datasource.username@
-    password: @spring.datasource.password@
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    type: com.alibaba.druid.pool.DruidDataSource
+    enabled: @spring.datasource.druid.enabled@
+    name: mysql
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: @spring.datasource.druid.url@
+      username: @spring.datasource.druid.username@
+      password: @spring.datasource.druid.password@
+      initial-size: @spring.datasource.druid.initial-size@
+      min-idle: @spring.datasource.druid.min-idle@
+      max-active: @spring.datasource.druid.max-active@
+      max-wait: @spring.datasource.druid.max-wait@
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat,wall
 
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
+
+constant:
+  des-salt: @constant.des-salt@
+  seed: @constant.seed@
