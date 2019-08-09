@@ -39,5 +39,4 @@ mybatis:
     map-underscore-to-camel-case: true
 
 constant:
-  des-salt: @constant.des-salt@
-  seed: @constant.seed@
+  seed: 2
