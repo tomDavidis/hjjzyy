@@ -7,8 +7,8 @@ hdp:
   port: @hdp.port@
   token: @hdp.token@
   resource-id: @hdp.resouce-id@
-  delay: @hdp.delay@
-  pool: @hdp.pool@
+  delay: 5
+  pool: 20
 
 spring:
   datasource:
