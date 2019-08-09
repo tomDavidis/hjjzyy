@@ -1,0 +1,5 @@
+constant:
+  partner:
+    - partner-id: 999
+      isv:
+        - isv-id: 20000

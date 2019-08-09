@@ -1,17 +1,63 @@
 constant:
   partner:
     - partner-id: 999
-    # 院区标识, 非必填, 若无需配置则注释
+    # 院区标识, 非必填, 若无需配置则注释或删除
+    # 该配置可控制某partner_id 使用某特殊条件下的渠道列表
     # district-id:
-    # 资源标识, 非必填, 若无需配置则注释
+    # 资源标识, 非必填, 若无需配置则注释或删除
+    # 该配置可控制某partner_id 使用某特殊条件下的渠道列表
     # resource-id:
       isv:
         - isv-id: 20000
         - isv-id: 10000
     - partner-id: 999
-      # 院区标识, 非必填, 若无需配置则注释
+      # 院区标识, 非必填, 若无需配置则注释或删除
+      # 该配置可控制某partner_id 使用某特殊条件下的渠道列表
       district-id: 123
-      # 资源标识, 非必填, 若无需配置则注释
+      # 资源标识, 非必填, 若无需配置则注释或删除
+      # 该配置可控制某partner_id 使用某特殊条件下的渠道列表
       # resource-id:
       isv:
         - isv-id: 20000
+
+#    _______   _______ .___  ___.   ______
+#   |       \ |   ____||   \/   |  /  __  \
+#   |  .--.  ||  |__   |  \  /  | |  |  |  |
+#   |  |  |  ||   __|  |  |\/|  | |  |  |  |
+#   |  '--'  ||  |____ |  |  |  | |  `--'  |
+#   |_______/ |_______||__|  |__|  \______/
+#
+# 字段简述:
+#   constant.partner 为 LIST 类型
+#   constant.partner[*].isv 为 LIST 类型
+#   其余 key 对应的 value 均为基本类型
+#
+# 以下配置格式均支持
+#
+# 1.「√」相同partner_id、isv_id 重复配置
+# constant:
+#   partner:
+#     - partner-id: 999
+#       isv:
+#         - isv-id: 20000
+#     - partner-id: 999
+#       isv:
+#         - isv-id: 20000
+#
+# 2.「√」相同partner_id、isv_id 不重复配置
+# 「不推荐」
+# constant:
+#   partner:
+#     - partner-id: 999
+#       isv:
+#         - isv-id: 20000
+#     - partner-id: 999
+#       isv:
+#         - isv-id: 20001
+# 「推荐」
+# constant:
+#   partner:
+#     - partner-id: 999
+#       isv:
+#         - isv-id: 20000
+#         - isv-id: 20001
