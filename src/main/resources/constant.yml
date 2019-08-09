@@ -3,7 +3,7 @@ constant:
     - partner-id: 999
       isv:
         - isv-id: 20000
-        - isv-id: 10000
+#        - isv-id: 20001
 #    - partner-id: 147
 #      district-id: 227142
 #      resource-id: 147
