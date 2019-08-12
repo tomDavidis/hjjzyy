@@ -23,11 +23,11 @@ public class PresentDataMock {
     /**
      * @description 数据模拟(真实场景禁止使用,仅供开发使用)
      * @param
-     * @return java.util.List<com.yuntai.upp.client.basic.model.vo.present.PresentVo>
+     * @return java.util.List<com.yuntai.upp.client.fresh.model.vo.present.PresentVo>
      * @author jinren@hsyuntai.com
-     * @date 2019-06-22 10:17
+     * @date 2019-08-12 09:55
      */
-    public static List<PresentVo> mock() {
+    public static List<PresentVo> mock() throws Exception {
         List<PresentVo> vos = new ArrayList<>();
 
         /* 模拟数据,仅供无 HIS 接口时,工程测试使用 - start */

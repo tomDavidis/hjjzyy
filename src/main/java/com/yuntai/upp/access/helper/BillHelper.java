@@ -2,11 +2,13 @@ package com.yuntai.upp.access.helper;
 
 import com.yuntai.upp.access.demo.BillDataMock;
 import com.yuntai.upp.client.fresh.handler.active.bill.AbstractBill;
+import com.yuntai.upp.client.fresh.model.bo.ViewBo;
 import com.yuntai.upp.client.fresh.model.dto.bill.BillDto;
 import com.yuntai.upp.client.fresh.model.vo.bill.BillVo;
 import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,15 +24,14 @@ public class BillHelper extends AbstractBill {
 
     /**
      * @description 账单数据转换
-     *              调用 HIS 接口获取账单包装成为 List<DilatoryVo>[非空]
-     *              若接口无任何返回数据或调用结果出错,则直接抛出异常
+     *              调用 HIS 接口获取账单包装成为 List<BillVo>[可为空]
      * @param dto 云端下载 bean
-     * @return java.util.List<com.yuntai.upp.client.basic.model.vo.dilatory.DilatoryVo>
+     * @return com.yuntai.upp.client.fresh.model.bo.ViewBo<java.util.List<com.yuntai.upp.client.fresh.model.vo.bill.BillVo>>
      * @author jinren@hsyuntai.com
-     * @date 2019-06-14 15:20
+     * @date 2019-08-12 09:05
      */
     @Override
-    public List<BillVo> data(@NonNull BillDto dto) {
+    public ViewBo<List<BillVo>> data(@NonNull BillDto dto) {
         /* 在此对 DTO 中的字段进行详细介绍
          *
          * 字段                      详细介绍
@@ -50,6 +51,12 @@ public class BillHelper extends AbstractBill {
          *                              prompt : 实时
          *                              delay : 延时
          */
-        return BillDataMock.mock();
+        List<BillVo> list = new ArrayList<>(2048);
+        try {
+            list.addAll(BillDataMock.mock());
+        } catch (Exception exception) {
+            return ViewBo.error(exception.getMessage());
+        }
+        return ViewBo.success(list);
     }
 }

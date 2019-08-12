@@ -34,7 +34,7 @@ public class BillDataMock {
      * @author jinren@hsyuntai.com
      * @date 2019-06-22 10:13
      */
-    public static List<BillVo> mock() {
+    public static List<BillVo> mock() throws Exception {
         List<BillVo> vos = new ArrayList<>();
 
         /* 模拟数据,仅供无 HIS 接口时,工程测试使用 - start */
