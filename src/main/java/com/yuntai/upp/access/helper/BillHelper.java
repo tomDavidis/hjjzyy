@@ -25,6 +25,21 @@ public class BillHelper extends AbstractBill {
     /**
      * @description 账单数据转换
      *              调用 HIS 接口获取账单包装成为 List<BillVo>[可为空]
+     *
+     *              真实场景中大多存在以下 2 种方式获取数据
+     *              1.使用视图获取数据
+     *                  工程可执行按照需求配置启用|禁用 DB, 仅需要把对应数据源配置文件进行修改即可
+     *              2.通过 TCP 接口进行访问
+     *                  工程工具包内提供HttpUtil工具供网络访问,
+     *                      实例:
+     *                          HttpUtil.post(HttpUtil.Atom.builder()
+     *                              .url("访问地址")
+     *                               // 请求数据类型
+     *                              .content(HttpUtil.CONTENT_TEXT)
+     *                               // 响应数据类型
+     *                              .accept(HttpUtil.ACCEPT_JSON)
+     *                               // 数据对象
+     *                              .data(new Object());
      * @param dto 云端下载 bean
      * @return com.yuntai.upp.client.fresh.model.bo.ViewBo<java.util.List<com.yuntai.upp.client.fresh.model.vo.bill.BillVo>>
      * @author jinren@hsyuntai.com
@@ -53,23 +68,6 @@ public class BillHelper extends AbstractBill {
          */
         List<BillVo> list = new ArrayList<>(2048);
         try {
-            /*
-             * demo 中使用模拟数据
-             * 现实场景中大多存在以下 2 种方式
-             *  1.使用视图获取数据
-             *      (工程可执行按照需求配置启用|禁用 DB, 仅需要把对应数据源配置文件进行修改即可)
-             *  2.通过 TCP 接口进行访问
-             *      (工程工具包内提供HttpUtil工具供网络访问,
-             *          实例:
-             *              HttpUtil.post(HttpUtil.Atom.builder()
-             *                 .url("访问地址")
-             *                  // 请求数据类型
-             *                 .content(HttpUtil.CONTENT_TEXT)
-             *                  // 响应数据类型
-             *                 .accept(HttpUtil.ACCEPT_JSON)
-             *                  // 数据对象
-             *                 .data(new Object());
-             */
             list.addAll(BillDataMock.mock());
         } catch (Exception exception) {
             return ViewBo.error(exception.getMessage());
