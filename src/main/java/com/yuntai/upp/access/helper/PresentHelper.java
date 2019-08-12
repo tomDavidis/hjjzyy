@@ -52,6 +52,8 @@ public class PresentHelper extends AbstractPresent {
          *
          * 字段           - 详细介绍
          *
+         * partnerId     - 商户标识(必填)
+         *
          * outPaymentNo  - 芸泰流水(必填)
          *
          * inPaymentNo   - 商户流水(可空)

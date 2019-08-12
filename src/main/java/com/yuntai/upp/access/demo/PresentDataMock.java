@@ -32,6 +32,11 @@ public class PresentDataMock {
 
         /* 模拟数据,仅供无 HIS 接口时,工程测试使用 - start */
         vos.add(PresentVo.builder()
+                // 商户标识
+                // 该值可直接通过 PresentHelper 中的 data 方法中的形参 dto 中直接获取
+                // partnerId = dto.getPartnerId()
+                // [不可为空, 参数返回后必校验]
+                .partnerId(999L)
                 // 芸泰流水
                 // [不可为空, 参数返回后必校验]
                 .outTradeNo(UUIDUtil.create())
