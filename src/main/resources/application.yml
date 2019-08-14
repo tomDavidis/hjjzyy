@@ -1,6 +1,4 @@
 server:
-  servlet:
-    context-path: /hs-access-facepay
   port: @server.port@
 hdp:
   ip: @hdp.ip@

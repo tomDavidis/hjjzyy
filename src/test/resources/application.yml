@@ -1,6 +1,4 @@
 server:
-  servlet:
-    context-path: /hs-access-facepay
   port: 7000
 hdp:
   ip: 120.55.66.16
