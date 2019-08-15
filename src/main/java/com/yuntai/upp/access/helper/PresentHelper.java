@@ -2,7 +2,7 @@ package com.yuntai.upp.access.helper;
 
 import com.yuntai.upp.access.demo.PresentDataMock;
 import com.yuntai.upp.client.fresh.handler.active.present.AbstractPresent;
-import com.yuntai.upp.client.fresh.model.bo.ViewBo;
+import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.present.PresentDto;
 import com.yuntai.upp.client.fresh.model.vo.present.PresentVo;
 import lombok.NonNull;
@@ -46,7 +46,7 @@ public class PresentHelper extends AbstractPresent {
      * @date 2019-08-12 09:06
      */
     @Override
-    public ViewBo<List<PresentVo>> data(@NonNull PresentDto dto) {
+    public Outcome<List<PresentVo>> data(@NonNull PresentDto dto) {
         /*
          * 在此对 DTO 中的字段进行详细介绍
          *
@@ -70,8 +70,8 @@ public class PresentHelper extends AbstractPresent {
         try {
             list.addAll(PresentDataMock.mock());
         } catch (Exception exception) {
-            return ViewBo.error(exception.getMessage());
+            return Outcome.fail(exception.getMessage());
         }
-        return ViewBo.success(list);
+        return Outcome.success(list);
     }
 }

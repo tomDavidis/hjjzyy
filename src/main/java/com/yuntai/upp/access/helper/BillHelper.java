@@ -2,7 +2,7 @@ package com.yuntai.upp.access.helper;
 
 import com.yuntai.upp.access.demo.BillDataMock;
 import com.yuntai.upp.client.fresh.handler.active.bill.AbstractBill;
-import com.yuntai.upp.client.fresh.model.bo.ViewBo;
+import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.bill.BillDto;
 import com.yuntai.upp.client.fresh.model.vo.bill.BillVo;
 import lombok.NonNull;
@@ -46,7 +46,7 @@ public class BillHelper extends AbstractBill {
      * @date 2019-08-12 09:05
      */
     @Override
-    public ViewBo<List<BillVo>> data(@NonNull BillDto dto) {
+    public Outcome<List<BillVo>> data(@NonNull BillDto dto) {
         /* 在此对 DTO 中的字段进行详细介绍
          *
          * 字段                      详细介绍
@@ -70,8 +70,8 @@ public class BillHelper extends AbstractBill {
         try {
             list.addAll(BillDataMock.mock());
         } catch (Exception exception) {
-            return ViewBo.error(exception.getMessage());
+            return Outcome.fail(exception.getMessage());
         }
-        return ViewBo.success(list);
+        return Outcome.success(list);
     }
 }

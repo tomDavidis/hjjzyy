@@ -4,9 +4,9 @@ import com.alibaba.fastjson.TypeReference;
 import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.access.restapi.fresh.AbstractControllerTest;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
+import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.barcode.BarcodeDto;
 import com.yuntai.upp.client.fresh.model.vo.barcode.BarcodeVo;
-import com.yuntai.upp.sdk.core.ResultObject;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,17 +32,17 @@ public class BarcodeTest extends AbstractControllerTest<BarcodeVo> {
 
     @Test
     public void normalAllRoute() {
-        ResultObject result = tcp(URI, BarcodeDto.builder()
+        Outcome outcome = tcp(URI, BarcodeDto.builder()
                 .authCode("")
                 .paymentNo(UUIDUtil.create())
                 .tradeFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
                 .subject("条码支付(upp-client)")
                 .expireTime(LocalDateTime.now().plusMinutes(5))
                 .build(),
-                new TypeReference<ResultObject<BarcodeVo>>() {
+                new TypeReference<Outcome<BarcodeVo>>() {
                 });
 
-        Assert.assertTrue(result.isResult());
+        Assert.assertTrue(outcome.isResult());
     }
 //
 //    @Test
