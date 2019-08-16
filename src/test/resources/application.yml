@@ -10,7 +10,7 @@ hdp:
 
 spring:
   datasource:
-    enabled: false
+    enabled: true
     name: mysql
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -37,5 +37,4 @@ mybatis:
     map-underscore-to-camel-case: true
 
 constant:
-  des-salt: cb1dc9980f164b08a12ac821494b89ed
   seed: 2
