@@ -58,7 +58,7 @@ public class PresentHelper extends AbstractPresent {
          *
          * inPaymentNo   - 商户流水(可空)
          *
-         * payemntNo     - HIS流水(可空)
+         * payemntNo     - HIS流水(必填)
          *
          * outPaymentNo & inPaymentNo & payemntNo 字段进行进一步具体例子解释
          *
