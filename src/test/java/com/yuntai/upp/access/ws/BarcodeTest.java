@@ -3,13 +3,12 @@ package com.yuntai.upp.access.ws;
 import com.yuntai.upp.access.AbstractWsClinet;
 import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.client.basic.enums.outer.OuterBizCodeType;
-import com.yuntai.upp.client.basic.enums.outer.OuterChannelType;
-import com.yuntai.upp.client.outdated.model.dto.barcode.BarcodeDto;
-import com.yuntai.upp.client.outdated.model.ws.SenderObject;
-import com.yuntai.upp.client.outdated.model.ws.SenderPack;
 import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.JaxbUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
+import com.yuntai.upp.client.outdated.model.dto.barcode.BarcodeDto;
+import com.yuntai.upp.client.outdated.model.ws.SenderObject;
+import com.yuntai.upp.client.outdated.model.ws.SenderPack;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -51,7 +50,6 @@ public class BarcodeTest extends AbstractWsClinet {
                                                 .authCode("")
                                                 .paymentNo(UUIDUtil.create())
                                                 .tradeFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
-                                                .channelProduct(OuterChannelType.ALI_BAR_CODE.getValue())
                                                 .subject("条码支付(upp-client)")
                                                 /* 以下为特殊渠道|附加参数, 可为空 */
 //                                                .terminalNo("")
