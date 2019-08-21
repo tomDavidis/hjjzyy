@@ -16,7 +16,7 @@
 		<fileSet>
 			<directory>${project.build.directory}/${project.artifactId}
 			</directory>
-			<outputDirectory>/</outputDirectory>
+			<outputDirectory>${file.separator}</outputDirectory>
 			<includes>
 				<include>**/*.*</include>
 			</includes>
@@ -24,7 +24,7 @@
 		<!--将项目jar 打到zip中 -->
 		<fileSet>
 			<directory>${project.build.directory}</directory>
-			<outputDirectory>/</outputDirectory>
+			<outputDirectory>${file.separator}</outputDirectory>
 			<includes>
 				<include>*.jar</include>
 			</includes>
@@ -32,7 +32,7 @@
 
 		<fileSet>
 			<directory>src/main/resources</directory>
-			<outputDirectory>/bin</outputDirectory>
+			<outputDirectory>${file.separator}bin</outputDirectory>
 			<includes>
 				<include>*.sh</include>
 				<include>*.bat</include>
