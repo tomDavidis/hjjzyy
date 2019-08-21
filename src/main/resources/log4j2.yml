@@ -66,13 +66,19 @@ Configuration:
     Logger:
     - name: org.springframework
       level: error
-    - name: org.apache.curator
+    - name: org.apache
       level: error
-    - name: org.apache.commons.beanutils
+    - name: org.mybatis
       level: error
     - name: io.netty
       level: error
     - name: org.hibernate
+      level: error
+    - name: reactor.core
+      level: error
+    - name: io.lettuce
+      level: error
+    - name: com.alibaba
       level: error
     - name: com.yuntai.hdp.client
       level: error
