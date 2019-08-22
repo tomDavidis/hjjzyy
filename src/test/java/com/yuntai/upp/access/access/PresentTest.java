@@ -6,8 +6,8 @@ import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
 import com.yuntai.upp.client.basic.util.TraceIdUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
+import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.export.access.ClientReceiver;
-import com.yuntai.upp.client.fresh.model.bo.Isv;
 import com.yuntai.upp.client.fresh.model.dto.present.PresentDto;
 import com.yuntai.upp.sdk.interfaces.Signable;
 import com.yuntai.upp.sdk.util.SignUtil;
@@ -67,7 +67,7 @@ public class PresentTest {
                 .partnerId(999L)
                 .outPaymentNo(UUIDUtil.create())
                 .build();
-        dto.setSign(SignUtil.signMd5(dto, Isv.get(dto.getPartnerId(), dto.getIsvId()).getMd5Salt()));
+        dto.setSign(SignUtil.signMd5(dto, CacheInstance.md5Salt(dto.getPartnerId(), dto.getIsvId())));
 
         request.setBody(JSON.toJSONString(dto));
         receiver.getHospitalResult(request);

@@ -1,6 +1,4 @@
-
-
-constant:
+cache:
   partner:
     - partner-id: 999        # 商户ID，在公司内部通常即为医院的hosId
       isv:
@@ -11,4 +9,3 @@ constant:
 #      resource-id: 147      #（该配置可控制商户在特殊条件下的支付收款账户，若有特殊要求则需要配置，否则无需关注）
 #      isv:
 #        - isv-id: 20000
-

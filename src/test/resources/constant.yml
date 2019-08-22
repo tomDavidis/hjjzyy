@@ -1,4 +1,4 @@
-constant:
+cache:
   partner:
     - partner-id: 999
       isv:
