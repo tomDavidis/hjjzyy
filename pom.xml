@@ -19,7 +19,7 @@
         <dependency>
             <groupId>com.yuntai.pay</groupId>
             <artifactId>upp-client</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <!-- 【架构体系内的模块引用 end】 -->
         <!-- 【第三方jar引用 start】 -->
