@@ -37,7 +37,7 @@ public class UppAccessApplication {
     public static PropertySourcesPlaceholderConfigurer properties() {
         PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
         YamlPropertiesFactoryBean yaml = new YamlPropertiesFactoryBean();
-        yaml.setResources(new ClassPathResource("constant.yml"));
+        yaml.setResources(new ClassPathResource("cache.yml"));
         configurer.setProperties(Objects.requireNonNull(yaml.getObject()));
         return configurer;
     }
