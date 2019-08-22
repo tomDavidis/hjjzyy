@@ -1,5 +1,6 @@
 package com.yuntai.upp.access;
 
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
 import com.yuntai.upp.client.basic.util.LoggerUtil;
 import com.yuntai.upp.client.basic.util.TraceIdUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +29,8 @@ import java.util.Objects;
  */
 @Slf4j
 @SpringBootApplication(scanBasePackages = {"com.yuntai.upp.access"},
-        exclude = {DataSourceAutoConfiguration.class,
+        exclude = {DruidDataSourceAutoConfigure.class,
+                DataSourceAutoConfiguration.class,
                 MybatisAutoConfiguration.class})
 @MapperScan("com.yuntai.upp.access.mapper")
 public class UppAccessApplication {
