@@ -48,6 +48,6 @@ public class UppAccessApplication {
         TraceIdUtil.createLocalTraceId("客户端主线程");
         System.setProperty("log4j.skipJansi", "false");
         SpringApplication.run(UppAccessApplication.class, args);
-        LoggerUtil.info(LOGGER, "对接程序正常启动");
+        LoggerUtil.info(LOGGER, "UppAccessApplication start successful ...");
     }
 }
