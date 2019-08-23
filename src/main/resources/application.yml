@@ -2,7 +2,6 @@ server:
   port: @server.port@
 
 hdp:
-  enabled: true
   ip: @hdp.ip@
   port: @hdp.port@
   token: @hdp.token@
