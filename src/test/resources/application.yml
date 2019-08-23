@@ -1,6 +1,8 @@
 server:
   port: 7000
+
 hdp:
+  enabled: true
   ip: 120.55.66.16
   port: 8088
   token: c87956357c1505443ec093f2bd5580e6
