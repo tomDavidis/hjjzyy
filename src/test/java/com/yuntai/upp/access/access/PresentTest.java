@@ -66,6 +66,7 @@ public class PresentTest {
                 .isvId(20000L)
                 .partnerId(999L)
                 .outPaymentNo(UUIDUtil.create())
+                .paymentNo(UUIDUtil.create())
                 .build();
         dto.setSign(SignUtil.signMd5(dto, CacheInstance.md5Salt(dto.getPartnerId(), dto.getIsvId())));
 
