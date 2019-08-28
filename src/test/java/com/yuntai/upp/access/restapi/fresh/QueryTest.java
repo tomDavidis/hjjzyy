@@ -5,7 +5,7 @@ import com.yuntai.upp.access.AbstractRestapiClient;
 import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
-import com.yuntai.upp.client.fresh.model.dto.query.QueryDto;
+import com.yuntai.upp.client.fresh.model.dto.paymentquery.PaymentQueryDto;
 import com.yuntai.upp.sdk.enums.BizType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +32,7 @@ public class QueryTest extends AbstractRestapiClient {
                 .url(URL)
                 .content(HttpUtil.CONTENT_JSON)
                 .accept(HttpUtil.ACCEPT_JSON)
-                .data(JSON.toJSONString(QueryDto.builder()
+                .data(JSON.toJSONString(PaymentQueryDto.builder()
                         .paymentNo(UUIDUtil.create())
                         .bizType(BizType.SCAN_PAY.getCode())
                         .build()))
