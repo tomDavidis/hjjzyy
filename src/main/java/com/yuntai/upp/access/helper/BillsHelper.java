@@ -1,10 +1,10 @@
 package com.yuntai.upp.access.helper;
 
 import com.yuntai.upp.access.demo.BillDataMock;
-import com.yuntai.upp.client.fresh.handler.active.bill.AbstractBill;
+import com.yuntai.upp.client.fresh.handler.active.bills.AbstractBills;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
-import com.yuntai.upp.client.fresh.model.dto.bill.BillDto;
-import com.yuntai.upp.client.fresh.model.vo.bill.BillVo;
+import com.yuntai.upp.client.fresh.model.dto.bills.BillsDto;
+import com.yuntai.upp.client.fresh.model.vo.bills.BillsVo;
 import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
@@ -13,14 +13,14 @@ import java.util.List;
 
 /**
  * @description 账单下载-真实实现(禁止修改 bean 名)
- * @className BillHelper
+ * @className BillsHelper
  * @package com.yuntai.upp.access.helper
  * @author jinren@hsyuntai.com
  * @date 2019-06-14 15:20
  * @copyright 版权归 HSYUNTAI 所有
  */
-@Component("billService")
-public class BillHelper extends AbstractBill {
+@Component("billsService")
+public class BillsHelper extends AbstractBills {
 
     /**
      * @description 账单数据转换
@@ -41,12 +41,12 @@ public class BillHelper extends AbstractBill {
      *                               // 数据对象
      *                              .data(new Object());
      * @param dto 云端下载 bean
-     * @return com.yuntai.upp.client.fresh.model.bo.ViewBo<java.util.List<com.yuntai.upp.client.fresh.model.vo.bill.BillVo>>
+     * @return com.yuntai.upp.client.fresh.model.bo.ViewBo<java.util.List<com.yuntai.upp.client.fresh.model.vo.bills.BillVo>>
      * @author jinren@hsyuntai.com
      * @date 2019-08-12 09:05
      */
     @Override
-    public Outcome<List<BillVo>> data(@NonNull BillDto dto) {
+    public Outcome<List<BillsVo>> data(@NonNull BillsDto dto) {
         /* 在此对 DTO 中的字段进行详细介绍
          *
          * 字段                      详细介绍
@@ -66,7 +66,7 @@ public class BillHelper extends AbstractBill {
          *                              prompt : 实时
          *                              delay : 延时
          */
-        List<BillVo> list = new ArrayList<>(2048);
+        List<BillsVo> list = new ArrayList<>(2048);
         try {
             list.addAll(BillDataMock.mock());
         } catch (Exception exception) {

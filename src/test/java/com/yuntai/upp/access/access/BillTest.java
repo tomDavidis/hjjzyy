@@ -11,7 +11,7 @@ import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.config.constant.ConstantInstance;
 import com.yuntai.upp.client.fresh.export.access.ClientReceiver;
-import com.yuntai.upp.client.fresh.model.dto.bill.BillDto;
+import com.yuntai.upp.client.fresh.model.dto.bills.BillsDto;
 import com.yuntai.upp.sdk.enums.CheckBillsDownloadType;
 import com.yuntai.upp.sdk.enums.YesOrNo;
 import com.yuntai.upp.sdk.interfaces.Signable;
@@ -67,7 +67,7 @@ public class BillTest {
         request.setHosId(resourceId);
         request.setSendTime(System.currentTimeMillis());
 
-        BillDto dto = BillDto.builder()
+        BillsDto dto = BillsDto.builder()
                 .timestamp(System.currentTimeMillis())
                 .version(Signable.VERSION)
                 .ftpIp("114.215.200.225")

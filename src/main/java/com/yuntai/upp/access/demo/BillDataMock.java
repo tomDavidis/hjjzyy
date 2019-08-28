@@ -1,7 +1,7 @@
 package com.yuntai.upp.access.demo;
 
 import com.yuntai.upp.client.basic.util.UUIDUtil;
-import com.yuntai.upp.client.fresh.model.vo.bill.BillVo;
+import com.yuntai.upp.client.fresh.model.vo.bills.BillsVo;
 import com.yuntai.upp.sdk.enums.BizType;
 import com.yuntai.upp.sdk.enums.ChannelType;
 import com.yuntai.upp.sdk.enums.CheckBillsPayType;
@@ -30,19 +30,19 @@ public class BillDataMock {
     /**
      * @description 数据模拟(真实场景禁止使用,仅供开发使用)
      * @param
-     * @return java.util.List<com.yuntai.upp.client.basic.model.vo.bill.BillVo>
+     * @return java.util.List<com.yuntai.upp.client.basic.model.vo.bills.BillVo>
      * @author jinren@hsyuntai.com
      * @date 2019-06-22 10:13
      */
-    public static List<BillVo> mock() throws Exception {
-        List<BillVo> vos = new ArrayList<>();
+    public static List<BillsVo> mock() throws Exception {
+        List<BillsVo> vos = new ArrayList<>();
 
         /* 模拟数据,仅供无 HIS 接口时,工程测试使用 - start */
         for (int i = 0; i < LENGTH; i ++) {
             /*
              * 以下各值请务必按规则|枚举进行赋值(上层有规则校验限制)
              */
-            vos.add(BillVo.builder()
+            vos.add(BillsVo.builder()
                     // 商户标识
                     // 该值可直接通过 BillHelper 中的 data 方法中的形参 dto 中直接获取
                     // partnerId = dto.getPartnerId()
