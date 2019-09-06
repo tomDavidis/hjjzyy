@@ -29,7 +29,6 @@ public class BillDataMock {
 
     /**
      * @description 数据模拟(真实场景禁止使用,仅供开发使用)
-     * @param
      * @return java.util.List<com.yuntai.upp.client.basic.model.vo.bills.BillVo>
      * @author jinren@hsyuntai.com
      * @date 2019-06-22 10:13

@@ -22,7 +22,6 @@ public class PresentDataMock {
 
     /**
      * @description 数据模拟(真实场景禁止使用,仅供开发使用)
-     * @param
      * @return java.util.List<com.yuntai.upp.client.fresh.model.vo.present.PresentVo>
      * @author jinren@hsyuntai.com
      * @date 2019-08-12 09:55

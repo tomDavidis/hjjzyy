@@ -24,7 +24,7 @@ public class PresentHelper extends AbstractPresent {
 
     /**
      * @description 交易数据转换
-     *              调用 HIS 接口获取账单包装成为 List<PresentVo>[可为空]
+     *              调用 HIS 接口获取账单包装成为 List<PresentVo> [可为空]
      *
      *              真实场景中大多存在以下 2 种方式获取数据
      *              1.使用视图获取数据
