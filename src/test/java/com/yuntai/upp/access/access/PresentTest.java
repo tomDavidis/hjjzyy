@@ -20,6 +20,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -67,6 +68,7 @@ public class PresentTest {
                 .partnerId(999L)
                 .outPaymentNo(UUIDUtil.create())
                 .paymentNo(UUIDUtil.create())
+                .gmtCreate(LocalDateTime.now().minusDays(1))
                 .build();
         dto.setSign(SignUtil.signMd5(dto, CacheInstance.md5Salt(dto.getPartnerId(), dto.getIsvId())));
 
