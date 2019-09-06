@@ -52,6 +52,9 @@ public class RefundCallbackHelper extends AbstractRefundCallback {
              * partnerId                - 商户标识
              *                          非空必填(上层已校验)
              *
+             * paymentNo                - HIS 流水
+             *                          非空必填(上层已校验)
+             *
              * bizType                  - 业务类型
              *                          非空必填(上层已校验)
              *
