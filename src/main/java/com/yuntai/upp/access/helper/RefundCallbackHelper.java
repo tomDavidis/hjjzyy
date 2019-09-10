@@ -61,6 +61,12 @@ public class RefundCallbackHelper extends AbstractRefundCallback {
              * bizId                    - 业务唯一标识
              *                          非空必填(上层已校验)
              *
+             * channelType              - 支付渠道
+             *                          非空必填(上层已校验)
+             *
+             * channelProduct           - 渠道产品
+             *                          非空必填(上层已校验)
+             *
              * requestNo                - 退款请求号
              *                          非空必填(上层已校验)
              *
@@ -75,9 +81,6 @@ public class RefundCallbackHelper extends AbstractRefundCallback {
              *
              * outRefundNo              - 退款交易流水号
              *                          非空必填(上层已校验)
-             *
-             * inRefundNo               - 渠道负交易流水
-             *                          可空
              *
              * refundTime               - 退款时间
              *                          非空必填(上层已校验)
