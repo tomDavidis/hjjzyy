@@ -46,6 +46,7 @@ public class QueryTest extends AbstractWsClinet {
 //                                                .isvId(0L)
 //                                                .partnerId(0L)
                                                 .paymentNo(UUIDUtil.create())
+                                                .bizType(1)
                                                 /* 以下为特殊渠道|附加参数, 可为空 */
 //                                                .expandData("")
                                                 .build())))
