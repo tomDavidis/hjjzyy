@@ -80,5 +80,3 @@ Configuration:
       level: error
     - name: com.alibaba
       level: error
-    - name: com.yuntai.hdp.client
-      level: error
