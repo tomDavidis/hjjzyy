@@ -27,7 +27,7 @@ import java.time.LocalDateTime;
 @SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class ScanCodeTest extends AbstractRestapiClient {
 
-    private static final String URL = "http://127.0.0.1:7000/hs-access-facepay/access/scancode";
+    private static final String URL = "http://127.0.0.1:7000/hs-access-facepay/access/scanCode";
 
     @Test
     public void test() {

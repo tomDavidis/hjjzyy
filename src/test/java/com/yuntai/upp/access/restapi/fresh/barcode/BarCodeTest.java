@@ -28,7 +28,7 @@ import java.time.LocalDateTime;
 @SpringBootTest(classes = {UppAccessApplication.class})
 public class BarCodeTest extends AbstractControllerTest<BarCodeVo> {
 
-    private static final String URI = "/access/barcode";
+    private static final String URI = "/access/barCode";
 
     @Test
     public void normalAllRoute() {
