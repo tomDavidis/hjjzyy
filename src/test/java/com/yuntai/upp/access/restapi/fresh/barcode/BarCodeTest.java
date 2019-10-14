@@ -58,7 +58,7 @@ public class BarCodeTest extends AbstractControllerTest<BarCodeVo> {
 //        // 1.报文转换(客户端 DTO -> 云端 DTO)
 //        UnitedPaymentParam param = BarCodeParam.convert(dto);
 //        // 2.报文推送至云端, 接收云端响应, 响应报文 -> 云端 VO
-//        UnitedPaymentResult result = HdpClientInstance.send(CmdType.BARCODE, param, UnitedPaymentResult.class);
+//        UnitedPaymentResult result = HdpClientInstance.send(CmdType.BAR_CODE, param, UnitedPaymentResult.class);
 //        // 3.参数校验(云端 VO)
 //        BarCodeVerify.verify(result);
 //        // 4.报文转换(云端 VO -> 客户端 VO)
