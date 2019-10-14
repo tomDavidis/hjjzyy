@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 
 /**
  * @description 单元测试-正交易(条码)
- * @className BarcodeTest
+ * @className BarCodeTest
  * @package com.yuntai.upp.access.restapi.fresh.barcode
  * @author jinren@hsyuntai.com
  * @date 2019-07-29 10:22
@@ -26,7 +26,7 @@ import java.time.LocalDateTime;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {UppAccessApplication.class})
-public class BarcodeTest extends AbstractControllerTest<BarCodeVo> {
+public class BarCodeTest extends AbstractControllerTest<BarCodeVo> {
 
     private static final String URI = "/access/barcode";
 
@@ -47,7 +47,7 @@ public class BarcodeTest extends AbstractControllerTest<BarCodeVo> {
 //
 //    @Test
 //    public void normalAllBussiness() {
-//        BarcodeDto dto = BarcodeDto.builder()
+//        BarCodeDto dto = BarCodeDto.builder()
 //                .authCode("")
 //                .paymentNo(UUIDUtil.create())
 //                .tradeFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
@@ -56,12 +56,12 @@ public class BarcodeTest extends AbstractControllerTest<BarCodeVo> {
 //                .build();
 //
 //        // 1.报文转换(客户端 DTO -> 云端 DTO)
-//        UnitedPaymentParam param = BarcodeParam.convert(dto);
+//        UnitedPaymentParam param = BarCodeParam.convert(dto);
 //        // 2.报文推送至云端, 接收云端响应, 响应报文 -> 云端 VO
 //        UnitedPaymentResult result = HdpClientInstance.send(CmdType.BARCODE, param, UnitedPaymentResult.class);
 //        // 3.参数校验(云端 VO)
-//        BarcodeVerify.verify(result);
+//        BarCodeVerify.verify(result);
 //        // 4.报文转换(云端 VO -> 客户端 VO)
-//        return BarcodeResult.convert(result);
+//        return BarCodeResult.convert(result);
 //    }
 }

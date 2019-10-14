@@ -19,7 +19,7 @@ import java.text.MessageFormat;
 
 /**
  * @description 单元测试-正交易(条码)
- * @className BarcodeTest
+ * @className BarCodeTest
  * @package com.yuntai.upp.access.ws
  * @author jinren@hsyuntai.com
  * @date 2019-07-04 10:25
@@ -27,7 +27,7 @@ import java.text.MessageFormat;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class BarcodeTest extends AbstractWsClinet {
+public class BarCodeTest extends AbstractWsClinet {
 
     @Test
     public void test() {

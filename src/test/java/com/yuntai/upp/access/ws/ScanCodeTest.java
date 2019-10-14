@@ -20,7 +20,7 @@ import java.text.MessageFormat;
 
 /**
  * @description 单元测试-正交易(扫码)
- * @className ScancodeTest
+ * @className ScanCodeTest
  * @package com.yuntai.upp.access.ws
  * @author jinren@hsyuntai.com
  * @date 2019-07-04 10:25
@@ -28,7 +28,7 @@ import java.text.MessageFormat;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class ScancodeTest extends AbstractWsClinet {
+public class ScanCodeTest extends AbstractWsClinet {
 
     @Test
     public void test() {

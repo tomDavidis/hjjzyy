@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 
 /**
  * @description 正交易(扫码)
- * @className ScancodeTest
+ * @className ScanCodeTest
  * @package com.yuntai.upp.access.restapi.fresh
  * @author jinren@hsyuntai.com
  * @date 2019-07-26 14:53
@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class ScancodeTest extends AbstractRestapiClient {
+public class ScanCodeTest extends AbstractRestapiClient {
 
     private static final String URL = "http://127.0.0.1:7000/hs-access-facepay/access/scancode";
 
