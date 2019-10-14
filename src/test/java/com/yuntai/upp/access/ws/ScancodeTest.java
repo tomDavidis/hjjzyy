@@ -7,7 +7,7 @@ import com.yuntai.upp.client.basic.enums.outer.OuterChannelType;
 import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.JaxbUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
-import com.yuntai.upp.client.outdated.model.dto.scancode.ScancodeDto;
+import com.yuntai.upp.client.outdated.model.dto.scancode.ScanCodeDto;
 import com.yuntai.upp.client.outdated.model.ws.SenderObject;
 import com.yuntai.upp.client.outdated.model.ws.SenderPack;
 import org.junit.Test;
@@ -43,7 +43,7 @@ public class ScancodeTest extends AbstractWsClinet {
                                         UUIDUtil.create(),
                                         OuterBizCodeType.S0001_1.getInnerCmdType().getDesc(),
                                         UUIDUtil.create(),
-                                        JaxbUtil.xml(ScancodeDto.builder()
+                                        JaxbUtil.xml(ScanCodeDto.builder()
                                                 /* 当前配置为单机, isv 标识与商户标识可为空 */
 //                                                .isvId(0L)
 //                                                .partnerId(0L)

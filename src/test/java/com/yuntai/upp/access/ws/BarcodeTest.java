@@ -6,7 +6,7 @@ import com.yuntai.upp.client.basic.enums.outer.OuterBizCodeType;
 import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.JaxbUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
-import com.yuntai.upp.client.outdated.model.dto.barcode.BarcodeDto;
+import com.yuntai.upp.client.outdated.model.dto.barcode.BarCodeDto;
 import com.yuntai.upp.client.outdated.model.ws.SenderObject;
 import com.yuntai.upp.client.outdated.model.ws.SenderPack;
 import org.junit.Test;
@@ -42,7 +42,7 @@ public class BarcodeTest extends AbstractWsClinet {
                                         UUIDUtil.create(),
                                         OuterBizCodeType.S0002.getInnerCmdType().getDesc(),
                                         UUIDUtil.create(),
-                                        JaxbUtil.xml(BarcodeDto.builder()
+                                        JaxbUtil.xml(BarCodeDto.builder()
                                                 /* 当前配置为单机, isv 标识与商户标识可为空 */
 //                                                .isvId(0L)
 //                                                .partnerId(0L)

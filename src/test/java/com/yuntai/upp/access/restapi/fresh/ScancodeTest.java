@@ -5,7 +5,7 @@ import com.yuntai.upp.access.AbstractRestapiClient;
 import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
-import com.yuntai.upp.client.fresh.model.dto.scancode.ScancodeDto;
+import com.yuntai.upp.client.fresh.model.dto.scancode.ScanCodeDto;
 import com.yuntai.upp.sdk.enums.ChannelProductType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,7 +35,7 @@ public class ScancodeTest extends AbstractRestapiClient {
                 .url(URL)
                 .content(HttpUtil.CONTENT_JSON)
                 .accept(HttpUtil.ACCEPT_JSON)
-                .data(JSON.toJSONString(ScancodeDto.builder()
+                .data(JSON.toJSONString(ScanCodeDto.builder()
                         .paymentNo(UUIDUtil.create())
                         .tradeFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
                         .channelProduct(ChannelProductType.ALI_BAR_CODE.getCode())

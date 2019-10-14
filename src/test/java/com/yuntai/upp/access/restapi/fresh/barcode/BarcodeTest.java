@@ -5,8 +5,8 @@ import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.access.restapi.fresh.AbstractControllerTest;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
-import com.yuntai.upp.client.fresh.model.dto.barcode.BarcodeDto;
-import com.yuntai.upp.client.fresh.model.vo.barcode.BarcodeVo;
+import com.yuntai.upp.client.fresh.model.dto.barcode.BarCodeDto;
+import com.yuntai.upp.client.fresh.model.vo.barcode.BarCodeVo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,20 +26,20 @@ import java.time.LocalDateTime;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {UppAccessApplication.class})
-public class BarcodeTest extends AbstractControllerTest<BarcodeVo> {
+public class BarcodeTest extends AbstractControllerTest<BarCodeVo> {
 
     private static final String URI = "/access/barcode";
 
     @Test
     public void normalAllRoute() {
-        Outcome outcome = tcp(URI, BarcodeDto.builder()
+        Outcome outcome = tcp(URI, BarCodeDto.builder()
                 .authCode("")
                 .paymentNo(UUIDUtil.create())
                 .tradeFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
                 .subject("条码支付(upp-client)")
                 .expireTime(LocalDateTime.now().plusMinutes(5))
                 .build(),
-                new TypeReference<Outcome<BarcodeVo>>() {
+                new TypeReference<Outcome<BarCodeVo>>() {
                 });
 
         Assert.assertTrue(outcome.isResult());
