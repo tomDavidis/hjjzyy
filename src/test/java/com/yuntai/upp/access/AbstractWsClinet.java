@@ -16,14 +16,27 @@ public abstract class AbstractWsClinet {
 
     protected static final String URL_WS = "http://127.0.0.1:7000/hs-access-facepay/services/facePayWebService";
 
-    protected static final String TEMPLATE =
+    protected static final String TEMPLATE_NETWORK =
             "<soapenv:Envelope xmlns:ser=\"http://service.webservice.openservice.yuntai.com/\" \n" +
-            "   xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
-            "   <soapenv:Header/>\n" +
-            "   <soapenv:Body>\n" +
+            "  xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
+            "  <soapenv:Header/>\n" +
+            "  <soapenv:Body>\n" +
+            "    <ns2:wsNetTest xmlns:ns2=\"http://service.webservice.openservice.yuntai.com/\">\n" +
             "       {0}" +
+            "    </ns2:wsNetTest>\n" +
             "   </soapenv:Body>\n" +
             "</soapenv:Envelope>";
+
+    protected static final String TEMPLATE_SERVICE =
+            "<soapenv:Envelope xmlns:ser=\"http://service.webservice.openservice.yuntai.com/\" \n" +
+                    "  xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
+                    "  <soapenv:Header/>\n" +
+                    "  <soapenv:Body>\n" +
+                    "    <ns2:wsFacePayService xmlns:ns2=\"http://service.webservice.openservice.yuntai.com/\">\n" +
+                    "       {0}" +
+                    "    </ns2:wsFacePayService>\n" +
+                    "   </soapenv:Body>\n" +
+                    "</soapenv:Envelope>";
 
     protected  static final String REQUEST =
             "<![CDATA[\n" +

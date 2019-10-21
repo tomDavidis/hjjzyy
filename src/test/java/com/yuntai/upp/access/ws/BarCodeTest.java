@@ -7,7 +7,6 @@ import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.JaxbUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.outdated.model.dto.barcode.BarCodeDto;
-import com.yuntai.upp.client.outdated.model.ws.SenderObject;
 import com.yuntai.upp.client.outdated.model.ws.SenderPack;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,31 +34,28 @@ public class BarCodeTest extends AbstractWsClinet {
                 .url(URL_WS)
                 .content(HttpUtil.CONTENT_XML)
                 .accept(HttpUtil.ACCEPT_XML)
-                .data(MessageFormat.format(TEMPLATE, JaxbUtil.xml(SenderObject.builder()
-                        .pack(SenderPack.builder()
-                                .code(OuterBizCodeType.S0002.getCode())
-                                .cell(MessageFormat.format(REQUEST,
-                                        UUIDUtil.create(),
-                                        OuterBizCodeType.S0002.getInnerCmdType().getDesc(),
-                                        UUIDUtil.create(),
-                                        JaxbUtil.xml(BarCodeDto.builder()
-                                                /* 当前配置为单机, isv 标识与商户标识可为空 */
+                .data(MessageFormat.format(TEMPLATE_SERVICE, JaxbUtil.xml(SenderPack.builder()
+                        .code(OuterBizCodeType.S0002.getCode())
+                        .cell(MessageFormat.format(REQUEST,
+                                UUIDUtil.create(),
+                                OuterBizCodeType.S0002.getInnerCmdType().getDesc(),
+                                UUIDUtil.create(),
+                                JaxbUtil.xml(BarCodeDto.builder()
+                                        /* 当前配置为单机, isv 标识与商户标识可为空 */
 //                                                .isvId(0L)
 //                                                .partnerId(0L)
-                                                /* 真实条码 */
-                                                .authCode("")
-                                                .paymentNo(UUIDUtil.create())
-                                                .tradeFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
-                                                .subject("条码支付(upp-client)")
-                                                /* 以下为特殊渠道|附加参数, 可为空 */
+                                        /* 真实条码 */
+                                        .authCode("")
+                                        .paymentNo(UUIDUtil.create())
+                                        .tradeFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
+                                        .subject("条码支付(upp-client)")
+                                        /* 以下为特殊渠道|附加参数, 可为空 */
 //                                                .terminalNo("")
 //                                                .expireTime("")
 //                                                .expandData("")
 //                                                .districtId("")
-                                                .build())))
-                                .build())
+                                        .build())))
                         .build())))
                 .build());
-
     }
 }

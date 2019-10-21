@@ -1,4 +1,4 @@
-package com.yuntai.upp.access.demo;
+package com.yuntai.upp.access.helper.demo;
 
 import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.fresh.model.vo.present.PresentVo;
@@ -12,13 +12,13 @@ import java.util.List;
 
 /**
  * @description 实时交易数据模拟
- * @className PresentDataMock
- * @package com.yuntai.upp.access.demo
+ * @className PresentMock
+ * @package com.yuntai.upp.access.helper.demo
  * @author jinren@hsyuntai.com
  * @date 2019-06-22 10:16
  * @copyright 版权归 HSYUNTAI 所有
  */
-public class PresentDataMock {
+public class PresentMock {
 
     /**
      * @description 数据模拟(真实场景禁止使用,仅供开发使用)

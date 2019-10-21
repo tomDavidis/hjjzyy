@@ -1,9 +1,9 @@
-package com.yuntai.upp.access.demo;
+package com.yuntai.upp.access.helper.demo;
 
 /**
  * @description: 交易通知数据模拟
  * @className: CallbackMock
- * @package: com.yuntai.upp.access.demo
+ * @package: com.yuntai.upp.access.helper.demo
  * @author: jinren@hsyuntai.com
  * @date: 2019-09-06 10:17
  * @copyright: 版权归 HSYUNTAI 所有

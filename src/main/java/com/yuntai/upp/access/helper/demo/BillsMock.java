@@ -1,4 +1,4 @@
-package com.yuntai.upp.access.demo;
+package com.yuntai.upp.access.helper.demo;
 
 import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.fresh.model.vo.bills.BillsVo;
@@ -17,13 +17,13 @@ import java.util.List;
 
 /**
  * @description 账单下载数据模拟
- * @className BillDataMock
- * @package com.yuntai.upp.access.demo
+ * @className BillsMock
+ * @package com.yuntai.upp.access.helper.demo
  * @author jinren@hsyuntai.com
  * @date 2019-06-22 10:11
  * @copyright 版权归 HSYUNTAI 所有
  */
-public class BillDataMock {
+public class BillsMock {
 
     private static final Integer LENGTH = 100;
 

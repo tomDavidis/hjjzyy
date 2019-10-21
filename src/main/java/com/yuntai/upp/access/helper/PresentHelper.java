@@ -1,6 +1,6 @@
 package com.yuntai.upp.access.helper;
 
-import com.yuntai.upp.access.demo.PresentDataMock;
+import com.yuntai.upp.access.helper.demo.PresentMock;
 import com.yuntai.upp.client.fresh.handler.active.present.AbstractPresent;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.present.PresentDto;
@@ -72,7 +72,7 @@ public class PresentHelper extends AbstractPresent {
          */
         List<PresentVo> list = new ArrayList<>(8);
         try {
-            list.addAll(PresentDataMock.mock());
+            list.addAll(PresentMock.mock());
         } catch (Exception exception) {
             return Outcome.fail(exception.getMessage());
         }

@@ -3,12 +3,11 @@ package com.yuntai.upp.access.ws;
 import com.yuntai.upp.access.AbstractWsClinet;
 import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.client.basic.enums.outer.OuterBizCodeType;
-import com.yuntai.upp.client.outdated.model.dto.refund.RefundDto;
-import com.yuntai.upp.client.outdated.model.ws.SenderObject;
-import com.yuntai.upp.client.outdated.model.ws.SenderPack;
 import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.JaxbUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
+import com.yuntai.upp.client.outdated.model.dto.refund.RefundDto;
+import com.yuntai.upp.client.outdated.model.ws.SenderPack;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -35,25 +34,23 @@ public class RefundTest extends AbstractWsClinet {
                 .url(URL_WS)
                 .content(HttpUtil.CONTENT_XML)
                 .accept(HttpUtil.ACCEPT_XML)
-                .data(MessageFormat.format(TEMPLATE, JaxbUtil.xml(SenderObject.builder()
-                        .pack(SenderPack.builder()
-                                .code(OuterBizCodeType.S0005.getCode())
-                                .cell(MessageFormat.format(REQUEST,
-                                        UUIDUtil.create(),
-                                        OuterBizCodeType.S0005.getInnerCmdType().getDesc(),
-                                        UUIDUtil.create(),
-                                        JaxbUtil.xml(RefundDto.builder()
-                                                /* 当前配置为单机, isv 标识与商户标识可为空 */
+                .data(MessageFormat.format(TEMPLATE_SERVICE, JaxbUtil.xml(SenderPack.builder()
+                        .code(OuterBizCodeType.S0005.getCode())
+                        .cell(MessageFormat.format(REQUEST,
+                                UUIDUtil.create(),
+                                OuterBizCodeType.S0005.getInnerCmdType().getDesc(),
+                                UUIDUtil.create(),
+                                JaxbUtil.xml(RefundDto.builder()
+                                        /* 当前配置为单机, isv 标识与商户标识可为空 */
 //                                                .isvId(0L)
 //                                                .partnerId(0L)
-                                                /* 大多数医院 payment_no = refund_no */
-                                                .paymentNo(UUIDUtil.create())
-                                                .refundNo(UUIDUtil.create())
-                                                .refundFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
-                                                /* 以下为特殊渠道|附加参数, 可为空 */
+                                        /* 大多数医院 payment_no = refund_no */
+                                        .paymentNo(UUIDUtil.create())
+                                        .refundNo(UUIDUtil.create())
+                                        .refundFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
+                                        /* 以下为特殊渠道|附加参数, 可为空 */
 //                                                .expandData("")
-                                                .build())))
-                                .build())
+                                        .build())))
                         .build())))
                 .build());
 

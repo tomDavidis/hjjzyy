@@ -3,7 +3,6 @@ package com.yuntai.upp.access.restapi.outdated;
 import com.yuntai.upp.access.AbstractRestapiClient;
 import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.client.basic.enums.outer.OuterBizCodeType;
-import com.yuntai.upp.client.basic.util.DateUtil;
 import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.JaxbUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
@@ -15,7 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * @description 单元测试-网络测试
@@ -42,7 +40,7 @@ public class NetworkTest extends AbstractRestapiClient {
                                 OuterBizCodeType.S0000.getInnerCmdType().getDesc(),
                                 UUIDUtil.create(),
                                 JaxbUtil.xml(NetworkDto.builder()
-                                        .field(LocalDateTime.now().plusSeconds(0).format(DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
+                                        .field(LocalDateTime.now().plusSeconds(0))
                                         .build()))))
                 .build());
     }
@@ -60,7 +58,7 @@ public class NetworkTest extends AbstractRestapiClient {
                                 OuterBizCodeType.S0000.getInnerCmdType().getDesc(),
                                 UUIDUtil.create(),
                                 JaxbUtil.xml(NetworkDto.builder()
-                                        .field(LocalDateTime.now().plusSeconds(0).format(DateTimeFormatter.ofPattern(DateUtil.DEFAULT_FORMAT)))
+                                        .field(LocalDateTime.now().plusSeconds(0))
                                         .build()))))
                 .build());
     }

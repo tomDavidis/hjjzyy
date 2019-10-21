@@ -1,6 +1,6 @@
 package com.yuntai.upp.access.helper;
 
-import com.yuntai.upp.access.demo.BillDataMock;
+import com.yuntai.upp.access.helper.demo.BillsMock;
 import com.yuntai.upp.client.fresh.handler.active.bills.AbstractBills;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.bills.BillsDto;
@@ -64,7 +64,7 @@ public class BillsHelper extends AbstractBills {
          */
         List<BillsVo> list = new ArrayList<>(2048);
         try {
-            list.addAll(BillDataMock.mock());
+            list.addAll(BillsMock.mock());
         } catch (Exception exception) {
             return Outcome.fail(exception.getMessage());
         }
