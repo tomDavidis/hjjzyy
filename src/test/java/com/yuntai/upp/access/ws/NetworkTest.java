@@ -31,7 +31,7 @@ public class NetworkTest extends AbstractWsClinet {
     @Test
     public void test() {
         HttpUtil.post(HttpUtil.Atom.builder()
-                .url(URL_WS)
+                .url(URL_WS_SERVICE)
                 .content(HttpUtil.CONTENT_XML)
                 .accept(HttpUtil.ACCEPT_XML)
                 .data(MessageFormat.format(TEMPLATE_NETWORK, JaxbUtil.xml(SenderPack.builder()

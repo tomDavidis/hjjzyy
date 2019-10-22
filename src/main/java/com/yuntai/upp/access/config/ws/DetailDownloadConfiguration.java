@@ -1,6 +1,6 @@
 package com.yuntai.upp.access.config.ws;
 
-import com.yuntai.upp.client.fresh.export.tunnel.FreshTunnel;
+import com.yuntai.upp.access.tunnel.DetailTunnel;
 import org.apache.cxf.Bus;
 import org.apache.cxf.jaxws.EndpointImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,19 +21,19 @@ import javax.xml.ws.Endpoint;
 @Configuration
 public class DetailDownloadConfiguration {
 
-    private static final String LOCATION_URI = "";
+    private static final String LOCATION_URI = "/detail";
 
     @Autowired
     private Bus bus;
 
     @Resource(name = "detailTunnel")
-    FreshTunnel tunnel;
+    DetailTunnel tunnel;
 
     /**
      * 站点服务
      */
     @Bean
-    public Endpoint fresh() {
+    public Endpoint detail() {
         EndpointImpl endpoint = new EndpointImpl(bus, tunnel);
         endpoint.publish(LOCATION_URI);
         return endpoint;

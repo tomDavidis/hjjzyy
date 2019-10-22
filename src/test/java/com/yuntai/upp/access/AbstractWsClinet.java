@@ -14,7 +14,9 @@ import org.junit.Before;
  */
 public abstract class AbstractWsClinet {
 
-    protected static final String URL_WS = "http://127.0.0.1:7000/hs-access-facepay/services/facePayWebService";
+    protected static final String URL_WS_SERVICE = "http://127.0.0.1:7000/hs-access-facepay/services/facePayWebService";
+
+    protected static final String URL_WS_DETAIL = "http://127.0.0.1:7000/services/detail";
 
     protected static final String TEMPLATE_NETWORK =
             "<soapenv:Envelope xmlns:ser=\"http://service.webservice.openservice.yuntai.com/\" \n" +

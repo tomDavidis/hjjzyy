@@ -1,14 +1,16 @@
 package com.yuntai.upp.access.tunnel;
 
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
-import com.yuntai.upp.client.fresh.model.dto.detaildownload.DetailDownloadDto;
+import com.yuntai.upp.client.fresh.model.dto.channel.ChannelDto;
+import com.yuntai.upp.client.fresh.model.dto.merchant.MerchantDto;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 
-import static com.yuntai.upp.client.config.constant.ConstantInstance.DETAIL_DOWNLOAD;
+import static com.yuntai.upp.client.config.constant.ConstantInstance.CHANNEL;
+import static com.yuntai.upp.client.config.constant.ConstantInstance.MERCHANT;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.REQUEST;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.RESPONSE;
 
@@ -22,7 +24,7 @@ import static com.yuntai.upp.client.config.constant.ConstantInstance.RESPONSE;
  */
 
 @WebService(targetNamespace = "http://service.webservice.openservice.yuntai.com/")
-public interface DetailDownloadTunnel {
+public interface DetailTunnel {
 
     /**
      * @WebService中的targetNamespace
@@ -33,7 +35,11 @@ public interface DetailDownloadTunnel {
      * 请将模型创建于(com.yuntai.upp.access.model包下)
      * (若为新医院或未集成过老接口, 则请默认使用 demo 中的代码)
      */
-    @WebMethod(operationName = DETAIL_DOWNLOAD)
+    @WebMethod(operationName = MERCHANT)
     @WebResult(name = RESPONSE)
-    Outcome detailDownload(@WebParam(name = REQUEST) DetailDownloadDto dto);
+    Outcome merchant(@WebParam(name = REQUEST) MerchantDto dto);
+
+    @WebMethod(operationName = CHANNEL)
+    @WebResult(name = RESPONSE)
+    Outcome channel(@WebParam(name = REQUEST) ChannelDto dto);
 }

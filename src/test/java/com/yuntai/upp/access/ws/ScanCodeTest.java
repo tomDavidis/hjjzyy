@@ -32,7 +32,7 @@ public class ScanCodeTest extends AbstractWsClinet {
     @Test
     public void test() {
         HttpUtil.post(HttpUtil.Atom.builder()
-                .url(URL_WS)
+                .url(URL_WS_SERVICE)
                 .content(HttpUtil.CONTENT_XML)
                 .accept(HttpUtil.ACCEPT_XML)
                 .data(MessageFormat.format(TEMPLATE_SERVICE, JaxbUtil.xml(SenderPack.builder()
