@@ -7,11 +7,11 @@ import com.yuntai.upp.client.config.strategy.StrategyContext;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.channel.ChannelDto;
 import com.yuntai.upp.client.fresh.model.dto.merchant.MerchantDto;
+import com.yuntai.upp.client.fresh.model.vo.channel.ChannelVo;
 import com.yuntai.upp.client.fresh.model.vo.merchant.MerchantVo;
 import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
-import java.util.List;
 
 @Service("detailTunnel")
 @WebService(endpointInterface = "com.yuntai.upp.access.tunnel.DetailTunnel")
@@ -43,7 +43,12 @@ public class DetailService implements DetailTunnel {
          * sign         : 签名
          */
         /* 策略禁止修改 */
-        List<MerchantVo> data = StrategyContext.operate(dto, InnerCmdType.MERCHANT);
+        MerchantVo data = null;
+        try {
+            data = StrategyContext.operate(dto, InnerCmdType.MERCHANT);
+        } catch (Exception exception) {
+            return Outcome.fail(exception.getMessage());
+        }
 
         /**
          * 若需要调整参数格式, 这将 data -> 遍历生成所需对象模型
@@ -63,6 +68,7 @@ public class DetailService implements DetailTunnel {
      * @author jinren@hsyuntai.com
      * @date 2019/10/21 19:49
      */
+    @TraceId(gateway = TraceId.GatewayType.OUTDATED_WEB_SREVICE)
     @Override
     public Outcome channel(ChannelDto dto) {
         /**
@@ -77,7 +83,7 @@ public class DetailService implements DetailTunnel {
          * sign         : 签名
          */
         /* 策略禁止修改 */
-        List<MerchantVo> data = null;
+        ChannelVo data = null;
         try {
             data = StrategyContext.operate(dto, InnerCmdType.CHANNEL);
         } catch (Exception exception) {
