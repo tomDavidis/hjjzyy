@@ -35,8 +35,8 @@ public class RefundTest extends AbstractWsClinet {
                 .content(HttpUtil.CONTENT_XML)
                 .accept(HttpUtil.ACCEPT_XML)
                 .data(MessageFormat.format(TEMPLATE_SERVICE, JaxbUtil.xml(SenderPack.builder()
-                        .code(OuterBizCodeType.S0005.getCode())
-                        .cell(MessageFormat.format(REQUEST,
+                        .bizCode(OuterBizCodeType.S0005.getCode())
+                        .requestData(MessageFormat.format(REQUEST,
                                 UUIDUtil.create(),
                                 OuterBizCodeType.S0005.getInnerCmdType().getDesc(),
                                 UUIDUtil.create(),

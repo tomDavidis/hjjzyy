@@ -39,3 +39,7 @@ mybatis:
 
 constant:
   seed: 2
+
+web:
+  service:
+    mode: axis

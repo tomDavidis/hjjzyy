@@ -35,8 +35,8 @@ public class NetworkTest extends AbstractWsClinet {
                 .content(HttpUtil.CONTENT_XML)
                 .accept(HttpUtil.ACCEPT_XML)
                 .data(MessageFormat.format(TEMPLATE_NETWORK, JaxbUtil.xml(SenderPack.builder()
-                        .code(OuterBizCodeType.S0000.getCode())
-                        .cell(MessageFormat.format(REQUEST,
+                        .bizCode(OuterBizCodeType.S0000.getCode())
+                        .requestData(MessageFormat.format(REQUEST,
                                 UUIDUtil.create(),
                                 OuterBizCodeType.S0000.getInnerCmdType().getDesc(),
                                 UUIDUtil.create(),

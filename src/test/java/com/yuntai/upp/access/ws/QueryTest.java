@@ -34,8 +34,8 @@ public class QueryTest extends AbstractWsClinet {
                 .content(HttpUtil.CONTENT_XML)
                 .accept(HttpUtil.ACCEPT_XML)
                 .data(MessageFormat.format(TEMPLATE_SERVICE, JaxbUtil.xml(SenderPack.builder()
-                        .code(OuterBizCodeType.S0003.getCode())
-                        .cell(MessageFormat.format(REQUEST,
+                        .bizCode(OuterBizCodeType.S0003.getCode())
+                        .requestData(MessageFormat.format(REQUEST,
                                 UUIDUtil.create(),
                                 OuterBizCodeType.S0003.getInnerCmdType().getDesc(),
                                 UUIDUtil.create(),

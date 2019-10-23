@@ -36,8 +36,8 @@ public class ScanCodeTest extends AbstractWsClinet {
                 .content(HttpUtil.CONTENT_XML)
                 .accept(HttpUtil.ACCEPT_XML)
                 .data(MessageFormat.format(TEMPLATE_SERVICE, JaxbUtil.xml(SenderPack.builder()
-                        .code(OuterBizCodeType.S0001_1.getCode())
-                        .cell(MessageFormat.format(REQUEST,
+                        .bizCode(OuterBizCodeType.S0001_1.getCode())
+                        .requestData(MessageFormat.format(REQUEST,
                                 UUIDUtil.create(),
                                 OuterBizCodeType.S0001_1.getInnerCmdType().getDesc(),
                                 UUIDUtil.create(),
