@@ -8,13 +8,13 @@
         <parameter name="wsdlServicePort" value="facePayWebService"/>
         <parameter name="wsdlPortType" value="facePayWebService"/>
         <parameter name="typeMappingVersion" value="1.2"/>
-        <parameter name="allowedMethods" value="network service"/>
-        <operation name="network" qname="operNS:netTest" returnQName="retNS:netTestReturn" returnType="rtns:ReceiverPack" soapAction="">
+        <parameter name="allowedMethods" value="netTest facePayService"/>
+        <operation name="netTest" qname="operNS:netTest" returnQName="retNS:netTestReturn" returnType="rtns:ReceiverPack" soapAction="">
             <parameter xmlns:pns="http://service.webservice.openservice.yuntai.com"
                        xmlns:tns="http://business.openservice.yuntai.com"
                        qname="pns:serviceRequest" type="tns:SenderPack"/>
         </operation>
-        <operation name="service" qname="operNS:facePayService" returnQName="retNS:facePayServiceReturn" returnType="rtns:ReceiverPack" soapAction="">
+        <operation name="facePayService" qname="operNS:facePayService" returnQName="retNS:facePayServiceReturn" returnType="rtns:ReceiverPack" soapAction="">
             <parameter xmlns:pns="http://service.webservice.openservice.yuntai.com"
                        xmlns:tns="http://business.openservice.yuntai.com"
                        qname="pns:serviceRequest" type="tns:SenderPack"/>
