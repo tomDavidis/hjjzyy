@@ -13,6 +13,14 @@ import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
 
+/**
+ * @description 账单下载
+ * @className DetailService
+ * @package com.yuntai.upp.access.tunnel.impl
+ * @author jinren@hsyuntai.com
+ * @date 2019/10/23 18:00
+ * @copyright 版权归 HSYUNTAI 所有
+ */
 @Service("detailTunnel")
 @WebService(endpointInterface = "com.yuntai.upp.access.tunnel.DetailTunnel")
 public class DetailService implements DetailTunnel {
