@@ -39,16 +39,16 @@ public class DetailService implements DetailTunnel {
     @TraceId(gateway = TraceId.GatewayType.OUTDATED_WEB_SREVICE)
     @Override
     public Outcome merchant(MerchantDto dto) {
-        /**
+        /*
          * 获取数据
          * DTO 类字段详情
-         * isv_id       : ConstantInstance.ISV_ID
-         * partner_id   : ConstantInstance.PARTNER_ID
-         * timestamp    : System.currentTimeMillis()
-         * version      : 1.0.0
-         * startDate    : 起始日期
-         * endDate      : 结束日期
-         * sign         : 签名
+         * isv_id           ConstantInstance.ISV_ID
+         * partner_id       ConstantInstance.PARTNER_ID
+         * timestamp        System.currentTimeMillis()
+         * version          1.0.0
+         * startDate        起始日期
+         * endDate          结束日期
+         * sign             签名
          */
         /* 策略禁止修改 */
         MerchantVo data = null;
@@ -58,10 +58,25 @@ public class DetailService implements DetailTunnel {
             return Outcome.fail(exception.getMessage());
         }
 
-        /**
+        /*
          * 若需要调整参数格式, 这将 data -> 遍历生成所需对象模型
          * VO 类字段详情
-         *
+         * partner_id	    必填    商户标识
+         * isv_id	        必填    ISV 标识
+         * trade_type	    必填    交易类型
+         * biz_type	        必填    业务类型
+         * channel_type	    必填    交易渠道
+         * channel_product  必填    交易所使用的渠道产品
+         * bills_date	    必填    账单日
+         * derate_fee	    必填    减免金额
+         * trade_fee	    必填    实际交易金额
+         * trade_time	    必填    实际交易时间
+         * out_trade_no	    必填    芸泰交易流水
+         * in_trade_no	    可选    渠道交易流水
+         * trade_no	        可选    HIS交易流水
+         * balance_no	    可选    冲正流水
+         * district_id	    可选    院区标识
+         * source_type	    可选    来源标识
          */
         return Outcome.success(data);
     }
@@ -79,16 +94,16 @@ public class DetailService implements DetailTunnel {
     @TraceId(gateway = TraceId.GatewayType.OUTDATED_WEB_SREVICE)
     @Override
     public Outcome channel(ChannelDto dto) {
-        /**
+        /*
          * 获取数据
          * DTO 类字段详情
-         * isv_id       : ConstantInstance.ISV_ID
-         * partner_id   : ConstantInstance.PARTNER_ID
-         * timestamp    : System.currentTimeMillis()
-         * version      : 1.0.0
-         * startDate    : 起始日期
-         * endDate      : 结束日期
-         * sign         : 签名
+         * isv_id           ConstantInstance.ISV_ID
+         * partner_id       ConstantInstance.PARTNER_ID
+         * timestamp        System.currentTimeMillis()
+         * version          1.0.0
+         * startDate        起始日期
+         * endDate          结束日期
+         * sign             签名
          */
         /* 策略禁止修改 */
         ChannelVo data = null;
@@ -98,10 +113,22 @@ public class DetailService implements DetailTunnel {
             return Outcome.fail(exception.getMessage());
         }
 
-        /**
+        /*
          * 若需要调整参数格式, 这将 data -> 遍历生成所需对象模型
          * VO 类字段详情
-         *
+         * partner_id	    必填    商户标识
+         * isv_id	        必填    ISV 标识
+         * trade_type	    必填    交易类型
+         * biz_type	        必填    业务类型
+         * channel_type	    必填    交易渠道
+         * channel_product	必填    交易所使用的渠道产品
+         * bills_date	    必填    账单日
+         * trade_fee	    必填    实际交易金额
+         * trade_time	    必填    实际交易时间
+         * out_trade_no	    必填    芸泰交易流水
+         * in_trade_no	    可选    渠道交易流水
+         * trade_no	        可选    HIS交易流水
+         * balance_no	    可选    冲正流水
          */
         return Outcome.success(data);
     }
