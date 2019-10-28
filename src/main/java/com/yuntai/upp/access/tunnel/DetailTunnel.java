@@ -1,16 +1,16 @@
 package com.yuntai.upp.access.tunnel;
 
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
-import com.yuntai.upp.client.fresh.model.dto.channel.ChannelDto;
-import com.yuntai.upp.client.fresh.model.dto.merchant.MerchantDto;
+import com.yuntai.upp.client.fresh.model.dto.channelbills.ChannelBillsDto;
+import com.yuntai.upp.client.fresh.model.dto.yuntaibills.YuntaiBillsDto;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 
-import static com.yuntai.upp.client.config.constant.ConstantInstance.CHANNEL;
-import static com.yuntai.upp.client.config.constant.ConstantInstance.MERCHANT;
+import static com.yuntai.upp.client.config.constant.ConstantInstance.CHANNEL_BILLS;
+import static com.yuntai.upp.client.config.constant.ConstantInstance.YUNTAI_BILLS;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.REQUEST;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.RESPONSE;
 
@@ -35,11 +35,11 @@ public interface DetailTunnel {
      * 请将模型创建于(com.yuntai.upp.access.model包下)
      * (若为新医院或未集成过老接口, 则请默认使用 demo 中的代码)
      */
-    @WebMethod(operationName = MERCHANT)
+    @WebMethod(operationName = YUNTAI_BILLS)
     @WebResult(name = RESPONSE)
-    Outcome merchant(@WebParam(name = REQUEST) MerchantDto dto);
+    Outcome yuntaiBills(@WebParam(name = REQUEST) YuntaiBillsDto dto);
 
-    @WebMethod(operationName = CHANNEL)
+    @WebMethod(operationName = CHANNEL_BILLS)
     @WebResult(name = RESPONSE)
-    Outcome channel(@WebParam(name = REQUEST) ChannelDto dto);
+    Outcome channelBills(@WebParam(name = REQUEST) ChannelBillsDto dto);
 }

@@ -5,7 +5,7 @@ import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.JaxbUtil;
 import com.yuntai.upp.client.config.constant.ConstantInstance;
-import com.yuntai.upp.client.fresh.model.dto.channel.ChannelDto;
+import com.yuntai.upp.client.fresh.model.dto.channelbills.ChannelBillsDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,7 +32,7 @@ public class ChannelTest extends AbstractWsClinet {
                 .url(URL_WS_DETAIL)
                 .content(HttpUtil.CONTENT_XML)
                 .accept(HttpUtil.ACCEPT_XML)
-                .data(MessageFormat.format(TEMPLATE_CHANNEL, JaxbUtil.xml(ChannelDto.builder()
+                .data(MessageFormat.format(TEMPLATE_CHANNEL, JaxbUtil.xml(ChannelBillsDto.builder()
                         .isvId(ConstantInstance.ISV_ID)
                         .partnerId(ConstantInstance.PARTNER_ID)
                         .timestamp(System.currentTimeMillis())

@@ -5,10 +5,10 @@ import com.yuntai.upp.client.basic.annotation.TraceId;
 import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
 import com.yuntai.upp.client.config.strategy.StrategyContext;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
-import com.yuntai.upp.client.fresh.model.dto.channel.ChannelDto;
-import com.yuntai.upp.client.fresh.model.dto.merchant.MerchantDto;
-import com.yuntai.upp.client.fresh.model.vo.channel.ChannelVo;
-import com.yuntai.upp.client.fresh.model.vo.merchant.MerchantVo;
+import com.yuntai.upp.client.fresh.model.dto.channelbills.ChannelBillsDto;
+import com.yuntai.upp.client.fresh.model.dto.yuntaibills.YuntaiBillsDto;
+import com.yuntai.upp.client.fresh.model.vo.channelbills.ChannelBillsVo;
+import com.yuntai.upp.client.fresh.model.vo.yuntaibills.YuntaiBillsVo;
 import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
@@ -38,7 +38,7 @@ public class DetailService implements DetailTunnel {
      */
     @TraceId(gateway = TraceId.GatewayType.OUTDATED_WEB_SREVICE)
     @Override
-    public Outcome merchant(MerchantDto dto) {
+    public Outcome yuntaiBills(YuntaiBillsDto dto) {
         /*
          * 获取数据
          * DTO 类字段详情
@@ -51,9 +51,9 @@ public class DetailService implements DetailTunnel {
          * sign             签名
          */
         /* 策略禁止修改 */
-        MerchantVo data = null;
+        YuntaiBillsVo data = null;
         try {
-            data = StrategyContext.operate(dto, InnerCmdType.MERCHANT);
+            data = StrategyContext.operate(dto, InnerCmdType.YUNTAI_BILLS);
         } catch (Exception exception) {
             return Outcome.fail(exception.getMessage());
         }
@@ -93,7 +93,7 @@ public class DetailService implements DetailTunnel {
      */
     @TraceId(gateway = TraceId.GatewayType.OUTDATED_WEB_SREVICE)
     @Override
-    public Outcome channel(ChannelDto dto) {
+    public Outcome channelBills(ChannelBillsDto dto) {
         /*
          * 获取数据
          * DTO 类字段详情
@@ -106,9 +106,9 @@ public class DetailService implements DetailTunnel {
          * sign             签名
          */
         /* 策略禁止修改 */
-        ChannelVo data = null;
+        ChannelBillsVo data = null;
         try {
-            data = StrategyContext.operate(dto, InnerCmdType.CHANNEL);
+            data = StrategyContext.operate(dto, InnerCmdType.CHANNEL_BILLS);
         } catch (Exception exception) {
             return Outcome.fail(exception.getMessage());
         }
