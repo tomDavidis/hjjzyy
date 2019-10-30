@@ -9,12 +9,12 @@ import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
 /**
- * @description: 交易通知-真实实现(禁止修改 bean 名)
- * @className: CallbackHelper
- * @package: com.yuntai.upp.access.helper
- * @author: jinren@hsyuntai.com
- * @date: 2019-09-06 10:12
- * @copyright: 版权归 HSYUNTAI 所有
+ * @description 交易通知-真实实现(禁止修改 bean 名)
+ * @className CallbackHelper
+ * @package com.yuntai.upp.access.helper
+ * @author jinren@hsyuntai.com
+ * @date 2019-09-06 10:12
+ * @copyright 版权归 HSYUNTAI 所有
  */
 @Component("paymentCallbackService")
 public class PaymentCallbackHelper extends AbstractPaymentCallback {

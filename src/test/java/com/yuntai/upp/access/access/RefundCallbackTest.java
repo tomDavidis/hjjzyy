@@ -29,12 +29,12 @@ import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @description: 单元测试-交易通知(负交易)
- * @className: PaymentCallbackTest
- * @package: com.yuntai.upp.access.access
- * @author: jinren@hsyuntai.com
- * @date: 2019-09-06 11:13
- * @copyright: 版权归 HSYUNTAI 所有
+ * @description 单元测试-交易通知(负交易)
+ * @className PaymentCallbackTest
+ * @package com.yuntai.upp.access.access
+ * @author jinren@hsyuntai.com
+ * @date 2019-09-06 11:13
+ * @copyright 版权归 HSYUNTAI 所有
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {UppAccessApplication.class})
