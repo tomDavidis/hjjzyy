@@ -12,7 +12,7 @@ hdp:
 spring:
   datasource:
     enabled: @spring.datasource.druid.enabled@
-    name: mysql
+    name: database
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
       url: @spring.datasource.druid.url@
