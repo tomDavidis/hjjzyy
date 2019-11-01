@@ -40,7 +40,7 @@ public class PresentMock {
                 // [不可为空, 参数返回后必校验]
                 .outTradeNo(UUIDUtil.create())
                 // 第三方流水
-                // [不可为空, 参数返回后必校验]
+                // [可空]
                 .inTradeNo(UUIDUtil.create())
                 // HIS 流水
                 // [不可为空, 参数返回后必校验]
