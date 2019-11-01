@@ -29,25 +29,25 @@ public abstract class AbstractWsClinet {
             "   </soapenv:Body>\n" +
             "</soapenv:Envelope>";
 
-    protected static final String TEMPLATE_MERCHANT =
+    protected static final String TEMPLATE_YUNTAI_BILLS =
             "<soapenv:Envelope xmlns:ser=\"http://service.webservice.openservice.yuntai.com/\" \n" +
                     "  xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
                     "  <soapenv:Header/>\n" +
                     "  <soapenv:Body>\n" +
-                    "    <ns2:merchant xmlns:ns2=\"http://service.webservice.openservice.yuntai.com/\">\n" +
+                    "    <ns2:yuntaiBills xmlns:ns2=\"http://service.webservice.openservice.yuntai.com/\">\n" +
                     "       {0}" +
-                    "    </ns2:merchant>\n" +
+                    "    </ns2:yuntaiBills>\n" +
                     "   </soapenv:Body>\n" +
                     "</soapenv:Envelope>";
 
-    protected static final String TEMPLATE_CHANNEL =
+    protected static final String TEMPLATE_CHANNEL_BILLS =
             "<soapenv:Envelope xmlns:ser=\"http://service.webservice.openservice.yuntai.com/\" \n" +
                     "  xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
                     "  <soapenv:Header/>\n" +
                     "  <soapenv:Body>\n" +
-                    "    <ns2:channel xmlns:ns2=\"http://service.webservice.openservice.yuntai.com/\">\n" +
+                    "    <ns2:channelBills xmlns:ns2=\"http://service.webservice.openservice.yuntai.com/\">\n" +
                     "       {0}" +
-                    "    </ns2:channel>\n" +
+                    "    </ns2:channelBills>\n" +
                     "   </soapenv:Body>\n" +
                     "</soapenv:Envelope>";
 

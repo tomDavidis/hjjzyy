@@ -16,7 +16,7 @@ import java.time.LocalDate;
 
 /**
  * @description 单元测试-账单下载(条码)
- * @className DetailDownloadTest
+ * @className ChannelBillsTest
  * @package com.yuntai.upp.access.ws
  * @author jinren@hsyuntai.com
  * @date 2019/10/21 19:25
@@ -24,7 +24,7 @@ import java.time.LocalDate;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class ChannelTest extends AbstractWsClinet {
+public class ChannelBillsTest extends AbstractWsClinet {
 
     @Test
     public void test() {
@@ -32,7 +32,7 @@ public class ChannelTest extends AbstractWsClinet {
                 .url(URL_WS_DETAIL)
                 .content(HttpUtil.CONTENT_XML)
                 .accept(HttpUtil.ACCEPT_XML)
-                .data(MessageFormat.format(TEMPLATE_CHANNEL, JaxbUtil.xml(ChannelBillsDto.builder()
+                .data(MessageFormat.format(TEMPLATE_CHANNEL_BILLS, JaxbUtil.xml(ChannelBillsDto.builder()
                         .isvId(ConstantInstance.ISV_ID)
                         .partnerId(ConstantInstance.PARTNER_ID)
                         .timestamp(System.currentTimeMillis())
