@@ -43,7 +43,7 @@ public class RefundCallbackHelper extends AbstractRefundCallback {
      * @date 2019-09-06 10:54
      */
     @Override
-    protected Outcome<RefundCallbackVo> data(@NonNull RefundCallbackDto dto) {
+    public Outcome<RefundCallbackVo> data(@NonNull RefundCallbackDto dto) {
         try {
             /* 在此对 DTO 中的字段进行详细介绍
              *

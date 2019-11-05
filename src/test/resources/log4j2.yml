@@ -3,16 +3,12 @@ Configuration:
 
   Properties:
     Property:
-    - name: project.name
-      value: upp-access-demo
-    - name: log.path
-      value: /Users/jinren/Desktop
-    - name: layout.pattern
-      value: "%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} %highlight{${LOG_LEVEL_PATTERN:-%5p}}{FATAL=red blink, ERROR=red, WARN=yellow bold, INFO=green, DEBUG=green bold, TRACE=blue} %style{${sys:PID}}{magenta} --- [%15.15t] %style{%-40.40c{1.}}{cyan} : [TraceId:%X{traceId}]%m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
-    - name: file.size
-      value: "128M"
-    - name: file.max
-      value: 256
+      - name: project.name
+        value: upp-access-demo
+      - name: log.path
+        value: /Users/jinren/Desktop
+      - name: layout.pattern
+        value: "%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} %highlight{${LOG_LEVEL_PATTERN:-%5p}}{FATAL=red blink, ERROR=red, WARN=yellow bold, INFO=green, DEBUG=green bold, TRACE=blue} %style{${sys:PID}}{magenta} --- [%15.15t] %style{%-40.40c{1.}}{cyan} : [TraceId:%X{traceId}]%m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
 
   Appenders:
     Console:
@@ -25,36 +21,34 @@ Configuration:
       PatternLayout:
         pattern: ${layout.pattern}
     RollingFile:
-    - name: default
-      ThresholdFilter:
-        level: debug
-        onMatch: accept
-        onMismatch: deny
-      ignoreExceptions: false
-      fileName: ${log.path}/${project.name}/default.log
-      filePattern: "${log.path}/${project.name}/$${date:yyyy-MM}/default_%d{yyyy-MM-dd}-%i.log.gz"
-      PatternLayout:
-        pattern: ${layout.pattern}
-      Policies:
-        SizeBasedTriggeringPolicy:
-          size: ${file.size}
-      DefaultRolloverStrategy:
-        max: ${file.max}
-    - name: error
-      ThresholdFilter:
-        level: error
-        onMatch: accept
-        onMismatch: deny
-      ignoreExceptions: false
-      fileName: ${log.path}/${project.name}/error.log
-      filePattern: "${log.path}/${project.name}/$${date:yyyy-MM}/default_%d{yyyy-MM-dd}-%i.log.gz"
-      PatternLayout:
-        pattern: ${layout.pattern}
-      Policies:
-        SizeBasedTriggeringPolicy:
-          size: ${file.size}
-      DefaultRolloverStrategy:
-        max: ${file.max}
+      - name: default
+        ThresholdFilter:
+          level: info
+          onMatch: accept
+          onMismatch: deny
+        ignoreExceptions: false
+        fileName: /Users/jinren/Desktop/${project.name}/default.log
+        filePattern: "/Users/jinren/Desktop/${project.name}/$${date:yyyy-MM}/default_%d{MMddHHmm}.log.gz"
+        PatternLayout:
+          pattern: ${layout.pattern}
+        Policies:
+          TimeBasedTriggeringPolicy:
+            interval: 30
+            modulate: true
+      - name: error
+        ThresholdFilter:
+          level: error
+          onMatch: accept
+          onMismatch: deny
+        ignoreExceptions: false
+        fileName: /Users/jinren/Desktop/${project.name}/error.log
+        filePattern: "/Users/jinren/Desktop/${project.name}/$${date:yyyy-MM}/error_%d{MMddHHmm}.log.gz"
+        PatternLayout:
+          pattern: ${layout.pattern}
+        Policies:
+          TimeBasedTriggeringPolicy:
+            interval: 30
+            modulate: true
 
   Loggers:
     Root:
@@ -66,13 +60,21 @@ Configuration:
     Logger:
       - name: org.springframework
         level: error
-      - name: org.apache.curator
+      - name: org.apache
         level: error
-      - name: org.apache.commons.beanutils
+      - name: org.mybatis
         level: error
       - name: io.netty
         level: error
       - name: org.hibernate
         level: error
+      - name: reactor.core
+        level: error
+      - name: io.lettuce
+        level: error
+      - name: com.alibaba
+        level: error
       - name: com.yuntai.hdp.client
-        level: info
+        level: error
+      - name: com.yuntai.upp.sdk.util
+        level: error

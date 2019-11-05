@@ -43,7 +43,7 @@ public class PaymentCallbackHelper extends AbstractPaymentCallback {
      * @date 2019-09-06 10:54
      */
     @Override
-    protected Outcome<PaymentCallbackVo> data(@NonNull PaymentCallbackDto dto) {
+    public Outcome<PaymentCallbackVo> data(@NonNull PaymentCallbackDto dto) {
         try {
             /* 在此对 DTO 中的字段进行详细介绍
              *
