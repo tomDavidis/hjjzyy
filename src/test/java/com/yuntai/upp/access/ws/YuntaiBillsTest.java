@@ -38,7 +38,7 @@ public class YuntaiBillsTest extends AbstractWsClinet {
                         .timestamp(System.currentTimeMillis())
                         .version("1.0.0")
                         .startDate(LocalDate.now().withMonth(8).withDayOfMonth(10))
-                        .endDate(LocalDate.now())
+                        .endDate(LocalDate.now().withMonth(10).withDayOfMonth(12))
                         .build())))
                 .build());
     }

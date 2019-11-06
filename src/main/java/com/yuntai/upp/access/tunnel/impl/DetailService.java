@@ -121,13 +121,11 @@ public class DetailService implements DetailTunnel {
          * trade_type	    必填    交易类型
          * biz_type	        必填    业务类型
          * channel_type	    必填    交易渠道
-         * channel_product	必填    交易所使用的渠道产品
          * bills_date	    必填    账单日
          * trade_fee	    必填    实际交易金额
          * trade_time	    必填    实际交易时间
          * out_trade_no	    必填    芸泰交易流水
          * in_trade_no	    可选    渠道交易流水
-         * trade_no	        可选    HIS交易流水
          * balance_no	    可选    冲正流水
          */
         return Outcome.success(data);
