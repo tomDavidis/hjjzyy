@@ -56,6 +56,16 @@ public class PresentMock {
                 .tradeType(TradeType.PAY.getCode())
                 .build());
         /* 模拟数据,仅供无 HIS 接口时,工程测试使用 - end */
+
+        /*
+         * 为测试场景主动置空
+         * 云端-正交易 √
+         * 云端-负交易 ×
+         * HIS-正交易 ×
+         * HIS-负交易 ×
+         * 允许操作退款操作
+         */
+        vos.clear();
         return vos;
     }
 }
