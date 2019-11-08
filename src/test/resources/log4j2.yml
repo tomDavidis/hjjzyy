@@ -27,8 +27,8 @@ Configuration:
           onMatch: accept
           onMismatch: deny
         ignoreExceptions: false
-        fileName: /Users/jinren/Desktop/${project.name}/default.log
-        filePattern: "/Users/jinren/Desktop/${project.name}/$${date:yyyy-MM}/default_%d{MMddHHmm}.log.gz"
+        fileName: ${log.path}/${project.name}/default.log
+        filePattern: "${log.path}/${project.name}/$${date:yyyy-MM}/default_%d{MMddHHmm}.log.gz"
         PatternLayout:
           pattern: ${layout.pattern}
         Policies:
@@ -41,8 +41,8 @@ Configuration:
           onMatch: accept
           onMismatch: deny
         ignoreExceptions: false
-        fileName: /Users/jinren/Desktop/${project.name}/error.log
-        filePattern: "/Users/jinren/Desktop/${project.name}/$${date:yyyy-MM}/error_%d{MMddHHmm}.log.gz"
+        fileName: ${log.path}/${project.name}/error.log
+        filePattern: "${log.path}/${project.name}/$${date:yyyy-MM}/error_%d{MMddHHmm}.log.gz"
         PatternLayout:
           pattern: ${layout.pattern}
         Policies:
