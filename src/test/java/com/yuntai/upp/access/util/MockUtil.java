@@ -2,6 +2,7 @@ package com.yuntai.upp.access.util;
 
 import com.yuntai.upp.client.basic.annotation.EnumOf;
 import com.yuntai.upp.client.basic.annotation.Future;
+import com.yuntai.upp.client.basic.util.BigDecimalUtil;
 import com.yuntai.upp.client.basic.util.LoggerUtil;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -10,12 +11,15 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 import org.junit.Assert;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -62,6 +66,10 @@ public class MockUtil {
                 field.set(model, LocalDateTime.now().plusDays(1));
             } else if (annotation instanceof Pattern) {
                 field.set(model, ",test");
+            } else if (annotation instanceof Digits) {
+                field.set(model, BigDecimalUtil.convert(Math.pow(10, (((Digits) annotation).integer() + 1))));
+            } else if (annotation instanceof DecimalMin) {
+                field.set(model, BigDecimalUtil.convert(((DecimalMin) annotation).value()).subtract(BigDecimal.ONE).setScale(2, BigDecimal.ROUND_HALF_UP));
             } else {
                 LoggerUtil.error(LOGGER, "field: {0}, validate: {1}", field.getName(), annotation.annotationType().getSimpleName());
             }
