@@ -1,15 +1,21 @@
 package com.yuntai.upp.access.fresh.access.paymentcallback;
 
 import com.yuntai.upp.client.basic.util.UUIDUtil;
+import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.dto.paymentcallback.PaymentCallbackDto;
 import com.yuntai.upp.sdk.enums.BizType;
 import com.yuntai.upp.sdk.enums.ChannelProductType;
 import com.yuntai.upp.sdk.enums.ChannelType;
 import com.yuntai.upp.sdk.enums.TradeStatus;
 import com.yuntai.upp.sdk.interfaces.Signable;
+import com.yuntai.upp.sdk.util.SignUtil;
+import org.junit.Assert;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
+import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
+import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
 
 /**
  * @description 数据模拟
@@ -29,7 +35,7 @@ public class PaymentCallbackMock {
      * @date 2019/11/8 17:37
      */
     protected static PaymentCallbackDto normal() {
-        return PaymentCallbackDto.builder()
+        PaymentCallbackDto model = PaymentCallbackDto.builder()
                 .timestamp(System.currentTimeMillis())
                 .version(Signable.VERSION)
                 .partnerId(999L)
@@ -45,5 +51,9 @@ public class PaymentCallbackMock {
                 .paymentTime(LocalDateTime.now())
                 .bizData(null)
                 .build();
+        String salt = CacheInstance.md5Salt(PARTNER_ID, ISV_ID);
+        Assert.assertNotNull(salt);
+        model.setSign(SignUtil.signMd5(model, salt));
+        return model;
     }
 }

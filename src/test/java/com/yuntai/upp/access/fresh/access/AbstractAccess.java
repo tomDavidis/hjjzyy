@@ -10,11 +10,10 @@ import com.yuntai.upp.client.basic.util.DateUtil;
 import com.yuntai.upp.client.basic.util.DesUtil;
 import com.yuntai.upp.client.basic.util.TraceIdUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
-import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.config.constant.ConstantInstance;
 import com.yuntai.upp.client.fresh.export.access.ClientReceiver;
-import com.yuntai.upp.sdk.util.SignUtil;
 import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -30,6 +29,7 @@ import javax.annotation.Resource;
  * @date 2019/11/8 16:26
  * @copyright 版权归 HSYUNTAI 所有
  */
+@Slf4j
 public abstract class AbstractAccess<I extends SignConvert> {
 
     @Resource(name = "clientReceiver")
@@ -60,15 +60,12 @@ public abstract class AbstractAccess<I extends SignConvert> {
     protected ResultPack send(@NonNull InnerCmdType innerCmdType,
                               @NonNull I model,
                               @NonNull boolean encrypt) {
-        String salt = CacheInstance.md5Salt(ConstantInstance.PARTNER_ID, ConstantInstance.ISV_ID);
-        Assert.assertNotNull(salt);
         RequestPack pack = new RequestPack();
         pack.setCmd(innerCmdType.getCode());
         pack.setSeqno(UUIDUtil.create());
         pack.setClientId(UUIDUtil.create());
         pack.setHosId(resourceId);
         pack.setSendTime(System.currentTimeMillis());
-        model.setSign(SignUtil.signMd5(model, salt));
         pack.setBody(encrypt ? DesUtil.encrypt(JSON.toJSONStringWithDateFormat(model,
                 DateUtil.FORMAT_DATE_TIME,
                 SerializerFeature.SortField,
