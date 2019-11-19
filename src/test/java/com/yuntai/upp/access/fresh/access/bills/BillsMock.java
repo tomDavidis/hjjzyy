@@ -1,6 +1,7 @@
 package com.yuntai.upp.access.fresh.access.bills;
 
 import com.yuntai.upp.client.basic.util.DateUtil;
+import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.dto.bills.BillsDto;
 import com.yuntai.upp.sdk.enums.CheckBillsDownloadType;
@@ -44,6 +45,10 @@ public class BillsMock {
             .startTime(LocalDateTime.now())
             .endTime(LocalDateTime.now().minusHours(2))
             .checkBillsDownloadType(CheckBillsDownloadType.DIRECT.getCode())
+            /*
+             * sign 字段临时赋值(默认 sign 字段内的签名必验签通过)
+             */
+            .sign(UUIDUtil.create())
             .build();
 
     /**

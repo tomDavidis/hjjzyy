@@ -1,11 +1,8 @@
 package com.yuntai.upp.access.fresh.access;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
-import com.alibaba.fastjson.parser.Feature;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.yuntai.hdp.access.RequestPack;
-import com.yuntai.hdp.access.ResultKind;
 import com.yuntai.hdp.access.ResultPack;
 import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
 import com.yuntai.upp.client.basic.interfaces.SignConvert;
@@ -16,7 +13,6 @@ import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.config.constant.ConstantInstance;
 import com.yuntai.upp.client.fresh.export.access.ClientReceiver;
-import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.sdk.util.SignUtil;
 import lombok.NonNull;
 import org.junit.After;
@@ -34,7 +30,7 @@ import javax.annotation.Resource;
  * @date 2019/11/8 16:26
  * @copyright 版权归 HSYUNTAI 所有
  */
-public abstract class AbstractAccess<I extends SignConvert, O> {
+public abstract class AbstractAccess<I extends SignConvert> {
 
     @Resource(name = "clientReceiver")
     protected ClientReceiver receiver;
@@ -53,16 +49,15 @@ public abstract class AbstractAccess<I extends SignConvert, O> {
     }
 
     /**
-     * @description
+     * @description 对接交互工具
      * @param innerCmdType 接口
-     * @param reference 前置机上推报文
      * @param model 云端下发报文
-     * @return com.yuntai.upp.client.fresh.model.bo.Outcome<O>
+     * @param encrypt 入参时候加密
+     * @return com.yuntai.hdp.access.ResultPack
      * @author jinren@hsyuntai.com
-     * @date 2019/11/8 17:15
+     * @date 2019/11/19 09:40
      */
-    protected Outcome<O> send(@NonNull InnerCmdType innerCmdType,
-                              @NonNull TypeReference<O> reference,
+    protected ResultPack send(@NonNull InnerCmdType innerCmdType,
                               @NonNull I model,
                               @NonNull boolean encrypt) {
         String salt = CacheInstance.md5Salt(ConstantInstance.PARTNER_ID, ConstantInstance.ISV_ID);
@@ -84,10 +79,7 @@ public abstract class AbstractAccess<I extends SignConvert, O> {
                         SerializerFeature.WriteNonStringValueAsString));
         ResultPack result = this.receiver.getHospitalResult(pack);
         Assert.assertNotNull(result);
-        Assert.assertEquals(result.getMsg(), ResultKind.OK.getKind(), result.getKind());
-        Outcome<O> outcome = JSON.parseObject(result.getBody(), new TypeReference<Outcome<O>>(){}, Feature.OrderedField);
-        Assert.assertTrue("签名校验失败", SignUtil.verifyMd5(outcome, salt));
-        return outcome;
+        return result;
     }
 
     public abstract void testNormal();
