@@ -48,7 +48,7 @@ public class BarCodeMock {
                 .build();
         String salt = CacheInstance.md5Salt(PARTNER_ID, ISV_ID);
         Assert.assertNotNull(salt);
-        model.setSign(SignUtil.signMd5Out(model, salt));
+        model.setSign(SignUtil.signMd5(model, salt));
         return model;
     }
 }

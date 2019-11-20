@@ -68,12 +68,10 @@ public abstract class AbstractAccess<I extends SignConvert> {
         pack.setSendTime(System.currentTimeMillis());
         pack.setBody(encrypt ? DesUtil.encrypt(JSON.toJSONStringWithDateFormat(model,
                 DateUtil.FORMAT_DATE_TIME,
-                SerializerFeature.SortField,
-                SerializerFeature.WriteNonStringValueAsString), ConstantInstance.DES_SALT) :
+                SerializerFeature.SortField), ConstantInstance.DES_SALT) :
                 JSON.toJSONStringWithDateFormat(model,
                         DateUtil.FORMAT_DATE_TIME,
-                        SerializerFeature.SortField,
-                        SerializerFeature.WriteNonStringValueAsString));
+                        SerializerFeature.SortField));
         ResultPack result = this.receiver.getHospitalResult(pack);
         Assert.assertNotNull(result);
         return result;
