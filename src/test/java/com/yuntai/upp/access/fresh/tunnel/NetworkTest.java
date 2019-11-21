@@ -38,7 +38,7 @@ public class NetworkTest extends AbstractSoapui<NetworkDto, NetworkVo> {
      * @param
      * @return void
      * @author jinren@hsyuntai.com
-     * @date 2019/11/20 20:20
+     * @date 2019/11/21 13:59
      */
     @Test
     @Override
@@ -55,7 +55,7 @@ public class NetworkTest extends AbstractSoapui<NetworkDto, NetworkVo> {
      * @param
      * @return void
      * @author jinren@hsyuntai.com
-     * @date 2019/11/20 20:20
+     * @date 2019/11/21 13:59
      */
     @Test
     @Override

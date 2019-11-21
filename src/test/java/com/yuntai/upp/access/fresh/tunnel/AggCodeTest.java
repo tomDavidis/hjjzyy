@@ -38,7 +38,7 @@ public class AggCodeTest extends AbstractSoapui<AggCodeDto, AggCodeVo> {
      * @param
      * @return void
      * @author jinren@hsyuntai.com
-     * @date 2019/11/20 20:20
+     * @date 2019/11/21 09:21
      */
     @Test
     @Override
@@ -55,7 +55,7 @@ public class AggCodeTest extends AbstractSoapui<AggCodeDto, AggCodeVo> {
      * @param
      * @return void
      * @author jinren@hsyuntai.com
-     * @date 2019/11/20 20:20
+     * @date 2019/11/21 09:24
      */
     @Test
     @Override

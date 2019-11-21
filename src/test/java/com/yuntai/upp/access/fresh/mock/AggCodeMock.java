@@ -1,14 +1,17 @@
 package com.yuntai.upp.access.fresh.mock;
 
+import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.config.cache.CacheInstance;
-import com.yuntai.upp.client.config.constant.ConstantInstance;
 import com.yuntai.upp.client.fresh.model.dto.aggcode.AggCodeDto;
-import com.yuntai.upp.sdk.interfaces.Signable;
 import com.yuntai.upp.sdk.util.SignUtil;
 import org.junit.Assert;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
+import static com.yuntai.upp.sdk.interfaces.Signable.VERSION;
 
 /**
  * @description 数据模拟-聚合支付
@@ -29,10 +32,18 @@ public class AggCodeMock {
      */
     public static AggCodeDto normal() {
         AggCodeDto model = new AggCodeDto().toBuilder()
-                .isvId(ConstantInstance.ISV_ID)
-                .partnerId(ConstantInstance.PARTNER_ID)
-                .version(Signable.VERSION)
                 .timestamp(System.currentTimeMillis())
+                .version(VERSION)
+                /*
+                 * 临时使用(仅供单元测试, 实际场景禁止采用该方式)
+                 */
+                .isvId(ISV_ID)
+                .partnerId(PARTNER_ID)
+                .paymentNo(UUIDUtil.create())
+                .tradeFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
+                .subject("聚合支付(upp-client)-标题")
+                .body("聚合支付(upp-client)-内容")
+                .expireTime(LocalDateTime.now().plusMinutes(5))
                 .build();
         String salt = CacheInstance.md5Salt(PARTNER_ID, ISV_ID);
         Assert.assertNotNull(salt);

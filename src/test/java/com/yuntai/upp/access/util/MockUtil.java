@@ -18,9 +18,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -43,7 +45,8 @@ public class MockUtil {
      * @date 2019/11/21 11:39
      */
     public static boolean filter(@NonNull Annotation annotation) {
-        return !(annotation instanceof XmlElement);
+        return !(annotation instanceof XmlElement
+                || annotation instanceof XmlJavaTypeAdapter);
     }
 
     /**
@@ -74,9 +77,11 @@ public class MockUtil {
                 field.set(model, -1L);
             } else if (annotation instanceof Range && Objects.equals(field.getType(), Integer.class)) {
                 field.set(model, -1);
-            } else if (annotation instanceof PastOrPresent) {
+            } else if (annotation instanceof PastOrPresent && Objects.equals(field.getType(), LocalDateTime.class)) {
                 field.set(model, LocalDateTime.now().plusDays(1));
-            } else if (annotation instanceof Pattern) {
+            } else if (annotation instanceof PastOrPresent && Objects.equals(field.getType(), LocalDate.class)) {
+                field.set(model, LocalDate.now().plusDays(1));
+            }  else if (annotation instanceof Pattern) {
                 field.set(model, ",test");
             } else if (annotation instanceof Digits) {
                 field.set(model, BigDecimalUtil.convert(Math.pow(10, (((Digits) annotation).integer() + 1))));
