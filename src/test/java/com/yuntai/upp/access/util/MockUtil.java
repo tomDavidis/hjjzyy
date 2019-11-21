@@ -17,6 +17,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
+import javax.xml.bind.annotation.XmlElement;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
@@ -33,6 +34,17 @@ import java.util.Objects;
  */
 @Slf4j
 public class MockUtil {
+
+    /**
+     * @description 判断当前注解是否需要进行校验
+     * @param annotation 注解
+     * @return boolean
+     * @author jinren@hsyuntai.com
+     * @date 2019/11/21 11:39
+     */
+    public static boolean filter(@NonNull Annotation annotation) {
+        return !(annotation instanceof XmlElement);
+    }
 
     /**
      * @description 数据模拟

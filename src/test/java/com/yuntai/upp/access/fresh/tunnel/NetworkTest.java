@@ -1,6 +1,5 @@
 package com.yuntai.upp.access.fresh.tunnel;
 
-import com.yuntai.hdp.access.ResultKind;
 import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.access.fresh.AbstractSoapui;
 import com.yuntai.upp.access.fresh.mock.NetworkMock;
@@ -63,12 +62,13 @@ public class NetworkTest extends AbstractSoapui<NetworkDto, NetworkVo> {
     public void testDefect() {
         Arrays.stream(NetworkDto.class.getDeclaredFields())
                 .forEach(field -> Arrays.stream(field.getDeclaredAnnotations())
+                        .filter(MockUtil::filter)
                         .forEach(annotation -> {
                             NetworkDto model = MockUtil.mock(NetworkMock.normal(), field, annotation);
                             Outcome<NetworkVo> outcome = send(model, NETWORK);
                             Assert.assertNotNull(outcome);
                             Assert.assertEquals(FAIL, outcome.getKind());
-                            Assert.assertEquals(outcome.getMsg(), ResultKind.ERROR_BUSINESS.getMessage(MessageUtil.message(model)));
+                            Assert.assertEquals(outcome.getMsg(), MessageUtil.message(model));
                         }));
     }
 }
