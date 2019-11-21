@@ -62,6 +62,7 @@ public class PaymentCallbackTest extends AbstractAccess<PaymentCallbackDto> {
      * @date 2019/11/19 17:56
      */
     @Test
+    @Override
     public void testDefect() {
         Arrays.stream(PaymentCallbackDto.class.getDeclaredFields())
                 .forEach(field -> Arrays.stream(field.getDeclaredAnnotations())

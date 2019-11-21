@@ -66,6 +66,7 @@ public class BillsTest extends AbstractAccess<BillsDto> {
      * @date 2019/11/19 17:56
      */
     @Test
+    @Override
     public void testDefect() {
         Arrays.stream(BillsDto.class.getDeclaredFields())
                 .forEach(field -> Arrays.stream(field.getDeclaredAnnotations())

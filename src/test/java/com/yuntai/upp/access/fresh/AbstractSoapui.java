@@ -1,10 +1,12 @@
 package com.yuntai.upp.access.fresh;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.yuntai.upp.access.util.XmlUtil;
 import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.JaxbUtil;
 import com.yuntai.upp.client.basic.util.TraceIdUtil;
+import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
@@ -12,8 +14,13 @@ import org.junit.Before;
 
 import java.text.MessageFormat;
 
+import static com.yuntai.upp.client.config.constant.ConstantInstance.RESPONSE;
+
 @Slf4j
-public class AbstractSoapui<I, O> {
+public abstract class AbstractSoapui<I, O> {
+
+    protected static final String SUCCESS = "0";
+    protected static final String FAIL = "1";
 
     private static final String TEMPLATE = "<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">"
             + "<SOAP-ENV:Header/>"
@@ -35,7 +42,7 @@ public class AbstractSoapui<I, O> {
         TraceIdUtil.clearLocalTraceId();
     }
 
-    protected O send(@NonNull I model,
+    protected Outcome<O> send(@NonNull I model,
                      @NonNull String target) {
         String result = HttpUtil.post(HttpUtil.Atom.builder()
                 .url(WSDL_URL)
@@ -43,8 +50,13 @@ public class AbstractSoapui<I, O> {
                 .accept(HttpUtil.ACCEPT_XML)
                 .data(MessageFormat.format(TEMPLATE, target, JaxbUtil.xml(model)))
                 .build());
-        System.out.println(JSON.toJSONString(XmlUtil.xml2map(result)));
-        return null;
+        return JSON.parseObject(JSON.toJSONString(JSON.parseObject(JSON.toJSONString(XmlUtil.xml2map(result)))
+                .getJSONObject("Body")
+                .getJSONObject(target + "Response")
+                .getJSONObject(RESPONSE)), new TypeReference<Outcome<O>>() {});
     }
 
+    public abstract void testNormal();
+
+    public abstract void testDefect();
 }

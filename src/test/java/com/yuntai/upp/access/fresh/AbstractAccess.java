@@ -78,4 +78,6 @@ public abstract class AbstractAccess<I extends SignConvert> {
     }
 
     public abstract void testNormal();
+
+    public abstract void testDefect();
 }
