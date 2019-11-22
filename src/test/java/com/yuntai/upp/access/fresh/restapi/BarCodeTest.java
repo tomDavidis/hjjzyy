@@ -4,9 +4,14 @@ import com.alibaba.fastjson.JSON;
 import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.access.fresh.mock.BarCodeMock;
 import com.yuntai.upp.client.basic.util.HttpUtil;
+import com.yuntai.upp.client.config.hdp.HdpClientInstance;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.modules.junit4.PowerMockRunnerDelegate;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -19,7 +24,10 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @copyright 版权归 HSYUNTAI 所有
  */
 @Slf4j
-@RunWith(SpringRunner.class)
+@RunWith(PowerMockRunner.class)
+@PowerMockRunnerDelegate(SpringRunner.class)
+@PowerMockIgnore({"javax.*.*", "com.sun.*", "org.*"})
+@PrepareForTest({HdpClientInstance.class})
 @SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class BarCodeTest {
 

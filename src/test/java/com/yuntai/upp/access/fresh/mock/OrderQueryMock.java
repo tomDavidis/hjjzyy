@@ -2,10 +2,11 @@ package com.yuntai.upp.access.fresh.mock;
 
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.dto.orderquery.OrderQueryDto;
-import com.yuntai.upp.sdk.enums.BizType;
 import com.yuntai.upp.sdk.util.SignUtil;
 import org.junit.Assert;
 
+import static com.yuntai.upp.access.CustomConstant.BIZ_TYPE;
+import static com.yuntai.upp.access.CustomConstant.PAYMENT_NO;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
 import static com.yuntai.upp.sdk.interfaces.Signable.VERSION;
@@ -36,8 +37,8 @@ public class OrderQueryMock {
                  */
                 .isvId(ISV_ID)
                 .partnerId(PARTNER_ID)
-                .bizType(BizType.BARCODE_PAY.getCode())
-                .paymentNo("c2ae205d3aa147f1b38100d038f630a1")
+                .bizType(BIZ_TYPE)
+                .paymentNo(PAYMENT_NO)
                 .build();
         String salt = CacheInstance.md5Salt(PARTNER_ID, ISV_ID);
         Assert.assertNotNull(salt);

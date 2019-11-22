@@ -1,18 +1,7 @@
 package com.yuntai.upp.access.fresh;
 
-import com.yuntai.upp.client.basic.util.TraceIdUtil;
-import org.junit.After;
-import org.junit.Before;
+import com.yuntai.upp.access.AbstractBaisc;
 
-public class AbstractRestapi {
+public class AbstractRestapi extends AbstractBaisc {
 
-    @Before
-    public void before() {
-        TraceIdUtil.createLocalTraceId(this.getClass().getName());
-    }
-
-    @After
-    public void after() {
-        TraceIdUtil.clearLocalTraceId();
-    }
 }

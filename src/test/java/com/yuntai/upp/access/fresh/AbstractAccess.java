@@ -4,22 +4,23 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.yuntai.hdp.access.RequestPack;
 import com.yuntai.hdp.access.ResultPack;
+import com.yuntai.upp.access.AbstractBaisc;
 import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
 import com.yuntai.upp.client.basic.interfaces.SignConvert;
 import com.yuntai.upp.client.basic.util.DateUtil;
 import com.yuntai.upp.client.basic.util.DesUtil;
-import com.yuntai.upp.client.basic.util.TraceIdUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.config.constant.ConstantInstance;
 import com.yuntai.upp.client.fresh.export.access.ClientReceiver;
+import com.yuntai.upp.sdk.enums.BizType;
+import com.yuntai.upp.sdk.enums.ChannelProductType;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.annotation.Resource;
+import java.util.EnumSet;
 
 /**
  * @description 对接交互抽象类
@@ -30,23 +31,18 @@ import javax.annotation.Resource;
  * @copyright 版权归 HSYUNTAI 所有
  */
 @Slf4j
-public abstract class AbstractAccess<I extends SignConvert> {
+public abstract class AbstractAccess<I extends SignConvert> extends AbstractBaisc {
+
+    protected static final EnumSet<BizType> BIZ_TYPE = EnumSet.of(BizType.AGG_SCAN_PAY, BizType.SCAN_PAY);
+    protected static final EnumSet<ChannelProductType> CHANNEL_PRODUCT_TYPE = EnumSet.of(ChannelProductType.ALI_SCAN_CODE,
+            ChannelProductType.UNI_SCAN_CODE,
+            ChannelProductType.TEN_SCAN_CODE);
 
     @Resource(name = "clientReceiver")
     protected ClientReceiver receiver;
 
     @Value("${hdp.resource-id}")
     private String resourceId;
-
-    @Before
-    public void before() {
-        TraceIdUtil.createLocalTraceId(this.getClass().getName());
-    }
-
-    @After
-    public void after() {
-        TraceIdUtil.clearLocalTraceId();
-    }
 
     /**
      * @description 对接交互工具

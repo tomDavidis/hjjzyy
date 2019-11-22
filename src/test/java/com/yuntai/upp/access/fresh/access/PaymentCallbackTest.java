@@ -12,7 +12,7 @@ import com.yuntai.upp.access.util.MessageUtil;
 import com.yuntai.upp.access.util.MockUtil;
 import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
 import com.yuntai.upp.client.config.cache.CacheInstance;
-import com.yuntai.upp.client.config.constant.ConstantInstance;
+import com.yuntai.upp.client.config.hdp.HdpClientInstance;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.paymentcallback.PaymentCallbackDto;
 import com.yuntai.upp.client.fresh.model.vo.paymentcallback.PaymentCallbackVo;
@@ -20,10 +20,17 @@ import com.yuntai.upp.sdk.util.SignUtil;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.modules.junit4.PowerMockRunnerDelegate;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
+
+import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
+import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
 
 /**
  * @description 单元测试-交易通知(正交易)
@@ -33,8 +40,11 @@ import java.util.Arrays;
  * @date 2019/11/8 16:23
  * @copyright 版权归 HSYUNTAI 所有
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = {UppAccessApplication.class})
+@RunWith(PowerMockRunner.class)
+@PowerMockRunnerDelegate(SpringRunner.class)
+@PowerMockIgnore({"javax.*.*", "com.sun.*", "org.*"})
+@PrepareForTest({HdpClientInstance.class})
+@SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class PaymentCallbackTest extends AbstractAccess<PaymentCallbackDto> {
 
     /**
@@ -47,11 +57,15 @@ public class PaymentCallbackTest extends AbstractAccess<PaymentCallbackDto> {
     @Test
     @Override
     public void testNormal() {
-        ResultPack pack = super.send(InnerCmdType.PAYMENT_CALLBACK, PaymentCallbackMock.normal(), Boolean.FALSE);
-        Assert.assertEquals(pack.getMsg(), ResultKind.OK.getKind(), pack.getKind());
-        Outcome<PaymentCallbackVo> outcome = JSON.parseObject(pack.getBody(), new TypeReference<Outcome<PaymentCallbackVo>>(){}, Feature.OrderedField);
-        Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(ConstantInstance.PARTNER_ID, ConstantInstance.ISV_ID)));
-        Assert.assertTrue(outcome.isResult());
+        BIZ_TYPE.forEach(bizType -> CHANNEL_PRODUCT_TYPE.forEach(
+                channelProductType -> {
+                    ResultPack pack = super.send(InnerCmdType.PAYMENT_CALLBACK, PaymentCallbackMock.normal(bizType, channelProductType), Boolean.FALSE);
+                    Assert.assertEquals(pack.getMsg(), ResultKind.OK.getKind(), pack.getKind());
+                    Outcome<PaymentCallbackVo> outcome = JSON.parseObject(pack.getBody(), new TypeReference<Outcome<PaymentCallbackVo>>(){}, Feature.OrderedField);
+                    Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
+                    Assert.assertTrue(outcome.isResult());
+                }
+        ));
     }
 
     /**

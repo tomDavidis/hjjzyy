@@ -9,6 +9,7 @@ import com.yuntai.upp.sdk.enums.ChannelType;
 import com.yuntai.upp.sdk.enums.TradeStatus;
 import com.yuntai.upp.sdk.interfaces.Signable;
 import com.yuntai.upp.sdk.util.SignUtil;
+import lombok.NonNull;
 import org.junit.Assert;
 
 import java.math.BigDecimal;
@@ -26,6 +27,42 @@ import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
  * @copyright 版权归 HSYUNTAI 所有
  */
 public class RefundCallbackMock {
+
+    /**
+     * @description 正常场景-数据
+     * @param bizType 业务类型
+     * @param channelProductType 渠道产品
+     * @return com.yuntai.upp.client.fresh.model.dto.refundcallback.RefundCallbackDto
+     * @author jinren@hsyuntai.com
+     * @date 2019/11/22 14:19
+     */
+    public static RefundCallbackDto normal(@NonNull BizType bizType,
+                                            @NonNull ChannelProductType channelProductType) {
+        RefundCallbackDto model = RefundCallbackDto.builder()
+                .timestamp(System.currentTimeMillis())
+                .version(Signable.VERSION)
+                /*
+                 * 临时使用(仅供单元测试, 实际场景禁止采用该方式)
+                 */
+                .isvId(ISV_ID)
+                .partnerId(PARTNER_ID)
+                .bizType(bizType.getCode())
+                .bizId(UUIDUtil.create())
+                .channelType(channelProductType.getChannelType().getCode())
+                .channelProduct(channelProductType.getCode())
+                .requestNo(UUIDUtil.create())
+                .refundNo(UUIDUtil.create())
+                .refundFee(BigDecimal.ONE)
+                .tradeStatus(TradeStatus.REFUND_SUCCESS.getCode())
+                .outRefundNo(UUIDUtil.create())
+                .refundTime(LocalDateTime.now())
+                .bizData(null)
+                .build();
+        String salt = CacheInstance.md5Salt(PARTNER_ID, ISV_ID);
+        Assert.assertNotNull(salt);
+        model.setSign(SignUtil.signMd5(model, salt));
+        return model;
+    }
 
     /**
      * @description 正常场景-数据

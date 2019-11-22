@@ -58,23 +58,23 @@ Configuration:
         - ref: default
         - ref: error
     Logger:
-      - name: org.springframework
-        level: error
-      - name: org.apache
-        level: error
-      - name: org.mybatis
-        level: error
-      - name: io.netty
-        level: error
-      - name: org.hibernate
-        level: error
-      - name: reactor.core
-        level: error
-      - name: io.lettuce
-        level: error
-      - name: com.alibaba
-        level: error
-      - name: com.yuntai.hdp.client
-        level: error
+#      - name: org.springframework
+#        level: error
+#      - name: org.apache
+#        level: error
+#      - name: org.mybatis
+#        level: error
+#      - name: io.netty
+#        level: error
+#      - name: org.hibernate
+#        level: error
+#      - name: reactor.core
+#        level: error
+#      - name: io.lettuce
+#        level: error
+#      - name: com.alibaba
+#        level: error
+#      - name: com.yuntai.hdp.client
+#        level: error
 #      - name: com.yuntai.upp.sdk.util
 #        level: debug

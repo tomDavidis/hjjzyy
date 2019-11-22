@@ -1,12 +1,14 @@
 package com.yuntai.upp.access.fresh.mock;
 
 import com.yuntai.upp.client.basic.util.BigDecimalUtil;
-import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.dto.refund.RefundDto;
 import com.yuntai.upp.sdk.util.SignUtil;
 import org.junit.Assert;
 
+import static com.yuntai.upp.access.CustomConstant.BIZ_TYPE;
+import static com.yuntai.upp.access.CustomConstant.PAYMENT_NO;
+import static com.yuntai.upp.access.CustomConstant.REQUEST_NO;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
 import static com.yuntai.upp.sdk.interfaces.Signable.VERSION;
@@ -37,11 +39,11 @@ public class RefundMock {
                  */
                 .isvId(ISV_ID)
                 .partnerId(PARTNER_ID)
-                .paymentNo("${payment_no}")
-                .bizType("${biz_type}")
+                .paymentNo(PAYMENT_NO)
+                .bizType(BIZ_TYPE)
                 .refundFee(BigDecimalUtil.convert(0.01D))
-                .requestNo(UUIDUtil.create())
-                .refundNo(UUIDUtil.create())
+                .requestNo(REQUEST_NO)
+                .refundNo(REQUEST_NO)
                 .build();
         String salt = CacheInstance.md5Salt(PARTNER_ID, ISV_ID);
         Assert.assertNotNull(salt);

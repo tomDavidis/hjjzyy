@@ -12,7 +12,7 @@ import com.yuntai.upp.access.util.MessageUtil;
 import com.yuntai.upp.access.util.MockUtil;
 import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
 import com.yuntai.upp.client.config.cache.CacheInstance;
-import com.yuntai.upp.client.config.constant.ConstantInstance;
+import com.yuntai.upp.client.config.hdp.HdpClientInstance;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.bills.BillsDto;
 import com.yuntai.upp.client.fresh.model.vo.bills.BillsVo;
@@ -21,11 +21,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.modules.junit4.PowerMockRunnerDelegate;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 import java.util.List;
+
+import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
+import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
 
 
 /**
@@ -37,8 +44,11 @@ import java.util.List;
  * @copyright 版权归 HSYUNTAI 所有
  */
 @Slf4j
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = {UppAccessApplication.class})
+@RunWith(PowerMockRunner.class)
+@PowerMockRunnerDelegate(SpringRunner.class)
+@PowerMockIgnore({"javax.*.*", "com.sun.*", "org.*"})
+@PrepareForTest({HdpClientInstance.class})
+@SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class BillsTest extends AbstractAccess<BillsDto> {
 
     /**
@@ -54,7 +64,7 @@ public class BillsTest extends AbstractAccess<BillsDto> {
         ResultPack pack = super.send(InnerCmdType.BILLS, BillsMock.normal(), Boolean.TRUE);
         Assert.assertEquals(pack.getMsg(), ResultKind.OK.getKind(), pack.getKind());
         Outcome<List<BillsVo>> outcome = JSON.parseObject(pack.getBody(), new TypeReference<Outcome<List<BillsVo>>>(){}, Feature.OrderedField);
-        Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(ConstantInstance.PARTNER_ID, ConstantInstance.ISV_ID)));
+        Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
         Assert.assertTrue(outcome.isResult());
     }
 

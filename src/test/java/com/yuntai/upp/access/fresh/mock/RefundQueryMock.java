@@ -1,37 +1,34 @@
 package com.yuntai.upp.access.fresh.mock;
 
-import com.yuntai.upp.client.basic.util.BigDecimalUtil;
 import com.yuntai.upp.client.config.cache.CacheInstance;
-import com.yuntai.upp.client.fresh.model.dto.barcode.BarCodeDto;
+import com.yuntai.upp.client.fresh.model.dto.refundquery.RefundQueryDto;
 import com.yuntai.upp.sdk.util.SignUtil;
 import org.junit.Assert;
 
-import java.time.LocalDateTime;
-
-import static com.yuntai.upp.access.CustomConstant.PAYMENT_NO;
+import static com.yuntai.upp.access.CustomConstant.REQUEST_NO;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
 import static com.yuntai.upp.sdk.interfaces.Signable.VERSION;
 
 /**
- * @description 数据模拟-条码支付
- * @className BarCodeMock
- * @package com.yuntai.upp.access.fresh.mock.barcode
+ * @description 数据模拟-正交易查询
+ * @className RefundQueryMock
+ * @package com.yuntai.upp.access.fresh.mock
  * @author jinren@hsyuntai.com
- * @date 2019/11/19 17:05
+ * @date 2019/11/22 14:12
  * @copyright 版权归 HSYUNTAI 所有
  */
-public class BarCodeMock {
+public class RefundQueryMock {
 
     /**
      * @description 正常场景
      * @param
-     * @return com.yuntai.upp.client.fresh.model.dto.barcode.BarCodeDto
+     * @return com.yuntai.upp.client.fresh.model.dto.refundquery.RefundQueryDto
      * @author jinren@hsyuntai.com
-     * @date 2019/11/19 17:08
+     * @date 2019/11/22 14:12
      */
-    public static BarCodeDto normal() {
-        BarCodeDto model = BarCodeDto.builder()
+    public static RefundQueryDto normal() {
+        RefundQueryDto model = RefundQueryDto.builder()
                 .timestamp(System.currentTimeMillis())
                 .version(VERSION)
                 /*
@@ -39,12 +36,7 @@ public class BarCodeMock {
                  */
                 .isvId(ISV_ID)
                 .partnerId(PARTNER_ID)
-                .authCode("286621192146852425")
-                .paymentNo(PAYMENT_NO)
-                .tradeFee(BigDecimalUtil.convert(0.01D))
-                .subject("条码支付(upp-client)-标题")
-                .body("条码支付(upp-client)-内容")
-                .expireTime(LocalDateTime.now().plusMinutes(5))
+                .requestNo(REQUEST_NO)
                 .build();
         String salt = CacheInstance.md5Salt(PARTNER_ID, ISV_ID);
         Assert.assertNotNull(salt);
