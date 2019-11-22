@@ -1,5 +1,6 @@
 package com.yuntai.upp.access.fresh.tunnel;
 
+import com.alibaba.fastjson.TypeReference;
 import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.access.fresh.AbstractSoapui;
 import com.yuntai.upp.access.fresh.mock.ScanCodeMock;
@@ -10,6 +11,7 @@ import com.yuntai.upp.client.config.constant.ConstantInstance;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.scancode.ScanCodeDto;
 import com.yuntai.upp.client.fresh.model.vo.scancode.ScanCodeVo;
+import com.yuntai.upp.sdk.enums.ChannelProductType;
 import com.yuntai.upp.sdk.util.SignUtil;
 import org.junit.Assert;
 import org.junit.Test;
@@ -18,6 +20,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
+import java.util.EnumSet;
 
 import static com.yuntai.upp.client.config.constant.ConstantInstance.SCAN_CODE;
 
@@ -31,7 +34,10 @@ import static com.yuntai.upp.client.config.constant.ConstantInstance.SCAN_CODE;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class ScanCodeTest extends AbstractSoapui<ScanCodeDto, ScanCodeVo> {
+public class ScanCodeTest extends AbstractSoapui<ScanCodeDto, Outcome<ScanCodeVo>> {
+
+    private static final EnumSet<ChannelProductType> CHANNEL = EnumSet.of(ChannelProductType.ALI_SCAN_CODE,
+            ChannelProductType.TEN_SCAN_CODE);
 
     /**
      * @description 正常场景
@@ -48,8 +54,10 @@ public class ScanCodeTest extends AbstractSoapui<ScanCodeDto, ScanCodeVo> {
          */
         CacheInstance.partner(ConstantInstance.PARTNER_ID)
                 .getChannel()
+                .stream()
+                .filter(channel -> CHANNEL.contains(channel.getChannelProductType()))
                 .forEach(channel -> {
-                    Outcome<ScanCodeVo> outcome = send(ScanCodeMock.normal(channel), SCAN_CODE);
+                    Outcome<ScanCodeVo> outcome = send(ScanCodeMock.normal(channel), SCAN_CODE, new TypeReference<Outcome<ScanCodeVo>>() {});
                     Assert.assertNotNull(outcome);
                     Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(ConstantInstance.PARTNER_ID, ConstantInstance.ISV_ID)));
                     Assert.assertTrue(outcome.isResult());
@@ -72,7 +80,7 @@ public class ScanCodeTest extends AbstractSoapui<ScanCodeDto, ScanCodeVo> {
                         .filter(MockUtil::filter)
                         .forEach(annotation -> {
                             ScanCodeDto model = MockUtil.mock(ScanCodeMock.normal(), field, annotation);
-                            Outcome<ScanCodeVo> outcome = send(model, SCAN_CODE);
+                            Outcome<ScanCodeVo> outcome = send(model, SCAN_CODE, new TypeReference<Outcome<ScanCodeVo>>() {});
                             Assert.assertNotNull(outcome);
                             Assert.assertEquals(FAIL, outcome.getKind());
                             Assert.assertEquals(outcome.getMsg(), MessageUtil.message(model));

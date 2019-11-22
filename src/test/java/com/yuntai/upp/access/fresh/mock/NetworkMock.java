@@ -1,14 +1,13 @@
 package com.yuntai.upp.access.fresh.mock;
 
 import com.yuntai.upp.client.config.cache.CacheInstance;
-import com.yuntai.upp.client.config.constant.ConstantInstance;
 import com.yuntai.upp.client.fresh.model.dto.network.NetworkDto;
-import com.yuntai.upp.sdk.interfaces.Signable;
 import com.yuntai.upp.sdk.util.SignUtil;
 import org.junit.Assert;
 
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
+import static com.yuntai.upp.sdk.interfaces.Signable.VERSION;
 
 /**
  * @description 数据模拟-网络链路
@@ -29,10 +28,13 @@ public class NetworkMock {
      */
     public static NetworkDto normal() {
         NetworkDto model = new NetworkDto().toBuilder()
-                .isvId(ConstantInstance.ISV_ID)
-                .partnerId(ConstantInstance.PARTNER_ID)
-                .version(Signable.VERSION)
                 .timestamp(System.currentTimeMillis())
+                .version(VERSION)
+                /*
+                 * 临时使用(仅供单元测试, 实际场景禁止采用该方式)
+                 */
+                .isvId(ISV_ID)
+                .partnerId(PARTNER_ID)
                 .build();
         String salt = CacheInstance.md5Salt(PARTNER_ID, ISV_ID);
         Assert.assertNotNull(salt);

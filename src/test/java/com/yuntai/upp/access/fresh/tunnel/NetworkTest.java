@@ -1,5 +1,6 @@
 package com.yuntai.upp.access.fresh.tunnel;
 
+import com.alibaba.fastjson.TypeReference;
 import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.access.fresh.AbstractSoapui;
 import com.yuntai.upp.access.fresh.mock.NetworkMock;
@@ -31,7 +32,7 @@ import static com.yuntai.upp.client.config.constant.ConstantInstance.NETWORK;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class NetworkTest extends AbstractSoapui<NetworkDto, NetworkVo> {
+public class NetworkTest extends AbstractSoapui<NetworkDto, Outcome<NetworkVo>> {
 
     /**
      * @description 正常场景
@@ -43,7 +44,7 @@ public class NetworkTest extends AbstractSoapui<NetworkDto, NetworkVo> {
     @Test
     @Override
     public void testNormal() {
-        Outcome<NetworkVo> outcome = send(NetworkMock.normal(), NETWORK);
+        Outcome<NetworkVo> outcome = send(NetworkMock.normal(), NETWORK, new TypeReference<Outcome<NetworkVo>>() {});
         Assert.assertNotNull(outcome);
         Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(ConstantInstance.PARTNER_ID, ConstantInstance.ISV_ID)));
         Assert.assertTrue(outcome.isResult());
@@ -65,7 +66,7 @@ public class NetworkTest extends AbstractSoapui<NetworkDto, NetworkVo> {
                         .filter(MockUtil::filter)
                         .forEach(annotation -> {
                             NetworkDto model = MockUtil.mock(NetworkMock.normal(), field, annotation);
-                            Outcome<NetworkVo> outcome = send(model, NETWORK);
+                            Outcome<NetworkVo> outcome = send(model, NETWORK, new TypeReference<Outcome<NetworkVo>>() {});
                             Assert.assertNotNull(outcome);
                             Assert.assertEquals(FAIL, outcome.getKind());
                             Assert.assertEquals(outcome.getMsg(), MessageUtil.message(model));

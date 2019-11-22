@@ -1,5 +1,6 @@
 package com.yuntai.upp.access.fresh.mock;
 
+import com.yuntai.upp.client.basic.util.BigDecimalUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.dto.scancode.ScanCodeDto;
@@ -8,7 +9,6 @@ import com.yuntai.upp.sdk.util.SignUtil;
 import lombok.NonNull;
 import org.junit.Assert;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
@@ -43,7 +43,7 @@ public class ScanCodeMock {
                 .partnerId(PARTNER_ID)
                 .paymentNo(UUIDUtil.create())
                 .channelProduct(ChannelProductType.ALI_SCAN_CODE.getCode())
-                .tradeFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
+                .tradeFee(BigDecimalUtil.convert(0.01D))
                 .subject("扫码支付(upp-client)-标题")
                 .body("扫码支付(upp-client)-内容")
                 .expireTime(LocalDateTime.now().plusMinutes(5))
@@ -72,7 +72,7 @@ public class ScanCodeMock {
                 .partnerId(PARTNER_ID)
                 .paymentNo(UUIDUtil.create())
                 .channelProduct(channel.getChannelProductType().getCode())
-                .tradeFee(new BigDecimal(0.01D).setScale(2, BigDecimal.ROUND_HALF_UP))
+                .tradeFee(BigDecimalUtil.convert(0.01D))
                 .subject("扫码支付(upp-client)-标题")
                 .body("扫码支付(upp-client)-内容")
                 .expireTime(LocalDateTime.now().plusMinutes(5))

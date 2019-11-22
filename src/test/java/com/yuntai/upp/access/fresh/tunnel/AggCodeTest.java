@@ -1,5 +1,6 @@
 package com.yuntai.upp.access.fresh.tunnel;
 
+import com.alibaba.fastjson.TypeReference;
 import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.access.fresh.AbstractSoapui;
 import com.yuntai.upp.access.fresh.mock.AggCodeMock;
@@ -31,7 +32,7 @@ import static com.yuntai.upp.client.config.constant.ConstantInstance.AGG_CODE;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class AggCodeTest extends AbstractSoapui<AggCodeDto, AggCodeVo> {
+public class AggCodeTest extends AbstractSoapui<AggCodeDto, Outcome<AggCodeVo>> {
 
     /**
      * @description 正常场景
@@ -43,7 +44,7 @@ public class AggCodeTest extends AbstractSoapui<AggCodeDto, AggCodeVo> {
     @Test
     @Override
     public void testNormal() {
-        Outcome<AggCodeVo> outcome = send(AggCodeMock.normal(), AGG_CODE);
+        Outcome<AggCodeVo> outcome = send(AggCodeMock.normal(), AGG_CODE, new TypeReference<Outcome<AggCodeVo>>() {});
         Assert.assertNotNull(outcome);
         Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(ConstantInstance.PARTNER_ID, ConstantInstance.ISV_ID)));
         Assert.assertTrue(outcome.isResult());
@@ -65,7 +66,7 @@ public class AggCodeTest extends AbstractSoapui<AggCodeDto, AggCodeVo> {
                         .filter(MockUtil::filter)
                         .forEach(annotation -> {
                             AggCodeDto model = MockUtil.mock(AggCodeMock.normal(), field, annotation);
-                            Outcome<AggCodeVo> outcome = send(model, AGG_CODE);
+                            Outcome<AggCodeVo> outcome = send(model, AGG_CODE, new TypeReference<Outcome<AggCodeVo>>() {});
                             Assert.assertNotNull(outcome);
                             Assert.assertEquals(FAIL, outcome.getKind());
                             Assert.assertEquals(outcome.getMsg(), MessageUtil.message(model));

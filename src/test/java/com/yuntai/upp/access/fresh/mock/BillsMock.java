@@ -43,13 +43,13 @@ public class BillsMock {
                 /*
                  * 临时使用(仅供单元测试, 实际场景禁止采用该方式)
                  */
+                .partnerId(PARTNER_ID)
                 .ftpIp(CacheInstance.ftpIp(PARTNER_ID, ISV_ID))
                 .ftpPort(CacheInstance.ftpPort(PARTNER_ID, ISV_ID))
                 .ftpUser(CacheInstance.ftpUser(PARTNER_ID, ISV_ID))
                 .ftpPwd(CacheInstance.ftpPwd(PARTNER_ID, ISV_ID))
                 .filePath(MessageFormat.format(PATH, PARTNER_ID, DateUtil.format(LocalDateTime.now(), FORMAT_DATE)))
                 .fileName(MessageFormat.format(NAME, PARTNER_ID, DateUtil.format(LocalDateTime.now(), FORMAT_DATE)))
-                .partnerId(PARTNER_ID)
                 .isMergeRefund(YesOrNo.YES.getCode())
                 .startTime(LocalDateTime.now())
                 .endTime(LocalDateTime.now().minusHours(2))

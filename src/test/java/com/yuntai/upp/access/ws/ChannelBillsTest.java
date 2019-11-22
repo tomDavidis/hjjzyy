@@ -37,8 +37,8 @@ public class ChannelBillsTest extends AbstractWsClinet {
                         .partnerId(ConstantInstance.PARTNER_ID)
                         .timestamp(System.currentTimeMillis())
                         .version("1.0.0")
-                        .startDate(LocalDate.now().withMonth(8).withDayOfMonth(10))
-                        .endDate(LocalDate.now().withMonth(8).withDayOfMonth(20))
+                        .startDate(LocalDate.now().withMonth(11).withDayOfMonth(6))
+                        .endDate(LocalDate.now().withMonth(11).withDayOfMonth(6))
                         .build())))
                 .build());
     }

@@ -6,7 +6,6 @@ import com.yuntai.upp.access.util.XmlUtil;
 import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.JaxbUtil;
 import com.yuntai.upp.client.basic.util.TraceIdUtil;
-import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
@@ -42,18 +41,20 @@ public abstract class AbstractSoapui<I, O> {
         TraceIdUtil.clearLocalTraceId();
     }
 
-    protected Outcome<O> send(@NonNull I model,
-                     @NonNull String target) {
+    protected O send(@NonNull I model,
+                              @NonNull String target,
+                              @NonNull TypeReference<O> reference) {
         String result = HttpUtil.post(HttpUtil.Atom.builder()
                 .url(WSDL_URL)
                 .content(HttpUtil.CONTENT_XML)
                 .accept(HttpUtil.ACCEPT_XML)
                 .data(MessageFormat.format(TEMPLATE, target, JaxbUtil.xml(model)))
                 .build());
-        return JSON.parseObject(JSON.toJSONString(JSON.parseObject(JSON.toJSONString(XmlUtil.xml2map(result)))
+        String data = JSON.toJSONString(XmlUtil.xml2map(result));
+        return JSON.parseObject(JSON.toJSONString(JSON.parseObject(data)
                 .getJSONObject("Body")
                 .getJSONObject(target + "Response")
-                .getJSONObject(RESPONSE)), new TypeReference<Outcome<O>>() {});
+                .getJSONObject(RESPONSE)), reference);
     }
 
     public abstract void testNormal();
