@@ -1,24 +1,25 @@
 package com.yuntai.upp.access.fresh.tunnel;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.yuntai.hdp.access.ResultPack;
-import com.yuntai.hdp.client.HdpClient;
 import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.access.fresh.AbstractSoapui;
 import com.yuntai.upp.access.fresh.mock.AggCodeMock;
 import com.yuntai.upp.access.util.MessageUtil;
 import com.yuntai.upp.access.util.MockUtil;
+import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
 import com.yuntai.upp.client.config.cache.CacheInstance;
+import com.yuntai.upp.client.config.hdp.HdpClientInstance;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.aggcode.AggCodeDto;
 import com.yuntai.upp.client.fresh.model.vo.aggcode.AggCodeVo;
+import com.yuntai.upp.sdk.interfaces.Signable;
 import com.yuntai.upp.sdk.result.UnitedPreOrderResult;
 import com.yuntai.upp.sdk.util.SignUtil;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -45,7 +46,7 @@ import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
 @RunWith(PowerMockRunner.class)
 @PowerMockRunnerDelegate(SpringRunner.class)
 @PowerMockIgnore({"javax.*.*", "com.sun.*", "org.*"})
-@PrepareForTest({HdpClient.class})
+@PrepareForTest({HdpClientInstance.class})
 @ActiveProfiles(value = {"deploy/dev.properties"})
 @SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class AggCodeTest extends AbstractSoapui<AggCodeDto, Outcome<AggCodeVo>> {
@@ -83,13 +84,18 @@ public class AggCodeTest extends AbstractSoapui<AggCodeDto, Outcome<AggCodeVo>> 
         /*
          * 静态方法主动模拟
          */
-        PowerMockito.mockStatic(HdpClient.class);
-//        HdpClient client = PowerMockito.mock(HdpClient.class);
+        PowerMockito.mockStatic(HdpClientInstance.class);
+
+//        PowerMockito.whenNew(HdpClient.class)
+//                .withNoArguments()
+//                .thenReturn(PowerMockito.mock(HdpClient.class));
         AggCodeDto dto = AggCodeMock.normal();
         UnitedPreOrderResult result = AggCodeMock.mock(dto);
-        ResultPack pack = new ResultPack();
-        pack.setBody(JSON.toJSONString(result));
-//        PowerMockito.when(HdpClientInstance.connect(), MemberMatcher.method(HdpClient.class, "sendData", RequestPack.class, int.class))
+
+        PowerMockito.when(HdpClientInstance.send(Mockito.any(InnerCmdType.class), Mockito.any(Signable.class), Mockito.any()))
+                .thenReturn(result);
+
+//        PowerMockito.when(client, MemberMatcher.method(HdpClient.class, "sendData", RequestPack.class, int.class))
 //                .withArguments(Mockito.any(RequestPack.class), Mockito.anyInt())
 //                .thenReturn(pack);
         Outcome<AggCodeVo> outcome = send(dto, AGG_CODE, new TypeReference<Outcome<AggCodeVo>>() {});
