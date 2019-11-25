@@ -19,6 +19,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.modules.junit4.PowerMockRunnerDelegate;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
@@ -37,6 +38,7 @@ import static com.yuntai.upp.client.config.constant.ConstantInstance.ORDER_QUERY
 @PowerMockRunnerDelegate(SpringRunner.class)
 @PowerMockIgnore({"javax.*.*", "com.sun.*", "org.*"})
 @PrepareForTest({HdpClientInstance.class})
+@ActiveProfiles(value = {"deploy/dev.properties"})
 @SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class OrderQueryTest extends AbstractSoapui<OrderQueryDto, Outcome<OrderQueryVo>> {
 

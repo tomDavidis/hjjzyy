@@ -47,7 +47,7 @@ public abstract class AbstractSoapui<I, O> extends AbstractBasic {
 
     public abstract void testNormal();
 
-    public abstract void testMock();
+    public abstract void testMock() throws Exception;
 
     public abstract void testDefect();
 }
