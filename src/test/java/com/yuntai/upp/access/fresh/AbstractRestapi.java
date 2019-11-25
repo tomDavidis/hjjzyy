@@ -1,7 +1,7 @@
 package com.yuntai.upp.access.fresh;
 
-import com.yuntai.upp.access.AbstractBaisc;
+import com.yuntai.upp.access.AbstractBasic;
 
-public class AbstractRestapi extends AbstractBaisc {
+public class AbstractRestapi extends AbstractBasic {
 
 }

@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.yuntai.hdp.access.RequestPack;
 import com.yuntai.hdp.access.ResultPack;
-import com.yuntai.upp.access.AbstractBaisc;
+import com.yuntai.upp.access.AbstractBasic;
 import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
 import com.yuntai.upp.client.basic.interfaces.SignConvert;
 import com.yuntai.upp.client.basic.util.DateUtil;
@@ -31,7 +31,7 @@ import java.util.EnumSet;
  * @copyright 版权归 HSYUNTAI 所有
  */
 @Slf4j
-public abstract class AbstractAccess<I extends SignConvert> extends AbstractBaisc {
+public abstract class AbstractAccess<I extends SignConvert> extends AbstractBasic {
 
     protected static final EnumSet<BizType> BIZ_TYPE = EnumSet.of(BizType.AGG_SCAN_PAY, BizType.SCAN_PAY);
     protected static final EnumSet<ChannelProductType> CHANNEL_PRODUCT_TYPE = EnumSet.of(ChannelProductType.ALI_SCAN_CODE,

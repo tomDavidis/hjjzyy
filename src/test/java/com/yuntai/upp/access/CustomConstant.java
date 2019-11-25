@@ -1,5 +1,6 @@
 package com.yuntai.upp.access;
 
+import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.sdk.enums.BizType;
 
 /**
@@ -15,11 +16,11 @@ public class CustomConstant {
     /**
      *
      */
-    public static final String PAYMENT_NO = "c2ae205d3aa147f1b38100d038f630a1";
+    public static final String PAYMENT_NO = UUIDUtil.create();
     /**
      *
      */
-    public static final String REQUEST_NO = "c2ae205d3aa147f1b38100d038f630a2";
+    public static final String REQUEST_NO = UUIDUtil.create();
     /**
      *
      */

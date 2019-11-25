@@ -2,7 +2,7 @@ package com.yuntai.upp.access.fresh;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.yuntai.upp.access.AbstractBaisc;
+import com.yuntai.upp.access.AbstractBasic;
 import com.yuntai.upp.access.util.XmlUtil;
 import com.yuntai.upp.client.basic.util.HttpUtil;
 import com.yuntai.upp.client.basic.util.JaxbUtil;
@@ -14,7 +14,7 @@ import java.text.MessageFormat;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.RESPONSE;
 
 @Slf4j
-public abstract class AbstractSoapui<I, O> extends AbstractBaisc {
+public abstract class AbstractSoapui<I, O> extends AbstractBasic {
 
     protected static final String SUCCESS = "0";
     protected static final String FAIL = "1";

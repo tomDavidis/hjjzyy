@@ -42,13 +42,15 @@ import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
  */
 @RunWith(PowerMockRunner.class)
 @PowerMockRunnerDelegate(SpringRunner.class)
-@PowerMockIgnore({"javax.*.*", "com.sun.*", "org.*"})
+@PowerMockIgnore({"javax.management.*", "com.sun.*", "org.*"})
 @PrepareForTest({HdpClientInstance.class})
 @SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class AggCodeTest extends AbstractSoapui<AggCodeDto, Outcome<AggCodeVo>> {
 
     /**
      * @description 正常场景
+     *              可将 @Ignore 注释掉, 用于正常场景的模拟测试
+     *              禁止在 maven test 打开该单元测试用例
      * @param
      * @return void
      * @author jinren@hsyuntai.com
@@ -75,16 +77,21 @@ public class AggCodeTest extends AbstractSoapui<AggCodeDto, Outcome<AggCodeVo>> 
     @Test
     @Override
     public void testMock() {
+        /*
+         * 静态方法主动模拟
+         */
+        PowerMockito.mockStatic(HdpClientInstance.class);
         AggCodeDto dto = AggCodeMock.normal();
-        PowerMockito.when(HdpClientInstance.send(InnerCmdType.AGG_CODE, dto, new TypeReference<UnitedPreOrderResult>() {})).thenReturn(null); // 4
-        Outcome<AggCodeVo> outcome = send(AggCodeMock.normal(), AGG_CODE, new TypeReference<Outcome<AggCodeVo>>() {});
+        UnitedPreOrderResult result = AggCodeMock.mock(dto);
+        PowerMockito.when(HdpClientInstance.send(InnerCmdType.AGG_CODE, dto, new TypeReference<UnitedPreOrderResult>() {}))
+        .thenThrow(new RuntimeException("123123123123123123123123"));
+//                .thenReturn(result);
+        Outcome<AggCodeVo> outcome = send(dto, AGG_CODE, new TypeReference<Outcome<AggCodeVo>>() {});
+        Assert.assertNotNull(outcome);
+        Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
+        Assert.assertTrue(outcome.isResult());
+        Assert.assertEquals(SUCCESS, outcome.getKind());
 
-
-//        Outcome<AggCodeVo> outcome = send(AggCodeMock.normal(), AGG_CODE, new TypeReference<Outcome<AggCodeVo>>() {});
-//        Assert.assertNotNull(outcome);
-//        Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
-//        Assert.assertTrue(outcome.isResult());
-//        Assert.assertEquals(SUCCESS, outcome.getKind());
     }
 
     /**
