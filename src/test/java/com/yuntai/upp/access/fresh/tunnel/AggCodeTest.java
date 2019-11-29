@@ -80,29 +80,17 @@ public class AggCodeTest extends AbstractSoapui<AggCodeDto, Outcome<AggCodeVo>> 
      */
     @Test
     @Override
-    public void testMock() throws Exception {
-        /*
-         * 静态方法主动模拟
-         */
+    public void testMock() {
         PowerMockito.mockStatic(HdpClientInstance.class);
-
-//        PowerMockito.whenNew(HdpClient.class)
-//                .withNoArguments()
-//                .thenReturn(PowerMockito.mock(HdpClient.class));
         AggCodeDto dto = AggCodeMock.normal();
         UnitedPreOrderResult result = AggCodeMock.mock(dto);
-
         PowerMockito.when(HdpClientInstance.send(Mockito.any(InnerCmdType.class), Mockito.any(Signable.class), Mockito.any()))
                 .thenReturn(result);
-
-//        PowerMockito.when(client, MemberMatcher.method(HdpClient.class, "sendData", RequestPack.class, int.class))
-//                .withArguments(Mockito.any(RequestPack.class), Mockito.anyInt())
-//                .thenReturn(pack);
         Outcome<AggCodeVo> outcome = send(dto, AGG_CODE, new TypeReference<Outcome<AggCodeVo>>() {});
-//        Assert.assertNotNull(outcome);
-//        Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
-//        Assert.assertTrue(outcome.isResult());
-//        Assert.assertEquals(SUCCESS, outcome.getKind());
+        Assert.assertNotNull(outcome);
+        Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
+        Assert.assertTrue(outcome.isResult());
+        Assert.assertEquals(SUCCESS, outcome.getKind());
     }
 
     /**

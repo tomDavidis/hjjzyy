@@ -16,7 +16,27 @@ public class CustomConstant {
     /**
      *
      */
+    public static final String OUT_PAYMENT_NO = UUIDUtil.create();
+    /**
+     *
+     */
+    public static final String IN_PAYMENT_NO = UUIDUtil.create();
+    /**
+     *
+     */
     public static final String PAYMENT_NO = UUIDUtil.create();
+    /**
+     *
+     */
+    public static final String OUT_REFNUD_NO = UUIDUtil.create();
+    /**
+     *
+     */
+    public static final String IN_REFUND_NO = UUIDUtil.create();
+    /**
+     *
+     */
+    public static final String REFUND_NO = UUIDUtil.create();
     /**
      *
      */

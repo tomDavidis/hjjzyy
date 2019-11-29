@@ -6,16 +6,21 @@ import com.yuntai.upp.access.fresh.AbstractSoapui;
 import com.yuntai.upp.access.fresh.mock.BarCodeMock;
 import com.yuntai.upp.access.util.MessageUtil;
 import com.yuntai.upp.access.util.MockUtil;
+import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.config.hdp.HdpClientInstance;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.barcode.BarCodeDto;
 import com.yuntai.upp.client.fresh.model.vo.barcode.BarCodeVo;
+import com.yuntai.upp.sdk.interfaces.Signable;
+import com.yuntai.upp.sdk.result.UnitedPreOrderResult;
 import com.yuntai.upp.sdk.util.SignUtil;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -74,11 +79,16 @@ public class BarCodeTest extends AbstractSoapui<BarCodeDto, Outcome<BarCodeVo>> 
     @Test
     @Override
     public void testMock() {
-//        Outcome<BarCodeVo> outcome = send(BarCodeMock.normal(), BAR_CODE, new TypeReference<Outcome<BarCodeVo>>() {});
-//        Assert.assertNotNull(outcome);
-//        Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
-//        Assert.assertTrue(outcome.isResult());
-//        Assert.assertEquals(SUCCESS, outcome.getKind());
+        PowerMockito.mockStatic(HdpClientInstance.class);
+        BarCodeDto dto = BarCodeMock.normal();
+        UnitedPreOrderResult result = BarCodeMock.mock(dto);
+        PowerMockito.when(HdpClientInstance.send(Mockito.any(InnerCmdType.class), Mockito.any(Signable.class), Mockito.any()))
+                .thenReturn(result);
+        Outcome<BarCodeVo> outcome = send(dto, BAR_CODE, new TypeReference<Outcome<BarCodeVo>>() {});
+        Assert.assertNotNull(outcome);
+        Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
+        Assert.assertTrue(outcome.isResult());
+        Assert.assertEquals(SUCCESS, outcome.getKind());
     }
 
     /**
