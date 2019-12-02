@@ -2,18 +2,22 @@ package com.yuntai.upp.access.fresh.mock;
 
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.dto.paymentquery.PaymentQueryDto;
+import com.yuntai.upp.sdk.enums.TradeStatus;
+import com.yuntai.upp.sdk.enums.TradeType;
 import com.yuntai.upp.sdk.result.UnitedPaymentQueryResult;
-import com.yuntai.upp.sdk.result.UnitedRefundQueryResult;
 import com.yuntai.upp.sdk.util.SignUtil;
 import lombok.NonNull;
 import org.junit.Assert;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 import static com.yuntai.upp.access.CustomConstant.BIZ_TYPE;
+import static com.yuntai.upp.access.CustomConstant.CHANNEL_PRODUCT;
+import static com.yuntai.upp.access.CustomConstant.CHANNEL_TYPE;
+import static com.yuntai.upp.access.CustomConstant.IN_PAYMENT_NO;
+import static com.yuntai.upp.access.CustomConstant.OUT_PAYMENT_NO;
 import static com.yuntai.upp.access.CustomConstant.PAYMENT_NO;
+import static com.yuntai.upp.access.CustomConstant.TRADE_FEE;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
 import static com.yuntai.upp.sdk.interfaces.Signable.VERSION;
@@ -62,23 +66,22 @@ public class PaymentQueryMock {
      */
     public static UnitedPaymentQueryResult mock(@NonNull PaymentQueryDto dto) {
         return UnitedPaymentQueryResult.builder()
-                .partnerId(0L)
-                .isvId(0L)
-                .channelType("")
-                .channelProduct("")
-                .tradeType("")
-                .tradeFee(new BigDecimal("0"))
-                .tradeStatus("")
-                .outPaymentNo("")
-                .inPaymentNo("")
-                .paymentNo("")
-                .orderId(0L)
+                /*
+                 * 临时使用(仅供单元测试, 实际场景禁止采用该方式)
+                 */
+                .isvId(ISV_ID)
+                .partnerId(PARTNER_ID)
+                .channelType(CHANNEL_TYPE)
+                .channelProduct(CHANNEL_PRODUCT)
+                .tradeType(TradeType.PAY.getCode())
+                .tradeFee(TRADE_FEE)
+                .tradeStatus(TradeStatus.PAY_SUCCESS.getCode())
+                .outPaymentNo(OUT_PAYMENT_NO)
+                .inPaymentNo(IN_PAYMENT_NO)
+                .paymentNo(dto.getPaymentNo())
                 .paymentTime(LocalDateTime.now())
-                .bizData("")
-                .orderStatus("")
-                .bizType("")
-                .bizId("")
-                .refundList(new ArrayList<UnitedRefundQueryResult>())
+                .bizType(dto.getBizType())
+                .bizId(dto.getPaymentNo())
                 .build();
     }
 }

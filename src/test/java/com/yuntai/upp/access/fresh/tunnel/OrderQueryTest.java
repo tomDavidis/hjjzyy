@@ -1,7 +1,6 @@
 package com.yuntai.upp.access.fresh.tunnel;
 
 import com.alibaba.fastjson.TypeReference;
-import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.access.fresh.AbstractSoapui;
 import com.yuntai.upp.access.fresh.mock.OrderQueryMock;
 import com.yuntai.upp.access.util.MessageUtil;
@@ -16,16 +15,8 @@ import com.yuntai.upp.sdk.result.UnitedOrderQueryResult;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.modules.junit4.PowerMockRunnerDelegate;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
@@ -40,12 +31,6 @@ import static com.yuntai.upp.client.config.constant.ConstantInstance.ORDER_QUERY
  * @date 2019/11/22 10:11
  * @copyright 版权归 HSYUNTAI 所有
  */
-@RunWith(PowerMockRunner.class)
-@PowerMockRunnerDelegate(SpringRunner.class)
-@PowerMockIgnore({"javax.*.*", "com.sun.*", "org.*"})
-@PrepareForTest({HdpClientInstance.class})
-@ActiveProfiles(value = {"deploy/dev.properties"})
-@SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class OrderQueryTest extends AbstractSoapui<OrderQueryDto, Outcome<OrderQueryVo>> {
 
     /**

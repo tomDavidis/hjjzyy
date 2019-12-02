@@ -11,6 +11,7 @@ import com.yuntai.upp.access.fresh.mock.BillsMock;
 import com.yuntai.upp.access.util.MessageUtil;
 import com.yuntai.upp.access.util.MockUtil;
 import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
+import com.yuntai.upp.client.basic.util.FtpUtil;
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.config.hdp.HdpClientInstance;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
@@ -48,9 +49,9 @@ import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
 @RunWith(PowerMockRunner.class)
 @PowerMockRunnerDelegate(SpringRunner.class)
 @PowerMockIgnore({"javax.*.*", "com.sun.*", "org.*"})
-@PrepareForTest({HdpClientInstance.class})
+@PrepareForTest({HdpClientInstance.class, FtpUtil.class})
 @ActiveProfiles(value = {"deploy/dev.properties"})
-@SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class BillsTest extends AbstractAccess<BillsDto> {
 
     /**

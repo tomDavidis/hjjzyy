@@ -3,6 +3,7 @@ package com.yuntai.upp.access;
 import com.yuntai.upp.client.basic.util.BigDecimalUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.sdk.enums.BizType;
+import com.yuntai.upp.sdk.enums.ChannelProductType;
 
 import java.math.BigDecimal;
 
@@ -52,4 +53,13 @@ public class CustomConstant {
      *
      */
     public static final String BIZ_TYPE = BizType.BARCODE_PAY.getCode();
+    /**
+     *
+     */
+    public static final String CHANNEL_PRODUCT = ChannelProductType.ALI_BAR_CODE.getCode();
+    /**
+     *
+     */
+    public static final String CHANNEL_TYPE = ChannelProductType.ALI_BAR_CODE.getChannelType().getCode();
+
 }

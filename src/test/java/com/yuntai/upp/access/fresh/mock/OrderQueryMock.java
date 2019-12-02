@@ -1,16 +1,25 @@
 package com.yuntai.upp.access.fresh.mock;
+
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.dto.orderquery.OrderQueryDto;
+import com.yuntai.upp.sdk.enums.TradeStatus;
+import com.yuntai.upp.sdk.enums.TradeType;
 import com.yuntai.upp.sdk.result.UnitedOrderQueryResult;
 import com.yuntai.upp.sdk.result.UnitedPaymentQueryResult;
 import com.yuntai.upp.sdk.util.SignUtil;
 import lombok.NonNull;
 import org.junit.Assert;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static com.yuntai.upp.access.CustomConstant.BIZ_TYPE;
+import static com.yuntai.upp.access.CustomConstant.CHANNEL_PRODUCT;
+import static com.yuntai.upp.access.CustomConstant.CHANNEL_TYPE;
+import static com.yuntai.upp.access.CustomConstant.IN_PAYMENT_NO;
+import static com.yuntai.upp.access.CustomConstant.OUT_PAYMENT_NO;
 import static com.yuntai.upp.access.CustomConstant.PAYMENT_NO;
+import static com.yuntai.upp.access.CustomConstant.TRADE_FEE;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
 import static com.yuntai.upp.sdk.interfaces.Signable.VERSION;
@@ -59,12 +68,36 @@ public class OrderQueryMock {
      */
     public static UnitedOrderQueryResult mock(@NonNull OrderQueryDto dto) {
         return UnitedOrderQueryResult.builder()
-                .partnerId(0L)
-                .isvId(0L)
-                .bizType("")
-                .bizId("")
-                .orderId(0L)
-                .paymentList(new ArrayList<UnitedPaymentQueryResult>())
+                /*
+                 * 临时使用(仅供单元测试, 实际场景禁止采用该方式)
+                 */
+                .isvId(ISV_ID)
+                .partnerId(PARTNER_ID)
+                .bizType(dto.getBizType())
+                .bizId(dto.getPaymentNo())
+                .paymentList(new ArrayList<UnitedPaymentQueryResult>(2) {
+                    private static final long serialVersionUID = 8424557036045143657L;
+                    {
+                        add(UnitedPaymentQueryResult.builder()
+                                /*
+                                 * 临时使用(仅供单元测试, 实际场景禁止采用该方式)
+                                 */
+                                .isvId(ISV_ID)
+                                .partnerId(PARTNER_ID)
+                                .channelType(CHANNEL_TYPE)
+                                .channelProduct(CHANNEL_PRODUCT)
+                                .tradeType(TradeType.PAY.getCode())
+                                .tradeFee(TRADE_FEE)
+                                .tradeStatus(TradeStatus.PAY_SUCCESS.getCode())
+                                .outPaymentNo(OUT_PAYMENT_NO)
+                                .inPaymentNo(IN_PAYMENT_NO)
+                                .paymentNo(dto.getPaymentNo())
+                                .paymentTime(LocalDateTime.now())
+                                .bizType(dto.getBizType())
+                                .bizId(dto.getPaymentNo())
+                                .build());
+                    }
+                })
                 .build();
     }
 }

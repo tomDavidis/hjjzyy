@@ -1,15 +1,25 @@
 package com.yuntai.upp.access.fresh.mock;
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.dto.refundquery.RefundQueryDto;
+import com.yuntai.upp.sdk.enums.TradeStatus;
+import com.yuntai.upp.sdk.enums.TradeType;
 import com.yuntai.upp.sdk.result.UnitedRefundQueryResult;
 import com.yuntai.upp.sdk.util.SignUtil;
 import lombok.NonNull;
 import org.junit.Assert;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import static com.yuntai.upp.access.CustomConstant.CHANNEL_PRODUCT;
+import static com.yuntai.upp.access.CustomConstant.CHANNEL_TYPE;
+import static com.yuntai.upp.access.CustomConstant.IN_PAYMENT_NO;
+import static com.yuntai.upp.access.CustomConstant.IN_REFUND_NO;
+import static com.yuntai.upp.access.CustomConstant.OUT_PAYMENT_NO;
+import static com.yuntai.upp.access.CustomConstant.OUT_REFNUD_NO;
+import static com.yuntai.upp.access.CustomConstant.PAYMENT_NO;
+import static com.yuntai.upp.access.CustomConstant.REFUND_NO;
 import static com.yuntai.upp.access.CustomConstant.REQUEST_NO;
+import static com.yuntai.upp.access.CustomConstant.TRADE_FEE;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
 import static com.yuntai.upp.sdk.interfaces.Signable.VERSION;
@@ -57,22 +67,23 @@ public class RefundQueryMock {
      */
     public static UnitedRefundQueryResult mock(@NonNull RefundQueryDto dto) {
         return UnitedRefundQueryResult.builder()
-                .partnerId(0L)
-                .channelType("")
-                .channelProduct("")
-                .tradeType("")
-                .tradeStatus("")
-                .requestNo("")
-                .refundNo("")
-                .outRefundNo("")
-                .inRefundNo("")
-                .paymentNo("")
-                .outPaymentNo("")
-                .inPaymentNo("")
-                .refundFee(new BigDecimal("0"))
+                /*
+                 * 临时使用(仅供单元测试, 实际场景禁止采用该方式)
+                 */
+                .partnerId(PARTNER_ID)
+                .channelType(CHANNEL_TYPE)
+                .channelProduct(CHANNEL_PRODUCT)
+                .tradeType(TradeType.REFUND.getCode())
+                .tradeStatus(TradeStatus.REFUND_SUCCESS.getCode())
+                .requestNo(dto.getRequestNo())
+                .refundNo(REFUND_NO)
+                .outRefundNo(OUT_REFNUD_NO)
+                .inRefundNo(IN_REFUND_NO)
+                .paymentNo(PAYMENT_NO)
+                .outPaymentNo(OUT_PAYMENT_NO)
+                .inPaymentNo(IN_PAYMENT_NO)
+                .refundFee(TRADE_FEE)
                 .refundTime(LocalDateTime.now())
-                .failedReason("")
-                .bizData("")
                 .build();
     }
 }

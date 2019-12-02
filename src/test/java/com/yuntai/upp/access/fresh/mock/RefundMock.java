@@ -2,15 +2,21 @@ package com.yuntai.upp.access.fresh.mock;
 
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.dto.refund.RefundDto;
+import com.yuntai.upp.sdk.enums.TradeStatus;
 import com.yuntai.upp.sdk.result.UnitedRefundResult;
 import com.yuntai.upp.sdk.util.SignUtil;
 import lombok.NonNull;
 import org.junit.Assert;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import static com.yuntai.upp.access.CustomConstant.BIZ_TYPE;
+import static com.yuntai.upp.access.CustomConstant.CHANNEL_PRODUCT;
+import static com.yuntai.upp.access.CustomConstant.CHANNEL_TYPE;
+import static com.yuntai.upp.access.CustomConstant.IN_PAYMENT_NO;
+import static com.yuntai.upp.access.CustomConstant.IN_REFUND_NO;
+import static com.yuntai.upp.access.CustomConstant.OUT_PAYMENT_NO;
+import static com.yuntai.upp.access.CustomConstant.OUT_REFNUD_NO;
 import static com.yuntai.upp.access.CustomConstant.PAYMENT_NO;
 import static com.yuntai.upp.access.CustomConstant.REQUEST_NO;
 import static com.yuntai.upp.access.CustomConstant.TRADE_FEE;
@@ -65,20 +71,23 @@ public class RefundMock {
      */
     public static UnitedRefundResult mock(@NonNull RefundDto dto) {
         return UnitedRefundResult.builder()
-                .partnerId(0L)
-                .tradeStatus("")
-                .refundFee(new BigDecimal("0"))
-                .failedReason("")
-                .outRefundNo("")
-                .inRefundNo("")
-                .refundNo("")
-                .requestNo("")
-                .channelType("")
-                .channelProduct("")
+                /*
+                 * 临时使用(仅供单元测试, 实际场景禁止采用该方式)
+                 */
+                .partnerId(PARTNER_ID)
+                .tradeStatus(TradeStatus.REFUND_SUCCESS.getCode())
+                .refundFee(dto.getRefundFee())
+                .outRefundNo(OUT_REFNUD_NO)
+                .inRefundNo(IN_REFUND_NO)
+                .refundNo(dto.getRefundNo())
+                .requestNo(dto.getRequestNo())
+                .channelType(CHANNEL_TYPE)
+                .channelProduct(CHANNEL_PRODUCT)
                 .refundTime(LocalDateTime.now())
-                .paymentNo("")
-                .inPaymentNo("")
-                .outPaymentNo("")
-                .bizData("").build();
+                .paymentNo(dto.getPaymentNo())
+                .inPaymentNo(IN_PAYMENT_NO)
+                .outPaymentNo(OUT_PAYMENT_NO)
+                .bizData(dto.getBizData())
+                .build();
     }
 }

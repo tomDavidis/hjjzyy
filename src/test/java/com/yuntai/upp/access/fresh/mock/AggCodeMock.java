@@ -73,6 +73,6 @@ public class AggCodeMock {
                 .tradeFee(BigDecimalUtil.convert(dto.getTradeFee()))
                 .bizType(InnerBizType.AGG_CODE.getCode())
                 .bizId(dto.getPaymentNo())
-                .orderId(0L).build();
+                .build();
     }
 }

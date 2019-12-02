@@ -19,6 +19,7 @@ import java.util.Objects;
 /**
  * @author jinren@hsyuntai.com
  * @description 程序启动入口[禁止修改本类]
+ *              mvn clean install test -D druid.registerToSysProperty=true -P (指定环境)
  *              如若需要开启 DB 配置
  *                  请在配置文件内将 spring.database.enabled=true
  *                  并进行相应 database 及 mybatis 配置, 按照 demo 所示
