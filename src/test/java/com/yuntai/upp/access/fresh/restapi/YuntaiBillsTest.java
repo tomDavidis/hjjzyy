@@ -57,7 +57,6 @@ public class YuntaiBillsTest extends AbstractRestapi<YuntaiBillsDto, Outcome<Lis
                         }));
     }
 
-
     /**
      * @description 正常场景
      * @param

@@ -65,7 +65,6 @@ public class ScanCodeTest extends AbstractSoapui<ScanCodeDto, Outcome<ScanCodeVo
                         }));
     }
 
-
     /**
      * @description 正常场景
      * @param
@@ -88,7 +87,6 @@ public class ScanCodeTest extends AbstractSoapui<ScanCodeDto, Outcome<ScanCodeVo
                     execute(ScanCodeMock.normal(channel));
                 });
     }
-
 
     /**
      * @description 正常场景

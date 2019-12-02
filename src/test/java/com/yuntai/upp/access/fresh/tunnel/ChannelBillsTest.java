@@ -86,8 +86,6 @@ public class ChannelBillsTest extends AbstractSoapui<ChannelBillsDto, Outcome<Li
         execute(dto);
     }
 
-
-
     /**
      * @description 执行 & 校验(正常场景)
      * @param dto 入参模型

@@ -1,6 +1,5 @@
 package com.yuntai.upp.access.fresh.mock;
 
-import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.dto.present.PresentDto;
 import com.yuntai.upp.sdk.interfaces.Signable;
@@ -9,6 +8,8 @@ import org.junit.Assert;
 
 import java.time.LocalDateTime;
 
+import static com.yuntai.upp.access.CustomConstant.OUT_PAYMENT_NO;
+import static com.yuntai.upp.access.CustomConstant.PAYMENT_NO;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
 
@@ -38,8 +39,8 @@ public class PresentMock {
                  */
                 .isvId(ISV_ID)
                 .partnerId(PARTNER_ID)
-                .outPaymentNo(UUIDUtil.create())
-                .paymentNo(UUIDUtil.create())
+                .outPaymentNo(OUT_PAYMENT_NO)
+                .paymentNo(PAYMENT_NO)
                 .gmtCreate(LocalDateTime.now().minusDays(1))
                 .build();
         String salt = CacheInstance.md5Salt(PARTNER_ID, ISV_ID);

@@ -69,7 +69,6 @@ public class ScanCodeTest extends AbstractRestapi<ScanCodeDto, Outcome<ScanCodeV
                         }));
     }
 
-
     /**
      * @description 正常场景
      * @param
@@ -92,7 +91,6 @@ public class ScanCodeTest extends AbstractRestapi<ScanCodeDto, Outcome<ScanCodeV
                     execute(ScanCodeMock.normal(channel));
                 });
     }
-
 
     /**
      * @description 正常场景

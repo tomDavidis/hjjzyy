@@ -17,6 +17,15 @@ import java.math.BigDecimal;
  */
 public class CustomConstant {
 
+
+    /**
+     *
+     */
+    public static final String AUTH_CODE = "286621192146852425";
+    /**
+     *
+     */
+    public static final String FACE_CODE = UUIDUtil.create();
     /**
      *
      */
@@ -45,6 +54,10 @@ public class CustomConstant {
      *
      */
     public static final String REQUEST_NO = UUIDUtil.create();
+    /**
+     *
+     */
+    public static final String BIZ_ID = UUIDUtil.create();
     /**
      *
      */

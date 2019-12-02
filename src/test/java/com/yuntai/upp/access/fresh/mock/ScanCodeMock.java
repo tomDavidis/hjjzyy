@@ -1,6 +1,5 @@
 package com.yuntai.upp.access.fresh.mock;
 import com.yuntai.upp.client.basic.enums.inner.InnerBizType;
-import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.dto.scancode.ScanCodeDto;
 import com.yuntai.upp.sdk.enums.ChannelProductType;
@@ -14,6 +13,7 @@ import java.time.LocalDateTime;
 
 import static com.yuntai.upp.access.CustomConstant.IN_PAYMENT_NO;
 import static com.yuntai.upp.access.CustomConstant.OUT_PAYMENT_NO;
+import static com.yuntai.upp.access.CustomConstant.PAYMENT_NO;
 import static com.yuntai.upp.access.CustomConstant.TRADE_FEE;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
@@ -45,7 +45,7 @@ public class ScanCodeMock {
                  */
                 .isvId(ISV_ID)
                 .partnerId(PARTNER_ID)
-                .paymentNo(UUIDUtil.create())
+                .paymentNo(PAYMENT_NO)
                 .channelProduct(ChannelProductType.ALI_SCAN_CODE.getCode())
                 .tradeFee(TRADE_FEE)
                 .subject("扫码支付(upp-client)-标题")
