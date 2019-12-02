@@ -13,7 +13,7 @@ import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.barcode.BarCodeDto;
 import com.yuntai.upp.client.fresh.model.vo.barcode.BarCodeVo;
 import com.yuntai.upp.sdk.interfaces.Signable;
-import com.yuntai.upp.sdk.result.UnitedPreOrderResult;
+import com.yuntai.upp.sdk.result.UnitedPaymentResult;
 import com.yuntai.upp.sdk.util.SignUtil;
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -29,6 +29,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 
 import static com.yuntai.upp.client.config.constant.ConstantInstance.BAR_CODE;
@@ -52,46 +53,6 @@ import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
 public class BarCodeTest extends AbstractSoapui<BarCodeDto, Outcome<BarCodeVo>> {
 
     /**
-     * @description 正常场景
-     * @param
-     * @return void
-     * @author jinren@hsyuntai.com
-     * @date 2019/11/22 15:25
-     */
-    @Ignore
-    @Test
-    @Override
-    public void testNormal() {
-        Outcome<BarCodeVo> outcome = send(BarCodeMock.normal(), BAR_CODE, new TypeReference<Outcome<BarCodeVo>>() {});
-        Assert.assertNotNull(outcome);
-        Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
-        Assert.assertTrue(outcome.isResult());
-        Assert.assertEquals(SUCCESS, outcome.getKind());
-    }
-
-    /**
-     * @description 正常场景
-     * @param
-     * @return void
-     * @author jinren@hsyuntai.com
-     * @date 2019/11/22 09:11
-     */
-    @Test
-    @Override
-    public void testMock() {
-        PowerMockito.mockStatic(HdpClientInstance.class);
-        BarCodeDto dto = BarCodeMock.normal();
-        UnitedPreOrderResult result = BarCodeMock.mock(dto);
-        PowerMockito.when(HdpClientInstance.send(Mockito.any(InnerCmdType.class), Mockito.any(Signable.class), Mockito.any()))
-                .thenReturn(result);
-        Outcome<BarCodeVo> outcome = send(dto, BAR_CODE, new TypeReference<Outcome<BarCodeVo>>() {});
-        Assert.assertNotNull(outcome);
-        Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
-        Assert.assertTrue(outcome.isResult());
-        Assert.assertEquals(SUCCESS, outcome.getKind());
-    }
-
-    /**
      * @description 字段缺失
      * @param
      * @return void
@@ -111,5 +72,51 @@ public class BarCodeTest extends AbstractSoapui<BarCodeDto, Outcome<BarCodeVo>> 
                             Assert.assertEquals(FAIL, outcome.getKind());
                             Assert.assertEquals(outcome.getMsg(), MessageUtil.message(model));
                         }));
+    }
+
+    /**
+     * @description 正常场景
+     * @param
+     * @return void
+     * @author jinren@hsyuntai.com
+     * @date 2019/11/22 15:25
+     */
+    @Ignore
+    @Test
+    @Override
+    public void testNormal() {
+        execute(BarCodeMock.normal());
+    }
+
+    /**
+     * @description 正常场景
+     * @param
+     * @return void
+     * @author jinren@hsyuntai.com
+     * @date 2019/11/22 09:11
+     */
+    @Test
+    @Override
+    public void testMock() {
+        BarCodeDto dto = BarCodeMock.normal();
+        UnitedPaymentResult result = BarCodeMock.mock(dto);
+        PowerMockito.when(HdpClientInstance.send(Mockito.any(InnerCmdType.class), Mockito.any(Signable.class), Mockito.any()))
+                .thenReturn(result);
+        execute(dto);
+    }
+
+    /**
+     * @description 执行 & 校验(正常场景)
+     * @param dto 入参模型
+     * @return void
+     * @author jinren@hsyuntai.com
+     * @date 2019/11/29 16:23
+     */
+    private void execute(@NotNull BarCodeDto dto) {
+        Outcome<BarCodeVo> outcome = send(dto, BAR_CODE, new TypeReference<Outcome<BarCodeVo>>() {});
+        Assert.assertNotNull(outcome);
+        Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
+        Assert.assertTrue(outcome.isResult());
+        Assert.assertEquals(SUCCESS, outcome.getKind());
     }
 }

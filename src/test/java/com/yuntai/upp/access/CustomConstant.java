@@ -1,7 +1,10 @@
 package com.yuntai.upp.access;
 
+import com.yuntai.upp.client.basic.util.BigDecimalUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.sdk.enums.BizType;
+
+import java.math.BigDecimal;
 
 /**
  * @description 自定义常量
@@ -41,6 +44,10 @@ public class CustomConstant {
      *
      */
     public static final String REQUEST_NO = UUIDUtil.create();
+    /**
+     *
+     */
+    public static final BigDecimal TRADE_FEE = BigDecimalUtil.convert(0.01D);
     /**
      *
      */

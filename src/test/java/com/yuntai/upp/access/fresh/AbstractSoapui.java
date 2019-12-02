@@ -30,8 +30,8 @@ public abstract class AbstractSoapui<I, O> extends AbstractBasic {
     private static final String TARGET_NAME = "http://client.upp.yuntai.com/";
 
     protected O send(@NonNull I model,
-                              @NonNull String target,
-                              @NonNull TypeReference<O> reference) {
+                     @NonNull String target,
+                     @NonNull TypeReference<O> reference) {
         String result = HttpUtil.post(HttpUtil.Atom.builder()
                 .url(WSDL_URL)
                 .content(HttpUtil.CONTENT_XML)
@@ -45,9 +45,9 @@ public abstract class AbstractSoapui<I, O> extends AbstractBasic {
                 .getJSONObject(RESPONSE)), reference);
     }
 
+    public abstract void testDefect();
+
     public abstract void testNormal();
 
     public abstract void testMock() throws Exception;
-
-    public abstract void testDefect();
 }

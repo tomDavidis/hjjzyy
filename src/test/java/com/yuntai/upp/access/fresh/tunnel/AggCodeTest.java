@@ -29,6 +29,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 
 import static com.yuntai.upp.client.config.constant.ConstantInstance.AGG_CODE;
@@ -52,48 +53,6 @@ import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
 public class AggCodeTest extends AbstractSoapui<AggCodeDto, Outcome<AggCodeVo>> {
 
     /**
-     * @description 正常场景
-     *              可将 @Ignore 注释掉, 用于正常场景的模拟测试
-     *              禁止在 maven test 打开该单元测试用例
-     * @param
-     * @return void
-     * @author jinren@hsyuntai.com
-     * @date 2019/11/22 15:22
-     */
-    @Ignore
-    @Test
-    @Override
-    public void testNormal() {
-        Outcome<AggCodeVo> outcome = send(AggCodeMock.normal(), AGG_CODE, new TypeReference<Outcome<AggCodeVo>>() {});
-        Assert.assertNotNull(outcome);
-        Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
-        Assert.assertTrue(outcome.isResult());
-        Assert.assertEquals(SUCCESS, outcome.getKind());
-    }
-
-    /**
-     * @description 正常场景
-     * @param
-     * @return void
-     * @author jinren@hsyuntai.com
-     * @date 2019/11/21 09:21
-     */
-    @Test
-    @Override
-    public void testMock() {
-        PowerMockito.mockStatic(HdpClientInstance.class);
-        AggCodeDto dto = AggCodeMock.normal();
-        UnitedPreOrderResult result = AggCodeMock.mock(dto);
-        PowerMockito.when(HdpClientInstance.send(Mockito.any(InnerCmdType.class), Mockito.any(Signable.class), Mockito.any()))
-                .thenReturn(result);
-        Outcome<AggCodeVo> outcome = send(dto, AGG_CODE, new TypeReference<Outcome<AggCodeVo>>() {});
-        Assert.assertNotNull(outcome);
-        Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
-        Assert.assertTrue(outcome.isResult());
-        Assert.assertEquals(SUCCESS, outcome.getKind());
-    }
-
-    /**
      * @description 字段缺失
      * @param
      * @return void
@@ -113,5 +72,53 @@ public class AggCodeTest extends AbstractSoapui<AggCodeDto, Outcome<AggCodeVo>> 
                             Assert.assertEquals(FAIL, outcome.getKind());
                             Assert.assertEquals(outcome.getMsg(), MessageUtil.message(model));
                         }));
+    }
+
+    /**
+     * @description 正常场景
+     *              可将 @Ignore 注释掉, 用于正常场景的模拟测试
+     *              禁止在 maven test 打开该单元测试用例
+     * @param
+     * @return void
+     * @author jinren@hsyuntai.com
+     * @date 2019/11/22 15:22
+     */
+    @Ignore
+    @Test
+    @Override
+    public void testNormal() {
+        execute(AggCodeMock.normal());
+    }
+
+    /**
+     * @description 正常场景
+     * @param
+     * @return void
+     * @author jinren@hsyuntai.com
+     * @date 2019/11/21 09:21
+     */
+    @Test
+    @Override
+    public void testMock() {
+        AggCodeDto dto = AggCodeMock.normal();
+        UnitedPreOrderResult result = AggCodeMock.mock(dto);
+        PowerMockito.when(HdpClientInstance.send(Mockito.any(InnerCmdType.class), Mockito.any(Signable.class), Mockito.any()))
+                .thenReturn(result);
+        execute(dto);
+    }
+
+    /**
+     * @description 执行 & 校验(正常场景)
+     * @param dto 入参模型
+     * @return void
+     * @author jinren@hsyuntai.com
+     * @date 2019/11/29 16:20
+     */
+    private void execute(@NotNull AggCodeDto dto) {
+        Outcome<AggCodeVo> outcome = send(dto, AGG_CODE, new TypeReference<Outcome<AggCodeVo>>() {});
+        Assert.assertNotNull(outcome);
+        Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
+        Assert.assertTrue(outcome.isResult());
+        Assert.assertEquals(SUCCESS, outcome.getKind());
     }
 }

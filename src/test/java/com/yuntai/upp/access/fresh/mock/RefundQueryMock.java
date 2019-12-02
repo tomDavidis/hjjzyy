@@ -1,9 +1,13 @@
 package com.yuntai.upp.access.fresh.mock;
-
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.dto.refundquery.RefundQueryDto;
+import com.yuntai.upp.sdk.result.UnitedRefundQueryResult;
 import com.yuntai.upp.sdk.util.SignUtil;
+import lombok.NonNull;
 import org.junit.Assert;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import static com.yuntai.upp.access.CustomConstant.REQUEST_NO;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
@@ -42,5 +46,33 @@ public class RefundQueryMock {
         Assert.assertNotNull(salt);
         model.setSign(SignUtil.signMd5(model, salt));
         return model;
+    }
+
+    /**
+     * @description 模拟云端返回
+     * @param dto 请求入参模型(模拟数据)
+     * @return com.yuntai.upp.sdk.result.UnitedRefundQueryResult
+     * @author jinren@hsyuntai.com
+     * @date 2019/11/29 16:44
+     */
+    public static UnitedRefundQueryResult mock(@NonNull RefundQueryDto dto) {
+        return UnitedRefundQueryResult.builder()
+                .partnerId(0L)
+                .channelType("")
+                .channelProduct("")
+                .tradeType("")
+                .tradeStatus("")
+                .requestNo("")
+                .refundNo("")
+                .outRefundNo("")
+                .inRefundNo("")
+                .paymentNo("")
+                .outPaymentNo("")
+                .inPaymentNo("")
+                .refundFee(new BigDecimal("0"))
+                .refundTime(LocalDateTime.now())
+                .failedReason("")
+                .bizData("")
+                .build();
     }
 }

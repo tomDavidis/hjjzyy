@@ -7,7 +7,7 @@ import com.yuntai.upp.client.fresh.model.bo.Rule;
 import com.yuntai.upp.client.fresh.model.dto.barcode.BarCodeDto;
 import com.yuntai.upp.sdk.enums.ChannelProductType;
 import com.yuntai.upp.sdk.enums.TradeStatus;
-import com.yuntai.upp.sdk.result.UnitedPreOrderResult;
+import com.yuntai.upp.sdk.result.UnitedPaymentResult;
 import com.yuntai.upp.sdk.util.SignUtil;
 import lombok.NonNull;
 import org.junit.Assert;
@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 import static com.yuntai.upp.access.CustomConstant.IN_PAYMENT_NO;
 import static com.yuntai.upp.access.CustomConstant.OUT_PAYMENT_NO;
 import static com.yuntai.upp.access.CustomConstant.PAYMENT_NO;
+import static com.yuntai.upp.access.CustomConstant.TRADE_FEE;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
 import static com.yuntai.upp.sdk.interfaces.Signable.VERSION;
@@ -49,7 +50,7 @@ public class BarCodeMock {
                 .partnerId(PARTNER_ID)
                 .authCode("286621192146852425")
                 .paymentNo(PAYMENT_NO)
-                .tradeFee(BigDecimalUtil.convert(0.01D))
+                .tradeFee(TRADE_FEE)
                 .subject("条码支付(upp-client)-标题")
                 .body("条码支付(upp-client)-内容")
                 .expireTime(LocalDateTime.now().plusMinutes(5))
@@ -63,15 +64,18 @@ public class BarCodeMock {
     /**
      * @description 模拟云端返回
      * @param dto 请求入参模型(模拟数据)
-     * @return com.yuntai.upp.sdk.result.UnitedPreOrderResult
+     * @return com.yuntai.upp.sdk.result.UnitedPaymentResult
      * @author jinren@hsyuntai.com
-     * @date 2019/11/29 14:40
+     * @date 2019/11/29 16:09
      */
-    public static UnitedPreOrderResult mock(@NonNull BarCodeDto dto) {
+    public static UnitedPaymentResult mock(@NonNull BarCodeDto dto) {
         ChannelProductType channelProductType = Rule.channel(dto.getChannelProduct(), dto.getAuthCode());
-        return UnitedPreOrderResult.builder()
-                .partnerId(0L)
-                .isvId(0L)
+        return UnitedPaymentResult.builder()
+                /*
+                 * 临时使用(仅供单元测试, 实际场景禁止采用该方式)
+                 */
+                .isvId(ISV_ID)
+                .partnerId(PARTNER_ID)
                 .channelType(channelProductType.getChannelType().getCode())
                 .channelProduct(channelProductType.getCode())
                 .tradeStatus(TradeStatus.WAIT_PAY.getCode())

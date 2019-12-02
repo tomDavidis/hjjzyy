@@ -1,9 +1,13 @@
 package com.yuntai.upp.access.fresh.mock;
-
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.dto.orderquery.OrderQueryDto;
+import com.yuntai.upp.sdk.result.UnitedOrderQueryResult;
+import com.yuntai.upp.sdk.result.UnitedPaymentQueryResult;
 import com.yuntai.upp.sdk.util.SignUtil;
+import lombok.NonNull;
 import org.junit.Assert;
+
+import java.util.ArrayList;
 
 import static com.yuntai.upp.access.CustomConstant.BIZ_TYPE;
 import static com.yuntai.upp.access.CustomConstant.PAYMENT_NO;
@@ -44,5 +48,23 @@ public class OrderQueryMock {
         Assert.assertNotNull(salt);
         model.setSign(SignUtil.signMd5(model, salt));
         return model;
+    }
+
+    /**
+     * @description 模拟云端返回
+     * @param dto 请求入参模型(模拟数据)
+     * @return com.yuntai.upp.sdk.result.UnitedOrderQueryResult
+     * @author jinren@hsyuntai.com
+     * @date 2019/11/29 16:43
+     */
+    public static UnitedOrderQueryResult mock(@NonNull OrderQueryDto dto) {
+        return UnitedOrderQueryResult.builder()
+                .partnerId(0L)
+                .isvId(0L)
+                .bizType("")
+                .bizId("")
+                .orderId(0L)
+                .paymentList(new ArrayList<UnitedPaymentQueryResult>())
+                .build();
     }
 }

@@ -2,8 +2,15 @@ package com.yuntai.upp.access.fresh.mock;
 
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.dto.paymentquery.PaymentQueryDto;
+import com.yuntai.upp.sdk.result.UnitedPaymentQueryResult;
+import com.yuntai.upp.sdk.result.UnitedRefundQueryResult;
 import com.yuntai.upp.sdk.util.SignUtil;
+import lombok.NonNull;
 import org.junit.Assert;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import static com.yuntai.upp.access.CustomConstant.BIZ_TYPE;
 import static com.yuntai.upp.access.CustomConstant.PAYMENT_NO;
@@ -44,5 +51,34 @@ public class PaymentQueryMock {
         Assert.assertNotNull(salt);
         model.setSign(SignUtil.signMd5(model, salt));
         return model;
+    }
+
+    /**
+     * @description 模拟云端返回
+     * @param dto 请求入参模型(模拟数据)
+     * @return com.yuntai.upp.sdk.result.UnitedPaymentQueryResult
+     * @author jinren@hsyuntai.com
+     * @date 2019/11/29 16:43
+     */
+    public static UnitedPaymentQueryResult mock(@NonNull PaymentQueryDto dto) {
+        return UnitedPaymentQueryResult.builder()
+                .partnerId(0L)
+                .isvId(0L)
+                .channelType("")
+                .channelProduct("")
+                .tradeType("")
+                .tradeFee(new BigDecimal("0"))
+                .tradeStatus("")
+                .outPaymentNo("")
+                .inPaymentNo("")
+                .paymentNo("")
+                .orderId(0L)
+                .paymentTime(LocalDateTime.now())
+                .bizData("")
+                .orderStatus("")
+                .bizType("")
+                .bizId("")
+                .refundList(new ArrayList<UnitedRefundQueryResult>())
+                .build();
     }
 }

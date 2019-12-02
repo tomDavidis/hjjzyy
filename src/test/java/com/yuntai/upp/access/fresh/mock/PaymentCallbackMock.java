@@ -1,6 +1,5 @@
 package com.yuntai.upp.access.fresh.mock;
 
-import com.yuntai.upp.client.basic.util.BigDecimalUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.dto.paymentcallback.PaymentCallbackDto;
@@ -15,6 +14,7 @@ import org.junit.Assert;
 
 import java.time.LocalDateTime;
 
+import static com.yuntai.upp.access.CustomConstant.TRADE_FEE;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
 
@@ -50,7 +50,7 @@ public class PaymentCallbackMock {
                 .bizId(UUIDUtil.create())
                 .channelType(channelProductType.getChannelType().getCode())
                 .channelProduct(channelProductType.getCode())
-                .tradeFee(BigDecimalUtil.convert(0.01D))
+                .tradeFee(TRADE_FEE)
                 .tradeStatus(TradeStatus.PAY_SUCCESS.getCode())
                 .outPaymentNo(UUIDUtil.create())
                 .inPaymentNo(UUIDUtil.create())
@@ -83,7 +83,7 @@ public class PaymentCallbackMock {
                 .bizId(UUIDUtil.create())
                 .channelType(ChannelType.ALI.getCode())
                 .channelProduct(ChannelProductType.ALI_BAR_CODE.getCode())
-                .tradeFee(BigDecimalUtil.convert(0.01D))
+                .tradeFee(TRADE_FEE)
                 .tradeStatus(TradeStatus.PAY_SUCCESS.getCode())
                 .outPaymentNo(UUIDUtil.create())
                 .inPaymentNo(UUIDUtil.create())

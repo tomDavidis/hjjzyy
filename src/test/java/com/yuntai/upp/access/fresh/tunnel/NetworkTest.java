@@ -24,6 +24,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
@@ -47,41 +48,6 @@ import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
 public class NetworkTest extends AbstractSoapui<NetworkDto, Outcome<NetworkVo>> {
 
     /**
-     * @description 正常场景
-     * @param
-     * @return void
-     * @author jinren@hsyuntai.com
-     * @date 2019/11/22 15:26
-     */
-    @Ignore
-    @Test
-    @Override
-    public void testNormal() {
-        Outcome<NetworkVo> outcome = send(NetworkMock.normal(), NETWORK, new TypeReference<Outcome<NetworkVo>>() {});
-        Assert.assertNotNull(outcome);
-        Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
-        Assert.assertTrue(outcome.isResult());
-        Assert.assertEquals(SUCCESS, outcome.getKind());
-    }
-
-    /**
-     * @description 正常场景
-     * @param
-     * @return void
-     * @author jinren@hsyuntai.com
-     * @date 2019/11/21 13:59
-     */
-    @Test
-    @Override
-    public void testMock() {
-        Outcome<NetworkVo> outcome = send(NetworkMock.normal(), NETWORK, new TypeReference<Outcome<NetworkVo>>() {});
-        Assert.assertNotNull(outcome);
-        Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
-        Assert.assertTrue(outcome.isResult());
-        Assert.assertEquals(SUCCESS, outcome.getKind());
-    }
-
-    /**
      * @description 字段缺失
      * @param
      * @return void
@@ -101,5 +67,47 @@ public class NetworkTest extends AbstractSoapui<NetworkDto, Outcome<NetworkVo>> 
                             Assert.assertEquals(FAIL, outcome.getKind());
                             Assert.assertEquals(outcome.getMsg(), MessageUtil.message(model));
                         }));
+    }
+
+    /**
+     * @description 正常场景
+     * @param
+     * @return void
+     * @author jinren@hsyuntai.com
+     * @date 2019/11/22 15:26
+     */
+    @Ignore
+    @Test
+    @Override
+    public void testNormal() {
+        execute(NetworkMock.normal());
+    }
+
+    /**
+     * @description 正常场景
+     * @param
+     * @return void
+     * @author jinren@hsyuntai.com
+     * @date 2019/11/21 13:59
+     */
+    @Test
+    @Override
+    public void testMock() {
+        execute(NetworkMock.normal());
+    }
+
+    /**
+     * @description 执行 & 校验(正常场景)
+     * @param dto 入参模型
+     * @return void
+     * @author jinren@hsyuntai.com
+     * @date 2019/11/29 16:26
+     */
+    private void execute(@NotNull NetworkDto dto) {
+        Outcome<NetworkVo> outcome = send(dto, NETWORK, new TypeReference<Outcome<NetworkVo>>() {});
+        Assert.assertNotNull(outcome);
+        Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
+        Assert.assertTrue(outcome.isResult());
+        Assert.assertEquals(SUCCESS, outcome.getKind());
     }
 }
