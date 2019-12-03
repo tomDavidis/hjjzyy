@@ -3,7 +3,6 @@ package com.yuntai.upp.access.fresh.tunnel;
 import com.alibaba.fastjson.TypeReference;
 import com.yuntai.upp.access.fresh.AbstractSoapui;
 import com.yuntai.upp.access.fresh.mock.NetworkMock;
-import com.yuntai.upp.access.util.MessageUtil;
 import com.yuntai.upp.access.util.MockUtil;
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
@@ -49,7 +48,6 @@ public class NetworkTest extends AbstractSoapui<NetworkDto, Outcome<NetworkVo>> 
                             Outcome<NetworkVo> outcome = send(model, NETWORK, new TypeReference<Outcome<NetworkVo>>() {});
                             Assert.assertNotNull(outcome);
                             Assert.assertEquals(FAIL, outcome.getKind());
-                            Assert.assertEquals(outcome.getMsg(), MessageUtil.message(model));
                         }));
     }
 

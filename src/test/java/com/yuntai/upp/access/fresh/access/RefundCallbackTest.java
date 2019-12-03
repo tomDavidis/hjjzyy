@@ -7,7 +7,6 @@ import com.yuntai.hdp.access.ResultKind;
 import com.yuntai.hdp.access.ResultPack;
 import com.yuntai.upp.access.fresh.AbstractAccess;
 import com.yuntai.upp.access.fresh.mock.RefundCallbackMock;
-import com.yuntai.upp.access.util.MessageUtil;
 import com.yuntai.upp.access.util.MockUtil;
 import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
 import com.yuntai.upp.client.config.cache.CacheInstance;
@@ -70,7 +69,6 @@ public class RefundCallbackTest extends AbstractAccess<RefundCallbackDto> {
                             RefundCallbackDto model = MockUtil.mock(RefundCallbackMock.normal(), field, annotation);
                             ResultPack pack = super.send(InnerCmdType.REFUND_CALLBACK, model, Boolean.FALSE);
                             Assert.assertEquals(pack.getKind(), ResultKind.ERROR_BUSINESS.getKind());
-                            Assert.assertEquals(pack.getMsg(), ResultKind.ERROR_BUSINESS.getMessage(MessageUtil.message(model)));
                         }));
     }
 }

@@ -95,7 +95,7 @@ public class MockUtil {
                 field.set(model, ((Min) annotation).value() - 1L);
             } else if (annotation instanceof Max) {
                 field.set(model, ((Max) annotation).value() + 1L);
-            }  else {
+            } else {
                 LoggerUtil.error(LOGGER, "field: {0}, validate: {1}", field.getName(), annotation.annotationType().getSimpleName());
             }
         } catch (Exception exception) {

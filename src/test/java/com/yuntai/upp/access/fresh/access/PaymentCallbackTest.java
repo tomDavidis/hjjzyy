@@ -5,29 +5,17 @@ import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.parser.Feature;
 import com.yuntai.hdp.access.ResultKind;
 import com.yuntai.hdp.access.ResultPack;
-import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.access.fresh.AbstractAccess;
 import com.yuntai.upp.access.fresh.mock.PaymentCallbackMock;
-import com.yuntai.upp.access.util.MessageUtil;
 import com.yuntai.upp.access.util.MockUtil;
 import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
-import com.yuntai.upp.client.basic.util.FtpUtil;
 import com.yuntai.upp.client.config.cache.CacheInstance;
-import com.yuntai.upp.client.config.hdp.HdpClientInstance;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.paymentcallback.PaymentCallbackDto;
 import com.yuntai.upp.client.fresh.model.vo.paymentcallback.PaymentCallbackVo;
 import com.yuntai.upp.sdk.util.SignUtil;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.modules.junit4.PowerMockRunnerDelegate;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 
@@ -81,7 +69,6 @@ public class PaymentCallbackTest extends AbstractAccess<PaymentCallbackDto> {
                             PaymentCallbackDto model = MockUtil.mock(PaymentCallbackMock.normal(), field, annotation);
                             ResultPack pack = super.send(InnerCmdType.PAYMENT_CALLBACK, model, Boolean.FALSE);
                             Assert.assertEquals(pack.getKind(), ResultKind.ERROR_BUSINESS.getKind());
-                            Assert.assertEquals(pack.getMsg(), ResultKind.ERROR_BUSINESS.getMessage(MessageUtil.message(model)));
                         }));
     }
 }

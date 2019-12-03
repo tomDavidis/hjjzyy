@@ -3,7 +3,6 @@ package com.yuntai.upp.access.fresh.restapi;
 import com.alibaba.fastjson.TypeReference;
 import com.yuntai.upp.access.fresh.AbstractRestapi;
 import com.yuntai.upp.access.fresh.mock.AggCodeMock;
-import com.yuntai.upp.access.util.MessageUtil;
 import com.yuntai.upp.access.util.MockUtil;
 import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
 import com.yuntai.upp.client.config.cache.CacheInstance;
@@ -59,7 +58,6 @@ public class AggCodeTest extends AbstractRestapi<AggCodeDto, Outcome<AggCodeVo>>
                             Outcome<AggCodeVo> outcome = send(URL, model, new TypeReference<Outcome<AggCodeVo>>() {});
                             Assert.assertNotNull(outcome);
                             Assert.assertEquals(FAIL, outcome.getKind());
-                            Assert.assertEquals(outcome.getMsg(), MessageUtil.message(model));
                         }));
     }
 

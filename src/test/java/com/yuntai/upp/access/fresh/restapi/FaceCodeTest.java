@@ -3,7 +3,6 @@ package com.yuntai.upp.access.fresh.restapi;
 import com.alibaba.fastjson.TypeReference;
 import com.yuntai.upp.access.fresh.AbstractRestapi;
 import com.yuntai.upp.access.fresh.mock.FaceCodeMock;
-import com.yuntai.upp.access.util.MessageUtil;
 import com.yuntai.upp.access.util.MockUtil;
 import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
 import com.yuntai.upp.client.config.cache.CacheInstance;
@@ -65,7 +64,6 @@ public class FaceCodeTest extends AbstractRestapi<FaceCodeDto, Outcome<FaceCodeV
                             Outcome<FaceCodeVo> outcome = send(URL, model, new TypeReference<Outcome<FaceCodeVo>>() {});
                             Assert.assertNotNull(outcome);
                             Assert.assertEquals(FAIL, outcome.getKind());
-                            Assert.assertEquals(outcome.getMsg(), MessageUtil.message(model));
                         }));
     }
 

@@ -3,7 +3,6 @@ package com.yuntai.upp.access.fresh.restapi;
 import com.alibaba.fastjson.TypeReference;
 import com.yuntai.upp.access.fresh.AbstractRestapi;
 import com.yuntai.upp.access.fresh.mock.YuntaiBillsMock;
-import com.yuntai.upp.access.util.MessageUtil;
 import com.yuntai.upp.access.util.MockUtil;
 import com.yuntai.upp.client.basic.util.FtpUtil;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
@@ -53,7 +52,6 @@ public class YuntaiBillsTest extends AbstractRestapi<YuntaiBillsDto, Outcome<Lis
                             Outcome<List<YuntaiBillsVo>> outcome = send(URL, model, new TypeReference<Outcome<List<YuntaiBillsVo>>>() {});
                             Assert.assertNotNull(outcome);
                             Assert.assertEquals(FAIL, outcome.getKind());
-                            Assert.assertEquals(outcome.getMsg(), MessageUtil.message(model));
                         }));
     }
 

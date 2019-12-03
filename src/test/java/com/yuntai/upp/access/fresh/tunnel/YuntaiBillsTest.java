@@ -3,7 +3,6 @@ package com.yuntai.upp.access.fresh.tunnel;
 import com.alibaba.fastjson.TypeReference;
 import com.yuntai.upp.access.fresh.AbstractSoapui;
 import com.yuntai.upp.access.fresh.mock.YuntaiBillsMock;
-import com.yuntai.upp.access.util.MessageUtil;
 import com.yuntai.upp.access.util.MockUtil;
 import com.yuntai.upp.client.basic.util.FtpUtil;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
@@ -51,7 +50,6 @@ public class YuntaiBillsTest extends AbstractSoapui<YuntaiBillsDto, Outcome<List
                             Outcome<List<YuntaiBillsVo>> outcome = send(model, CHANNEL_BILLS, new TypeReference<Outcome<List<YuntaiBillsVo>>>() {});
                             Assert.assertNotNull(outcome);
                             Assert.assertEquals(FAIL, outcome.getKind());
-                            Assert.assertEquals(outcome.getMsg(), MessageUtil.message(model));
                         }));
     }
 

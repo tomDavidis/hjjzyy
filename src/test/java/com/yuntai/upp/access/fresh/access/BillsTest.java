@@ -7,7 +7,6 @@ import com.yuntai.hdp.access.ResultKind;
 import com.yuntai.hdp.access.ResultPack;
 import com.yuntai.upp.access.fresh.AbstractAccess;
 import com.yuntai.upp.access.fresh.mock.BillsMock;
-import com.yuntai.upp.access.util.MessageUtil;
 import com.yuntai.upp.access.util.MockUtil;
 import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
 import com.yuntai.upp.client.config.cache.CacheInstance;
@@ -68,7 +67,6 @@ public class BillsTest extends AbstractAccess<BillsDto> {
                             BillsDto model = MockUtil.mock(BillsMock.normal(), field, annotation);
                             ResultPack pack = super.send(InnerCmdType.BILLS, model, Boolean.TRUE);
                             Assert.assertEquals(pack.getKind(), ResultKind.ERROR_BUSINESS.getKind());
-                            Assert.assertEquals(pack.getMsg(), ResultKind.ERROR_BUSINESS.getMessage(MessageUtil.message(model)));
                         }));
     }
 }

@@ -3,7 +3,6 @@ package com.yuntai.upp.access.fresh.restapi;
 import com.alibaba.fastjson.TypeReference;
 import com.yuntai.upp.access.fresh.AbstractRestapi;
 import com.yuntai.upp.access.fresh.mock.ChannelBillsMock;
-import com.yuntai.upp.access.util.MessageUtil;
 import com.yuntai.upp.access.util.MockUtil;
 import com.yuntai.upp.client.basic.util.FtpUtil;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
@@ -50,7 +49,6 @@ public class ChannelBillsTest extends AbstractRestapi<ChannelBillsDto, Outcome<L
                             Outcome<List<ChannelBillsVo>> outcome = send(URL, model, new TypeReference<Outcome<List<ChannelBillsVo>>>() {});
                             Assert.assertNotNull(outcome);
                             Assert.assertEquals(FAIL, outcome.getKind());
-                            Assert.assertEquals(outcome.getMsg(), MessageUtil.message(model));
                         }));
     }
 

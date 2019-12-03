@@ -3,7 +3,6 @@ package com.yuntai.upp.access.fresh.tunnel;
 import com.alibaba.fastjson.TypeReference;
 import com.yuntai.upp.access.fresh.AbstractSoapui;
 import com.yuntai.upp.access.fresh.mock.ScanCodeMock;
-import com.yuntai.upp.access.util.MessageUtil;
 import com.yuntai.upp.access.util.MockUtil;
 import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
 import com.yuntai.upp.client.config.cache.CacheInstance;
@@ -61,7 +60,6 @@ public class ScanCodeTest extends AbstractSoapui<ScanCodeDto, Outcome<ScanCodeVo
                             Outcome<ScanCodeVo> outcome = send(model, SCAN_CODE, new TypeReference<Outcome<ScanCodeVo>>() {});
                             Assert.assertNotNull(outcome);
                             Assert.assertEquals(FAIL, outcome.getKind());
-                            Assert.assertEquals(outcome.getMsg(), MessageUtil.message(model));
                         }));
     }
 

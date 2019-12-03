@@ -3,7 +3,6 @@ package com.yuntai.upp.access.fresh.tunnel;
 import com.alibaba.fastjson.TypeReference;
 import com.yuntai.upp.access.fresh.AbstractSoapui;
 import com.yuntai.upp.access.fresh.mock.AggCodeMock;
-import com.yuntai.upp.access.util.MessageUtil;
 import com.yuntai.upp.access.util.MockUtil;
 import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
 import com.yuntai.upp.client.config.cache.CacheInstance;
@@ -54,7 +53,6 @@ public class AggCodeTest extends AbstractSoapui<AggCodeDto, Outcome<AggCodeVo>> 
                             AggCodeDto model = MockUtil.mock(AggCodeMock.normal(), field, annotation);
                             Outcome<AggCodeVo> outcome = send(model, AGG_CODE, new TypeReference<Outcome<AggCodeVo>>() {});
                             Assert.assertNotNull(outcome);
-                            Assert.assertEquals(outcome.getMsg(), MessageUtil.message(model));
                         }));
     }
 
