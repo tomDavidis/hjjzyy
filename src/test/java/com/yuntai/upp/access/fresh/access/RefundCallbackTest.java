@@ -5,29 +5,18 @@ import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.parser.Feature;
 import com.yuntai.hdp.access.ResultKind;
 import com.yuntai.hdp.access.ResultPack;
-import com.yuntai.upp.access.UppAccessApplication;
 import com.yuntai.upp.access.fresh.AbstractAccess;
 import com.yuntai.upp.access.fresh.mock.RefundCallbackMock;
 import com.yuntai.upp.access.util.MessageUtil;
 import com.yuntai.upp.access.util.MockUtil;
 import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
-import com.yuntai.upp.client.basic.util.FtpUtil;
 import com.yuntai.upp.client.config.cache.CacheInstance;
-import com.yuntai.upp.client.config.hdp.HdpClientInstance;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.refundcallback.RefundCallbackDto;
 import com.yuntai.upp.client.fresh.model.vo.refundcallback.RefundCallbackVo;
 import com.yuntai.upp.sdk.util.SignUtil;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.modules.junit4.PowerMockRunnerDelegate;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 
@@ -42,12 +31,6 @@ import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
  * @date 2019-09-06 11:13
  * @copyright 版权归 HSYUNTAI 所有
  */
-@RunWith(PowerMockRunner.class)
-@PowerMockRunnerDelegate(SpringRunner.class)
-@PowerMockIgnore({"javax.*.*", "com.sun.*", "org.*"})
-@PrepareForTest({HdpClientInstance.class, FtpUtil.class})
-@ActiveProfiles(value = {"deploy/dev.properties"})
-@SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class RefundCallbackTest extends AbstractAccess<RefundCallbackDto> {
 
     /**

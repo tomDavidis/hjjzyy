@@ -42,12 +42,6 @@ import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
  * @date 2019/11/8 16:23
  * @copyright 版权归 HSYUNTAI 所有
  */
-@RunWith(PowerMockRunner.class)
-@PowerMockRunnerDelegate(SpringRunner.class)
-@PowerMockIgnore({"javax.*.*", "com.sun.*", "org.*"})
-@PrepareForTest({HdpClientInstance.class, FtpUtil.class})
-@ActiveProfiles(value = {"deploy/dev.properties"})
-@SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class PaymentCallbackTest extends AbstractAccess<PaymentCallbackDto> {
 
     /**
