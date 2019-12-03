@@ -1,5 +1,6 @@
 package com.yuntai.upp.access.util;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.yuntai.upp.client.basic.annotation.EnumOf;
 import com.yuntai.upp.client.basic.annotation.Future;
 import com.yuntai.upp.client.basic.util.BigDecimalUtil;
@@ -13,6 +14,8 @@ import org.junit.Assert;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
@@ -46,7 +49,8 @@ public class MockUtil {
      */
     public static boolean filter(@NonNull Annotation annotation) {
         return !(annotation instanceof XmlElement
-                || annotation instanceof XmlJavaTypeAdapter);
+                || annotation instanceof XmlJavaTypeAdapter
+                || annotation instanceof JSONField);
     }
 
     /**
@@ -87,7 +91,11 @@ public class MockUtil {
                 field.set(model, BigDecimalUtil.convert(Math.pow(10, (((Digits) annotation).integer() + 1))));
             } else if (annotation instanceof DecimalMin) {
                 field.set(model, BigDecimalUtil.convert(((DecimalMin) annotation).value()).subtract(BigDecimal.ONE).setScale(2, BigDecimal.ROUND_HALF_UP));
-            } else {
+            } else if (annotation instanceof Min) {
+                field.set(model, ((Min) annotation).value() - 1L);
+            } else if (annotation instanceof Max) {
+                field.set(model, ((Max) annotation).value() + 1L);
+            }  else {
                 LoggerUtil.error(LOGGER, "field: {0}, validate: {1}", field.getName(), annotation.annotationType().getSimpleName());
             }
         } catch (Exception exception) {

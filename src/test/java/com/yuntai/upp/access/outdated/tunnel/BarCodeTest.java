@@ -1,15 +1,26 @@
 package com.yuntai.upp.access.outdated.tunnel;
 
-import com.alibaba.fastjson.TypeReference;
+import com.yuntai.upp.access.fresh.mock.OrderQueryMock;
 import com.yuntai.upp.access.outdated.AbstractSoapui;
 import com.yuntai.upp.access.outdated.mock.BarCodeMock;
+import com.yuntai.upp.access.util.MockUtil;
+import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
 import com.yuntai.upp.client.basic.enums.outer.OuterBizCodeType;
+import com.yuntai.upp.client.config.hdp.HdpClientInstance;
+import com.yuntai.upp.client.fresh.model.dto.orderquery.OrderQueryDto;
 import com.yuntai.upp.client.outdated.model.dto.barcode.BarCodeDto;
 import com.yuntai.upp.client.outdated.model.vo.barcode.BarCodeVo;
 import com.yuntai.upp.client.outdated.model.ws.ReceiverGeneric;
+import com.yuntai.upp.sdk.param.UnitedOrderQueryParam;
+import com.yuntai.upp.sdk.param.UnitedPaymentParam;
+import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.powermock.api.mockito.PowerMockito;
 
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
 
 /**
  * @description 单元测试-条码支付
@@ -31,16 +42,20 @@ public class BarCodeTest extends AbstractSoapui<BarCodeDto, ReceiverGeneric<BarC
     @Test
     @Override
     public void testDefect() {
-//        Arrays.stream(BarCodeDto.class.getDeclaredFields())
-//                .forEach(field -> Arrays.stream(field.getDeclaredAnnotations())
-//                        .filter(MockUtil::filter)
-//                        .forEach(annotation -> {
-//                            BarCodeDto model = MockUtil.mock(BarCodeMock.normal(), field, annotation);
-//                            Outcome<BarCodeVo> outcome = send(model, BAR_CODE, new TypeReference<Outcome<BarCodeVo>>() {});
-//                            Assert.assertNotNull(outcome);
-//                            Assert.assertEquals(FAIL, outcome.getKind());
-//                            Assert.assertEquals(outcome.getMsg(), MessageUtil.message(model));
-//                        }));
+        Arrays.stream(BarCodeDto.class.getDeclaredFields())
+                .forEach(field -> Arrays.stream(field.getDeclaredAnnotations())
+                        .filter(MockUtil::filter)
+                        .forEach(annotation -> {
+                            BarCodeDto model = MockUtil.mock(BarCodeMock.normal(), field, annotation);
+                            Object object = send(model, OuterBizCodeType.S0002, ReceiverGeneric.class);
+                            Assert.assertNotNull(object);
+                            assert object instanceof ReceiverGeneric;
+                            ReceiverGeneric<BarCodeVo> outcome = (ReceiverGeneric<BarCodeVo>) object;
+                            Assert.assertNotNull(outcome);
+                            Assert.assertNotNull(outcome.getHeader());
+                            Assert.assertEquals(outcome.getHeader().getMsg(), FAIL, outcome.getHeader().getCode());
+                            Assert.assertNull(outcome.getBody());
+                        }));
     }
 
     /**
@@ -50,7 +65,7 @@ public class BarCodeTest extends AbstractSoapui<BarCodeDto, ReceiverGeneric<BarC
      * @author jinren@hsyuntai.com
      * @date 2019/12/2 17:18
      */
-//    @Ignore
+    @Ignore
     @Test
     @Override
     public void testNormal() {
@@ -67,11 +82,14 @@ public class BarCodeTest extends AbstractSoapui<BarCodeDto, ReceiverGeneric<BarC
     @Test
     @Override
     public void testMock() {
-//        BarCodeDto dto = BarCodeMock.normal();
-//        UnitedPaymentResult result = BarCodeMock.mock(dto);
-//        PowerMockito.when(HdpClientInstance.send(Mockito.any(InnerCmdType.class), Mockito.any(Signable.class), Mockito.any()))
-//                .thenReturn(result);
-//        execute(dto);
+        BarCodeDto dto = BarCodeMock.normal();
+        PowerMockito.when(HdpClientInstance.send(Mockito.any(InnerCmdType.class),
+                Mockito.any(UnitedOrderQueryParam.class), Mockito.any()))
+                .thenReturn(OrderQueryMock.mock(OrderQueryDto.convert(dto)));
+        PowerMockito.when(HdpClientInstance.send(Mockito.any(InnerCmdType.class),
+                Mockito.any(UnitedPaymentParam.class), Mockito.any()))
+                .thenReturn(BarCodeMock.mock(dto));
+        execute(dto);
     }
 
     /**
@@ -82,10 +100,13 @@ public class BarCodeTest extends AbstractSoapui<BarCodeDto, ReceiverGeneric<BarC
      * @date 2019/12/2 17:19
      */
     private void execute(@NotNull BarCodeDto dto) {
-        ReceiverGeneric<BarCodeVo> outcome = send(dto, OuterBizCodeType.S0002, new TypeReference<ReceiverGeneric<BarCodeVo>>() {});
-//        Assert.assertNotNull(outcome);
-//        Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
-//        Assert.assertTrue(outcome.getBody());
-//        Assert.assertEquals(SUCCESS, outcome.getKind());
+        Object object = send(dto, OuterBizCodeType.S0002, ReceiverGeneric.class);
+        Assert.assertNotNull(object);
+        assert object instanceof ReceiverGeneric;
+        ReceiverGeneric<BarCodeVo> outcome = (ReceiverGeneric<BarCodeVo>) object;
+        Assert.assertNotNull(outcome);
+        Assert.assertNotNull(outcome.getHeader());
+        Assert.assertEquals(outcome.getHeader().getMsg(), SUCCESS, outcome.getHeader().getCode());
+        Assert.assertNotNull(outcome.getBody());
     }
 }

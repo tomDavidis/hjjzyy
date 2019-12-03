@@ -1,9 +1,11 @@
 package com.yuntai.upp.access.outdated.mock;
 
 import com.yuntai.upp.client.basic.enums.outer.OuterPayChannelType;
-import com.yuntai.upp.client.outdated.model.dto.refund.RefundDto;
+import com.yuntai.upp.client.basic.interfaces.EnumConvert;
+import com.yuntai.upp.client.outdated.model.dto.query.QueryDto;
 import com.yuntai.upp.sdk.enums.TradeStatus;
-import com.yuntai.upp.sdk.result.UnitedRefundResult;
+import com.yuntai.upp.sdk.enums.TradeType;
+import com.yuntai.upp.sdk.result.UnitedPaymentQueryResult;
 import lombok.NonNull;
 
 import java.time.LocalDateTime;
@@ -11,65 +13,61 @@ import java.time.LocalDateTime;
 import static com.yuntai.upp.access.CustomConstant.CHANNEL_PRODUCT;
 import static com.yuntai.upp.access.CustomConstant.CHANNEL_TYPE;
 import static com.yuntai.upp.access.CustomConstant.IN_PAYMENT_NO;
-import static com.yuntai.upp.access.CustomConstant.IN_REFUND_NO;
 import static com.yuntai.upp.access.CustomConstant.OUT_PAYMENT_NO;
-import static com.yuntai.upp.access.CustomConstant.OUT_REFNUD_NO;
 import static com.yuntai.upp.access.CustomConstant.PAYMENT_NO;
-import static com.yuntai.upp.access.CustomConstant.REFUND_NO;
 import static com.yuntai.upp.access.CustomConstant.TRADE_FEE;
+import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
 
 /**
- * @description 数据模拟-交易退款
- * @className RefundMock
+ * @description 数据模拟-交易查询
+ * @className QueryMock
  * @package com.yuntai.upp.access.outdated.mock
  * @author jinren@hsyuntai.com
- * @date 2019/12/2 16:46
+ * @date 2019/12/2 16:45
  * @copyright 版权归 HSYUNTAI 所有
  */
-public class RefundMock {
+public class QueryMock {
 
     /**
      * @description 正常场景
      * @param
-     * @return com.yuntai.upp.client.outdated.model.dto.refund.RefundDto
+     * @return com.yuntai.upp.client.outdated.model.dto.query.QueryDto
      * @author jinren@hsyuntai.com
-     * @date 2019/12/3 11:05
+     * @date 2019/12/3 10:41
      */
-    public static RefundDto normal() {
-        return RefundDto.builder()
+    public static QueryDto normal() {
+        return QueryDto.builder()
                 .paymentNo(PAYMENT_NO)
                 .bizType(OuterPayChannelType.BAR_CODE.getValue())
-                .refundFee(TRADE_FEE)
-                .refundNo(REFUND_NO)
                 .build();
     }
 
     /**
      * @description 模拟云端返回
      * @param dto 请求入参模型(模拟数据)
-     * @return com.yuntai.upp.sdk.result.UnitedRefundResult
+     * @return java.lang.Object
      * @author jinren@hsyuntai.com
-     * @date 2019/12/3 11:34
+     * @date 2019/12/3 10:41
      */
-    public static UnitedRefundResult mock(@NonNull RefundDto dto) {
-        return UnitedRefundResult.builder()
+    public static UnitedPaymentQueryResult mock(@NonNull QueryDto dto) {
+        return UnitedPaymentQueryResult.builder()
                 /*
                  * 临时使用(仅供单元测试, 实际场景禁止采用该方式)
                  */
+                .isvId(ISV_ID)
                 .partnerId(PARTNER_ID)
-                .tradeStatus(TradeStatus.REFUND_SUCCESS.getCode())
-                .refundFee(dto.getRefundFee())
-                .outRefundNo(OUT_REFNUD_NO)
-                .inRefundNo(IN_REFUND_NO)
-                .refundNo(dto.getRefundNo())
-                .requestNo(dto.getRefundNo())
                 .channelType(CHANNEL_TYPE)
                 .channelProduct(CHANNEL_PRODUCT)
-                .refundTime(LocalDateTime.now())
-                .paymentNo(dto.getPaymentNo())
-                .inPaymentNo(IN_PAYMENT_NO)
+                .tradeType(TradeType.PAY.getCode())
+                .tradeFee(TRADE_FEE)
+                .tradeStatus(TradeStatus.PAY_SUCCESS.getCode())
                 .outPaymentNo(OUT_PAYMENT_NO)
+                .inPaymentNo(IN_PAYMENT_NO)
+                .paymentNo(dto.getPaymentNo())
+                .paymentTime(LocalDateTime.now())
+                .bizType(EnumConvert.element(dto.getBizType(), OuterPayChannelType.class).getBizType().getCode())
+                .bizId(dto.getPaymentNo())
                 .build();
     }
 }

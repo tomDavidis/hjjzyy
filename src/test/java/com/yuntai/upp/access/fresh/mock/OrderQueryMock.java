@@ -88,7 +88,7 @@ public class OrderQueryMock {
                                 .channelProduct(CHANNEL_PRODUCT)
                                 .tradeType(TradeType.PAY.getCode())
                                 .tradeFee(TRADE_FEE)
-                                .tradeStatus(TradeStatus.PAY_SUCCESS.getCode())
+                                .tradeStatus(TradeStatus.WAIT_PAY.getCode())
                                 .outPaymentNo(OUT_PAYMENT_NO)
                                 .inPaymentNo(IN_PAYMENT_NO)
                                 .paymentNo(dto.getPaymentNo())

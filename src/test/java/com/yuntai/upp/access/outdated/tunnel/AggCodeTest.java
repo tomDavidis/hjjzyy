@@ -9,7 +9,7 @@ import com.yuntai.upp.client.config.hdp.HdpClientInstance;
 import com.yuntai.upp.client.outdated.model.dto.scancode.ScanCodeDto;
 import com.yuntai.upp.client.outdated.model.vo.scancode.ScanCodeVo;
 import com.yuntai.upp.client.outdated.model.ws.ReceiverGeneric;
-import com.yuntai.upp.sdk.param.UnitedPaymentParam;
+import com.yuntai.upp.sdk.param.UnitedPreOrderParam;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -20,21 +20,21 @@ import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 
 /**
- * @description 单元测试-扫码支付
- * @className ScanCodeTest
+ * @description 单元测试-聚合支付
+ * @className AggCodeTest
  * @package com.yuntai.upp.access.outdated.tunnel
  * @author jinren@hsyuntai.com
- * @date 2019/12/2 16:49
+ * @date 2019/12/3 11:36
  * @copyright 版权归 HSYUNTAI 所有
  */
-public class ScanCodeTest extends AbstractSoapui<ScanCodeDto, ReceiverGeneric<ScanCodeVo>> {
+public class AggCodeTest extends AbstractSoapui<ScanCodeDto, ReceiverGeneric<ScanCodeVo>> {
 
     /**
      * @description 字段缺失
      * @param
      * @return void
      * @author jinren@hsyuntai.com
-     * @date 2019/12/3 10:48
+     * @date 2019/12/3 11:36
      */
     @Test
     @Override
@@ -43,8 +43,8 @@ public class ScanCodeTest extends AbstractSoapui<ScanCodeDto, ReceiverGeneric<Sc
                 .forEach(field -> Arrays.stream(field.getDeclaredAnnotations())
                         .filter(MockUtil::filter)
                         .forEach(annotation -> {
-                            ScanCodeDto model = MockUtil.mock(ScanCodeMock.scanCode(), field, annotation);
-                            Object object = send(model, OuterBizCodeType.S0001_0, ReceiverGeneric.class);
+                            ScanCodeDto model = MockUtil.mock(ScanCodeMock.aggCode(), field, annotation);
+                            Object object = send(model, OuterBizCodeType.S0001_1, ReceiverGeneric.class);
                             Assert.assertNotNull(object);
                             assert object instanceof ReceiverGeneric;
                             ReceiverGeneric<ScanCodeVo> outcome = (ReceiverGeneric<ScanCodeVo>) object;
@@ -60,13 +60,13 @@ public class ScanCodeTest extends AbstractSoapui<ScanCodeDto, ReceiverGeneric<Sc
      * @param
      * @return void
      * @author jinren@hsyuntai.com
-     * @date 2019/12/3 10:49
+     * @date 2019/12/3 11:36
      */
     @Ignore
     @Test
     @Override
     public void testNormal() {
-        execute(ScanCodeMock.scanCode());
+        execute(ScanCodeMock.aggCode());
     }
 
     /**
@@ -74,15 +74,15 @@ public class ScanCodeTest extends AbstractSoapui<ScanCodeDto, ReceiverGeneric<Sc
      * @param
      * @return void
      * @author jinren@hsyuntai.com
-     * @date 2019/12/3 10:49
+     * @date 2019/12/3 11:36
      */
     @Test
     @Override
     public void testMock() {
-        ScanCodeDto dto = ScanCodeMock.scanCode();
+        ScanCodeDto dto = ScanCodeMock.aggCode();
         PowerMockito.when(HdpClientInstance.send(Mockito.any(InnerCmdType.class),
-                Mockito.any(UnitedPaymentParam.class), Mockito.any()))
-                .thenReturn(ScanCodeMock.scanCode(dto));
+                Mockito.any(UnitedPreOrderParam.class), Mockito.any()))
+                .thenReturn(ScanCodeMock.aggCode(dto));
         execute(dto);
     }
 
@@ -91,10 +91,10 @@ public class ScanCodeTest extends AbstractSoapui<ScanCodeDto, ReceiverGeneric<Sc
      * @param dto 入参模型
      * @return void
      * @author jinren@hsyuntai.com
-     * @date 2019/12/3 10:49
+     * @date 2019/12/3 11:36
      */
     private void execute(@NotNull ScanCodeDto dto) {
-        Object object = send(dto, OuterBizCodeType.S0001_0, ReceiverGeneric.class);
+        Object object = send(dto, OuterBizCodeType.S0001_1, ReceiverGeneric.class);
         Assert.assertNotNull(object);
         assert object instanceof ReceiverGeneric;
         ReceiverGeneric<ScanCodeVo> outcome = (ReceiverGeneric<ScanCodeVo>) object;

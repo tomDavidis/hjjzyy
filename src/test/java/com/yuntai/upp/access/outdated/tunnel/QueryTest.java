@@ -1,15 +1,16 @@
 package com.yuntai.upp.access.outdated.tunnel;
 
 import com.yuntai.upp.access.outdated.AbstractSoapui;
-import com.yuntai.upp.access.outdated.mock.ScanCodeMock;
+import com.yuntai.upp.access.outdated.mock.QueryMock;
 import com.yuntai.upp.access.util.MockUtil;
 import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
 import com.yuntai.upp.client.basic.enums.outer.OuterBizCodeType;
 import com.yuntai.upp.client.config.hdp.HdpClientInstance;
-import com.yuntai.upp.client.outdated.model.dto.scancode.ScanCodeDto;
-import com.yuntai.upp.client.outdated.model.vo.scancode.ScanCodeVo;
+import com.yuntai.upp.client.outdated.model.dto.query.QueryDto;
+import com.yuntai.upp.client.outdated.model.vo.query.QueryVo;
 import com.yuntai.upp.client.outdated.model.ws.ReceiverGeneric;
-import com.yuntai.upp.sdk.param.UnitedPaymentParam;
+import com.yuntai.upp.sdk.interfaces.Signable;
+import com.yuntai.upp.sdk.result.UnitedPaymentQueryResult;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -20,34 +21,34 @@ import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 
 /**
- * @description 单元测试-扫码支付
- * @className ScanCodeTest
+ * @description 单元测试-交易查询
+ * @className PaymentQueryTest
  * @package com.yuntai.upp.access.outdated.tunnel
  * @author jinren@hsyuntai.com
- * @date 2019/12/2 16:49
+ * @date 2019/12/2 16:48
  * @copyright 版权归 HSYUNTAI 所有
  */
-public class ScanCodeTest extends AbstractSoapui<ScanCodeDto, ReceiverGeneric<ScanCodeVo>> {
+public class QueryTest extends AbstractSoapui<QueryDto, ReceiverGeneric<QueryVo>> {
 
     /**
      * @description 字段缺失
      * @param
      * @return void
      * @author jinren@hsyuntai.com
-     * @date 2019/12/3 10:48
+     * @date 2019/12/3 10:40
      */
     @Test
     @Override
     public void testDefect() {
-        Arrays.stream(ScanCodeDto.class.getDeclaredFields())
+        Arrays.stream(QueryDto.class.getDeclaredFields())
                 .forEach(field -> Arrays.stream(field.getDeclaredAnnotations())
                         .filter(MockUtil::filter)
                         .forEach(annotation -> {
-                            ScanCodeDto model = MockUtil.mock(ScanCodeMock.scanCode(), field, annotation);
-                            Object object = send(model, OuterBizCodeType.S0001_0, ReceiverGeneric.class);
+                            QueryDto model = MockUtil.mock(QueryMock.normal(), field, annotation);
+                            Object object = send(model, OuterBizCodeType.S0003, ReceiverGeneric.class);
                             Assert.assertNotNull(object);
                             assert object instanceof ReceiverGeneric;
-                            ReceiverGeneric<ScanCodeVo> outcome = (ReceiverGeneric<ScanCodeVo>) object;
+                            ReceiverGeneric<QueryVo> outcome = (ReceiverGeneric<QueryVo>) object;
                             Assert.assertNotNull(outcome);
                             Assert.assertNotNull(outcome.getHeader());
                             Assert.assertEquals(outcome.getHeader().getMsg(), FAIL, outcome.getHeader().getCode());
@@ -60,13 +61,13 @@ public class ScanCodeTest extends AbstractSoapui<ScanCodeDto, ReceiverGeneric<Sc
      * @param
      * @return void
      * @author jinren@hsyuntai.com
-     * @date 2019/12/3 10:49
+     * @date 2019/12/3 10:40
      */
     @Ignore
     @Test
     @Override
     public void testNormal() {
-        execute(ScanCodeMock.scanCode());
+        execute(QueryMock.normal());
     }
 
     /**
@@ -74,15 +75,15 @@ public class ScanCodeTest extends AbstractSoapui<ScanCodeDto, ReceiverGeneric<Sc
      * @param
      * @return void
      * @author jinren@hsyuntai.com
-     * @date 2019/12/3 10:49
+     * @date 2019/12/3 10:40
      */
     @Test
     @Override
     public void testMock() {
-        ScanCodeDto dto = ScanCodeMock.scanCode();
-        PowerMockito.when(HdpClientInstance.send(Mockito.any(InnerCmdType.class),
-                Mockito.any(UnitedPaymentParam.class), Mockito.any()))
-                .thenReturn(ScanCodeMock.scanCode(dto));
+        QueryDto dto = QueryMock.normal();
+        UnitedPaymentQueryResult result = QueryMock.mock(dto);
+        PowerMockito.when(HdpClientInstance.send(Mockito.any(InnerCmdType.class), Mockito.any(Signable.class), Mockito.any()))
+                .thenReturn(result);
         execute(dto);
     }
 
@@ -91,17 +92,16 @@ public class ScanCodeTest extends AbstractSoapui<ScanCodeDto, ReceiverGeneric<Sc
      * @param dto 入参模型
      * @return void
      * @author jinren@hsyuntai.com
-     * @date 2019/12/3 10:49
+     * @date 2019/12/3 10:40
      */
-    private void execute(@NotNull ScanCodeDto dto) {
-        Object object = send(dto, OuterBizCodeType.S0001_0, ReceiverGeneric.class);
+    private void execute(@NotNull QueryDto dto) {
+        Object object = send(dto, OuterBizCodeType.S0003, ReceiverGeneric.class);
         Assert.assertNotNull(object);
         assert object instanceof ReceiverGeneric;
-        ReceiverGeneric<ScanCodeVo> outcome = (ReceiverGeneric<ScanCodeVo>) object;
+        ReceiverGeneric<QueryVo> outcome = (ReceiverGeneric<QueryVo>) object;
         Assert.assertNotNull(outcome);
         Assert.assertNotNull(outcome.getHeader());
         Assert.assertEquals(outcome.getHeader().getMsg(), SUCCESS, outcome.getHeader().getCode());
         Assert.assertNotNull(outcome.getBody());
     }
 }
-
