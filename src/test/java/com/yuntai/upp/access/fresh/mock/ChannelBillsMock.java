@@ -1,18 +1,20 @@
 package com.yuntai.upp.access.fresh.mock;
 
-import com.yuntai.upp.client.basic.util.DateUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.dto.channelbills.ChannelBillsDto;
 import com.yuntai.upp.sdk.enums.TradeType;
+import com.yuntai.upp.sdk.result.UnitedChannelBillsResult;
 import com.yuntai.upp.sdk.util.SignUtil;
 import lombok.NonNull;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Assert;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 import static com.yuntai.upp.access.CustomConstant.BIZ_TYPE;
 import static com.yuntai.upp.access.CustomConstant.CHANNEL_TYPE;
@@ -59,32 +61,31 @@ public class ChannelBillsMock {
     /**
      * @description 模拟云端返回
      * @param dto 请求入参模型(模拟数据)
-     * @return java.io.InputStream
+     * @return java.util.List<com.yuntai.upp.sdk.result.UnitedChannelBillsResult>
      * @author jinren@hsyuntai.com
-     * @date 2019/12/2 10:37
+     * @date 2019/12/12 16:13
      */
-    public static InputStream mock(@NonNull ChannelBillsDto dto) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("partnerId,billsDate,tradeType,channelType,tradeFee,tradeTime,outTradeNo,inTradeNo,tradeNo,balanceNo,bizType,isvId,mchId\n");
+    public static List<UnitedChannelBillsResult> mock(@NonNull ChannelBillsDto dto) {
+        List<UnitedChannelBillsResult> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            /*
-             * 临时使用(仅供单元测试, 实际场景禁止采用该方式)
-             */
-            sb.append(PARTNER_ID).append(",")
-                    .append(DateUtil.format(dto.getStartDate(), DateUtil.FORMAT_DATE)).append(",")
-                    .append(TradeType.PAY.getCode()).append(",")
-                    .append(CHANNEL_TYPE).append(",")
-                    .append(TRADE_FEE).append(",")
-                    .append(DateUtil.format(LocalDateTime.now(), DateUtil.FORMAT_DATE_TIME)).append(",")
-                    .append(UUIDUtil.create()).append(",")
-                    .append(UUIDUtil.create()).append(",")
-                    .append(UUIDUtil.create()).append(",")
-                    .append(UUIDUtil.create()).append(",")
-                    .append(BIZ_TYPE).append(",")
-                    .append(ISV_ID).append(",")
-                    .append(UUIDUtil.create())
-                    .append("\n");
+            list.add(UnitedChannelBillsResult.builder()
+                    /*
+                     * 临时使用(仅供单元测试, 实际场景禁止采用该方式)
+                     */
+                    .partnerId(PARTNER_ID)
+                    .isvId(ISV_ID)
+                    .tradeType(Objects.equals(1, i & 1) ? TradeType.PAY.getCode() : TradeType.REFUND.getCode())
+                    .mchId(RandomStringUtils.randomAlphanumeric(16))
+                    .bizType(BIZ_TYPE)
+                    .channelType(CHANNEL_TYPE)
+                    .billsDate(dto.getStartDate())
+                    .tradeFee(TRADE_FEE)
+                    .tradeTime(LocalDateTime.now())
+                    .outTradeNo(UUIDUtil.create())
+                    .inTradeNo(UUIDUtil.create())
+                    .balanceNo(UUIDUtil.create())
+                    .build());
         }
-        return new ByteArrayInputStream(sb.toString().getBytes());
+        return list;
     }
 }

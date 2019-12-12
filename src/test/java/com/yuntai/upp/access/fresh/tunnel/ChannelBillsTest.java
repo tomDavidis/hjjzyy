@@ -4,10 +4,13 @@ import com.alibaba.fastjson.TypeReference;
 import com.yuntai.upp.access.fresh.AbstractSoapui;
 import com.yuntai.upp.access.fresh.mock.ChannelBillsMock;
 import com.yuntai.upp.access.util.MockUtil;
-import com.yuntai.upp.client.basic.util.FtpUtil;
+import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
+import com.yuntai.upp.client.config.hdp.HdpClientInstance;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.channelbills.ChannelBillsDto;
 import com.yuntai.upp.client.fresh.model.vo.channelbills.ChannelBillsVo;
+import com.yuntai.upp.sdk.interfaces.Signable;
+import com.yuntai.upp.sdk.result.UnitedChannelBillsResult;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -15,7 +18,6 @@ import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 
 import javax.validation.constraints.NotNull;
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 
@@ -73,13 +75,12 @@ public class ChannelBillsTest extends AbstractSoapui<ChannelBillsDto, Outcome<Li
      * @author jinren@hsyuntai.com
      * @date 2019/11/21 13:59
      */
-    @Ignore
     @Test
     @Override
     public void testMock() {
         ChannelBillsDto dto = ChannelBillsMock.normal();
-        InputStream result = ChannelBillsMock.mock(dto);
-        PowerMockito.when(FtpUtil.download(Mockito.anyString()))
+        List<UnitedChannelBillsResult> result = ChannelBillsMock.mock(dto);
+        PowerMockito.when(HdpClientInstance.send(Mockito.any(InnerCmdType.class), Mockito.any(Signable.class), Mockito.any()))
                 .thenReturn(result);
         execute(dto);
     }

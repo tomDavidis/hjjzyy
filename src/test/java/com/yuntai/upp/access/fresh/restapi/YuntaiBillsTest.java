@@ -4,10 +4,13 @@ import com.alibaba.fastjson.TypeReference;
 import com.yuntai.upp.access.fresh.AbstractRestapi;
 import com.yuntai.upp.access.fresh.mock.YuntaiBillsMock;
 import com.yuntai.upp.access.util.MockUtil;
-import com.yuntai.upp.client.basic.util.FtpUtil;
+import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
+import com.yuntai.upp.client.config.hdp.HdpClientInstance;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.yuntaibills.YuntaiBillsDto;
 import com.yuntai.upp.client.fresh.model.vo.yuntaibills.YuntaiBillsVo;
+import com.yuntai.upp.sdk.interfaces.Signable;
+import com.yuntai.upp.sdk.result.UnitedYuntaiBillsResult;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -15,7 +18,6 @@ import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 
 import javax.validation.constraints.NotNull;
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 
@@ -80,8 +82,8 @@ public class YuntaiBillsTest extends AbstractRestapi<YuntaiBillsDto, Outcome<Lis
     @Override
     public void testMock() {
         YuntaiBillsDto dto = YuntaiBillsMock.normal();
-        InputStream result = YuntaiBillsMock.mock(dto);
-        PowerMockito.when(FtpUtil.download(Mockito.anyString()))
+        List<UnitedYuntaiBillsResult> result = YuntaiBillsMock.mock(dto);
+        PowerMockito.when(HdpClientInstance.send(Mockito.any(InnerCmdType.class), Mockito.any(Signable.class), Mockito.any()))
                 .thenReturn(result);
         execute(dto);
     }

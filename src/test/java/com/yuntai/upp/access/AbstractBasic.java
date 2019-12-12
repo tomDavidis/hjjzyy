@@ -2,7 +2,6 @@ package com.yuntai.upp.access;
 
 import com.yuntai.upp.access.fresh.mock.ProductMock;
 import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
-import com.yuntai.upp.client.basic.util.FtpUtil;
 import com.yuntai.upp.client.basic.util.TraceIdUtil;
 import com.yuntai.upp.client.config.hdp.HdpClientInstance;
 import com.yuntai.upp.client.config.strategy.StrategyContext;
@@ -36,7 +35,7 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(PowerMockRunner.class)
 @PowerMockRunnerDelegate(SpringRunner.class)
 @PowerMockIgnore({"javax.*.*", "com.sun.*", "org.*"})
-@PrepareForTest({HdpClientInstance.class, FtpUtil.class})
+@PrepareForTest({HdpClientInstance.class})
 @ActiveProfiles(value = {"deploy/dev.properties"})
 @SpringBootTest(classes = {UppAccessApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public abstract class AbstractBasic {
@@ -51,7 +50,7 @@ public abstract class AbstractBasic {
         // 初始化 MockMvc 对象
         mvc = MockMvcBuilders.webAppContextSetup(wac).build();
         TraceIdUtil.createLocalTraceId(this.getClass().getName());
-        PowerMockito.mockStatic(HdpClientInstance.class, FtpUtil.class);
+        PowerMockito.mockStatic(HdpClientInstance.class);
         PowerMockito.when(HdpClientInstance.send(Mockito.any(InnerCmdType.class), Mockito.any(ChannelParam.class), Mockito.any()))
                 .thenReturn(ProductMock.mock());
         /*

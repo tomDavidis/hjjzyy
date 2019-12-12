@@ -1,17 +1,13 @@
 package com.yuntai.upp.access.fresh.mock;
 
-import com.yuntai.upp.client.basic.util.DateUtil;
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.dto.bills.BillsDto;
-import com.yuntai.upp.sdk.enums.CheckBillsDownloadType;
 import com.yuntai.upp.sdk.enums.YesOrNo;
 import com.yuntai.upp.sdk.util.SignUtil;
 import org.junit.Assert;
 
-import java.text.MessageFormat;
 import java.time.LocalDateTime;
 
-import static com.yuntai.upp.client.basic.util.DateUtil.FORMAT_DATE;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
 import static com.yuntai.upp.sdk.interfaces.Signable.VERSION;
@@ -44,16 +40,9 @@ public class BillsMock {
                  * 临时使用(仅供单元测试, 实际场景禁止采用该方式)
                  */
                 .partnerId(PARTNER_ID)
-                .ftpIp(CacheInstance.ftpIp(PARTNER_ID, ISV_ID))
-                .ftpPort(CacheInstance.ftpPort(PARTNER_ID, ISV_ID))
-                .ftpUser(CacheInstance.ftpUser(PARTNER_ID, ISV_ID))
-                .ftpPwd(CacheInstance.ftpPwd(PARTNER_ID, ISV_ID))
-                .filePath(MessageFormat.format(PATH, PARTNER_ID, DateUtil.format(LocalDateTime.now(), FORMAT_DATE)))
-                .fileName(MessageFormat.format(NAME, PARTNER_ID, DateUtil.format(LocalDateTime.now(), FORMAT_DATE)))
                 .isMergeRefund(YesOrNo.YES.getCode())
                 .startTime(LocalDateTime.now())
                 .endTime(LocalDateTime.now().minusHours(2))
-                .checkBillsDownloadType(CheckBillsDownloadType.DIRECT.getCode())
                 .build();
         String salt = CacheInstance.md5Salt(PARTNER_ID, ISV_ID);
         Assert.assertNotNull(salt);
