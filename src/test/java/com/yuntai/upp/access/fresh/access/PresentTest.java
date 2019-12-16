@@ -42,7 +42,7 @@ public class PresentTest extends AbstractAccess<PresentDto> {
     @Test
     @Override
     public void testNormal() {
-        ResultPack pack = super.send(InnerCmdType.PRESENT, PresentMock.normal(), Boolean.FALSE);
+        ResultPack pack = super.send(InnerCmdType.PRESENT, PresentMock.normal());
         Assert.assertEquals(pack.getMsg(), ResultKind.OK.getKind(), pack.getKind());
         Outcome<List<PresentDto>> outcome = JSON.parseObject(pack.getBody(), new TypeReference<Outcome<List<PresentDto>>>(){}, Feature.OrderedField);
         Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
@@ -63,7 +63,7 @@ public class PresentTest extends AbstractAccess<PresentDto> {
                 .forEach(field -> Arrays.stream(field.getDeclaredAnnotations())
                         .forEach(annotation -> {
                             PresentDto model = MockUtil.mock(PresentMock.normal(), field, annotation);
-                            ResultPack pack = super.send(InnerCmdType.PRESENT, model, Boolean.FALSE);
+                            ResultPack pack = super.send(InnerCmdType.PRESENT, model);
                             Assert.assertEquals(pack.getKind(), ResultKind.ERROR_BUSINESS.getKind());
                         }));
     }

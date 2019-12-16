@@ -44,7 +44,7 @@ public class RefundCallbackTest extends AbstractAccess<RefundCallbackDto> {
     public void testNormal() {
         BIZ_TYPE.forEach(bizType -> CHANNEL_PRODUCT_TYPE.forEach(
                 channelProductType -> {
-                    ResultPack pack = super.send(InnerCmdType.REFUND_CALLBACK, RefundCallbackMock.normal(bizType, channelProductType), Boolean.FALSE);
+                    ResultPack pack = super.send(InnerCmdType.REFUND_CALLBACK, RefundCallbackMock.normal(bizType, channelProductType));
                     Assert.assertEquals(pack.getMsg(), ResultKind.OK.getKind(), pack.getKind());
                     Outcome<RefundCallbackVo> outcome = JSON.parseObject(pack.getBody(), new TypeReference<Outcome<RefundCallbackVo>>(){}, Feature.OrderedField);
                     Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
@@ -67,7 +67,7 @@ public class RefundCallbackTest extends AbstractAccess<RefundCallbackDto> {
                 .forEach(field -> Arrays.stream(field.getDeclaredAnnotations())
                         .forEach(annotation -> {
                             RefundCallbackDto model = MockUtil.mock(RefundCallbackMock.normal(), field, annotation);
-                            ResultPack pack = super.send(InnerCmdType.REFUND_CALLBACK, model, Boolean.FALSE);
+                            ResultPack pack = super.send(InnerCmdType.REFUND_CALLBACK, model);
                             Assert.assertEquals(pack.getKind(), ResultKind.ERROR_BUSINESS.getKind());
                         }));
     }

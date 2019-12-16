@@ -44,7 +44,7 @@ public class PaymentCallbackTest extends AbstractAccess<PaymentCallbackDto> {
     public void testNormal() {
         BIZ_TYPE.forEach(bizType -> CHANNEL_PRODUCT_TYPE.forEach(
                 channelProductType -> {
-                    ResultPack pack = super.send(InnerCmdType.PAYMENT_CALLBACK, PaymentCallbackMock.normal(bizType, channelProductType), Boolean.FALSE);
+                    ResultPack pack = super.send(InnerCmdType.PAYMENT_CALLBACK, PaymentCallbackMock.normal(bizType, channelProductType));
                     Assert.assertEquals(pack.getMsg(), ResultKind.OK.getKind(), pack.getKind());
                     Outcome<PaymentCallbackVo> outcome = JSON.parseObject(pack.getBody(), new TypeReference<Outcome<PaymentCallbackVo>>(){}, Feature.OrderedField);
                     Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
@@ -67,7 +67,7 @@ public class PaymentCallbackTest extends AbstractAccess<PaymentCallbackDto> {
                 .forEach(field -> Arrays.stream(field.getDeclaredAnnotations())
                         .forEach(annotation -> {
                             PaymentCallbackDto model = MockUtil.mock(PaymentCallbackMock.normal(), field, annotation);
-                            ResultPack pack = super.send(InnerCmdType.PAYMENT_CALLBACK, model, Boolean.FALSE);
+                            ResultPack pack = super.send(InnerCmdType.PAYMENT_CALLBACK, model);
                             Assert.assertEquals(pack.getKind(), ResultKind.ERROR_BUSINESS.getKind());
                         }));
     }

@@ -10,15 +10,19 @@ import com.yuntai.upp.access.fresh.mock.BillsMock;
 import com.yuntai.upp.access.util.MockUtil;
 import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
 import com.yuntai.upp.client.config.cache.CacheInstance;
+import com.yuntai.upp.client.config.hdp.HdpClientInstance;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.bills.BillsDto;
-import com.yuntai.upp.client.fresh.model.vo.bills.BillsVo;
+import com.yuntai.upp.sdk.core.ResultObject;
+import com.yuntai.upp.sdk.interfaces.Signable;
 import com.yuntai.upp.sdk.util.SignUtil;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.powermock.api.mockito.PowerMockito;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
@@ -42,11 +46,33 @@ public class BillsTest extends AbstractAccess<BillsDto> {
      * @date 2019/11/8 17:30
      */
     @Test
+    @Ignore
     @Override
     public void testNormal() {
-        ResultPack pack = super.send(InnerCmdType.BILLS, BillsMock.normal(), Boolean.TRUE);
+        ResultPack pack = super.send(InnerCmdType.BILLS, BillsMock.normal());
         Assert.assertEquals(pack.getMsg(), ResultKind.OK.getKind(), pack.getKind());
-        Outcome<List<BillsVo>> outcome = JSON.parseObject(pack.getBody(), new TypeReference<Outcome<List<BillsVo>>>(){}, Feature.OrderedField);
+        Outcome<Object> outcome = JSON.parseObject(pack.getBody(), new TypeReference<Outcome<Object>>(){}, Feature.OrderedField);
+        Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
+        Assert.assertTrue(outcome.isResult());
+    }
+
+
+    /**
+     * @description 正常场景
+     * @param
+     * @return void
+     * @author jinren@hsyuntai.com
+     * @date 2019/12/2 10:06
+     */
+    @Test
+    public void testMock() {
+        BillsDto dto = BillsMock.normal();
+        ResultObject<Object> result = BillsMock.mock();
+        PowerMockito.when(HdpClientInstance.send(Mockito.any(InnerCmdType.class), Mockito.any(Signable.class), Mockito.any()))
+                .thenReturn(result);
+        ResultPack pack = super.send(InnerCmdType.BILLS, dto);
+        Assert.assertEquals(pack.getMsg(), ResultKind.OK.getKind(), pack.getKind());
+        Outcome<Object> outcome = JSON.parseObject(pack.getBody(), new TypeReference<Outcome<Object>>(){}, Feature.OrderedField);
         Assert.assertTrue(SignUtil.verifyMd5(outcome, CacheInstance.md5Salt(PARTNER_ID, ISV_ID)));
         Assert.assertTrue(outcome.isResult());
     }
@@ -65,7 +91,7 @@ public class BillsTest extends AbstractAccess<BillsDto> {
                 .forEach(field -> Arrays.stream(field.getDeclaredAnnotations())
                         .forEach(annotation -> {
                             BillsDto model = MockUtil.mock(BillsMock.normal(), field, annotation);
-                            ResultPack pack = super.send(InnerCmdType.BILLS, model, Boolean.TRUE);
+                            ResultPack pack = super.send(InnerCmdType.BILLS, model);
                             Assert.assertEquals(pack.getKind(), ResultKind.ERROR_BUSINESS.getKind());
                         }));
     }

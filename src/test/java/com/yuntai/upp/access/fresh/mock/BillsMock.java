@@ -2,6 +2,7 @@ package com.yuntai.upp.access.fresh.mock;
 
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.dto.bills.BillsDto;
+import com.yuntai.upp.sdk.core.ResultObject;
 import com.yuntai.upp.sdk.enums.YesOrNo;
 import com.yuntai.upp.sdk.util.SignUtil;
 import org.junit.Assert;
@@ -22,9 +23,6 @@ import static com.yuntai.upp.sdk.interfaces.Signable.VERSION;
  */
 public class BillsMock {
 
-    private static final String PATH = "/upp/bills/{0}/current/triple/partner/{1}/";
-    private static final String NAME = "{0}-triple-partner-{1}-bills.csv";
-
     /**
      * @description 正常场景
      * @param
@@ -40,6 +38,7 @@ public class BillsMock {
                  * 临时使用(仅供单元测试, 实际场景禁止采用该方式)
                  */
                 .partnerId(PARTNER_ID)
+                .isvId(ISV_ID)
                 .isMergeRefund(YesOrNo.YES.getCode())
                 .startTime(LocalDateTime.now())
                 .endTime(LocalDateTime.now().minusHours(2))
@@ -48,5 +47,16 @@ public class BillsMock {
         Assert.assertNotNull(salt);
         model.setSign(SignUtil.signMd5(model, salt));
         return model;
+    }
+
+    /**
+     * @description 模拟云端返回
+     * @param
+     * @return com.yuntai.upp.sdk.core.PageObject<java.lang.Object>
+     * @author jinren@hsyuntai.com
+     * @date 2019/12/13 10:33
+     */
+    public static ResultObject<Object> mock() {
+        return ResultObject.success(null);
     }
 }
