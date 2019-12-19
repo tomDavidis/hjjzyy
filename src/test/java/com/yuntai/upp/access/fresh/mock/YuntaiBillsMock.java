@@ -4,6 +4,7 @@ import com.yuntai.upp.client.basic.util.BigDecimalUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.dto.yuntaibills.YuntaiBillsDto;
+import com.yuntai.upp.sdk.enums.BizType;
 import com.yuntai.upp.sdk.enums.SourceType;
 import com.yuntai.upp.sdk.enums.TradeType;
 import com.yuntai.upp.sdk.result.UnitedYuntaiBillsResult;
@@ -51,8 +52,15 @@ public class YuntaiBillsMock {
                  */
                 .isvId(ISV_ID)
                 .partnerId(PARTNER_ID)
-                .startDate(LocalDate.now().withMonth(11).withDayOfMonth(6))
-                .endDate(LocalDate.now().withMonth(11).withDayOfMonth(6))
+                .startDate(LocalDate.now().withMonth(9).withDayOfMonth(18))
+                .endDate(LocalDate.now().withMonth(9).withDayOfMonth(18))
+                .bizType(new ArrayList<String>(2) {
+                    private static final long serialVersionUID = -1494567727068395239L;
+                    {
+                        add(BizType.REGISTER.getCode());
+                    }
+                })
+                .billsNo(UUIDUtil.create())
                 .build();
         String salt = CacheInstance.md5Salt(PARTNER_ID, ISV_ID);
         Assert.assertNotNull(salt);
