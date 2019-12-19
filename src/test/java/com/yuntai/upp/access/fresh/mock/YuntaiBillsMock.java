@@ -58,6 +58,7 @@ public class YuntaiBillsMock {
                     private static final long serialVersionUID = -1494567727068395239L;
                     {
                         add(BizType.REGISTER.getCode());
+                        add(BizType.BARCODE_PAY.getCode());
                     }
                 })
                 .billsNo(UUIDUtil.create())

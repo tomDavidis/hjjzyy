@@ -56,6 +56,7 @@ public class ChannelBillsMock {
                     private static final long serialVersionUID = -6891438722692253009L;
                     {
                         add(BizType.REGISTER.getCode());
+                        add(BizType.BARCODE_PAY.getCode());
                     }
                 })
                 .billsNo(UUIDUtil.create())
