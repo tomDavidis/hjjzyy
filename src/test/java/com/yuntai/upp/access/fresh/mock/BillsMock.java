@@ -1,7 +1,9 @@
 package com.yuntai.upp.access.fresh.mock;
 
+import com.yuntai.upp.client.basic.util.UUIDUtil;
 import com.yuntai.upp.client.config.cache.CacheInstance;
 import com.yuntai.upp.client.fresh.model.dto.bills.BillsDto;
+import com.yuntai.upp.sdk.core.DataObject;
 import com.yuntai.upp.sdk.core.ResultObject;
 import com.yuntai.upp.sdk.enums.YesOrNo;
 import com.yuntai.upp.sdk.util.SignUtil;
@@ -41,6 +43,7 @@ public class BillsMock {
                 .isvId(ISV_ID)
                 .isMergeRefund(YesOrNo.YES.getCode())
                 .startTime(LocalDateTime.now())
+                .billsNo(UUIDUtil.create())
                 .endTime(LocalDateTime.now().minusHours(2))
                 .build();
         String salt = CacheInstance.md5Salt(PARTNER_ID, ISV_ID);
@@ -52,11 +55,11 @@ public class BillsMock {
     /**
      * @description 模拟云端返回
      * @param
-     * @return com.yuntai.upp.sdk.core.PageObject<java.lang.Object>
+     * @return com.yuntai.upp.sdk.core.ResultObject<com.yuntai.upp.sdk.core.DataObject>
      * @author jinren@hsyuntai.com
-     * @date 2019/12/13 10:33
+     * @date 2019/12/20 18:45
      */
-    public static ResultObject<Object> mock() {
-        return ResultObject.success(null);
+    public static ResultObject<DataObject> mock() {
+        return ResultObject.success(DataObject.convert(Boolean.TRUE));
     }
 }
