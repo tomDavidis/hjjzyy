@@ -3,6 +3,7 @@ package com.yuntai.upp.access.helper.demo;
 import com.yuntai.upp.client.basic.enums.inner.InnerCmdType;
 import com.yuntai.upp.client.basic.util.BigDecimalUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
+import com.yuntai.upp.client.config.constant.ConstantInstance;
 import com.yuntai.upp.client.config.strategy.StrategyContext;
 import com.yuntai.upp.client.fresh.model.dto.bills.BillsDto;
 import com.yuntai.upp.client.fresh.model.dto.yuntaibills.YuntaiBillsDto;
@@ -14,6 +15,7 @@ import com.yuntai.upp.sdk.enums.CheckBillsPayType;
 import com.yuntai.upp.sdk.enums.CheckBillsStatType;
 import com.yuntai.upp.sdk.enums.SourceType;
 import com.yuntai.upp.sdk.enums.TradeType;
+import com.yuntai.upp.sdk.interfaces.Signable;
 import lombok.NonNull;
 import org.apache.commons.lang3.RandomStringUtils;
 
@@ -21,7 +23,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -122,10 +123,23 @@ public class BillsMock {
      */
     public static List<BillsVo> mock(@NonNull BillsDto dto) {
         YuntaiBillsVo vo = StrategyContext.operate(YuntaiBillsDto.builder()
-                .billsNo(dto.getBillsNo())
-                .bizType(Arrays.stream(BizType.values()).map(BizType::getCode).collect(Collectors.toList()))
+                .billsNo(UUIDUtil.create())
+                .bizType(new ArrayList<String>(8) {
+                    private static final long serialVersionUID = -3808799552507407343L;
+                    {
+                        add(BizType.REGISTER.getCode());
+                        add(BizType.SELF_PAY.getCode());
+                        add(BizType.BARCODE_PAY.getCode());
+                        add(BizType.SCAN_PAY.getCode());
+                        add(BizType.FACECODE_PAY.getCode());
+                    }
+                })
                 .startDate(dto.getStartTime().toLocalDate())
                 .endDate(dto.getStartTime().toLocalDate())
+                .partnerId(ConstantInstance.PARTNER_ID)
+                .isvId(ConstantInstance.ISV_ID)
+                .version(Signable.VERSION)
+                .timestamp(System.currentTimeMillis())
                 .build(), InnerCmdType.YUNTAI_BILLS);
         return Optional.ofNullable(vo.getDetail())
                 .orElse(Collections.emptyList())
