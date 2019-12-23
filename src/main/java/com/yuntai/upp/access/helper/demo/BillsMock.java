@@ -11,6 +11,7 @@ import com.yuntai.upp.sdk.enums.CheckBillsStatType;
 import com.yuntai.upp.sdk.enums.SourceType;
 import com.yuntai.upp.sdk.enums.TradeType;
 import lombok.NonNull;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -78,7 +79,7 @@ public class BillsMock {
                     .bizType(BizType.REGISTER.getCode())
                     // 院区标识(存在这赋值,部分商户需要)
                     // [可为空, 上层将校验非空时的参数值]
-                    .districtId(UUIDUtil.create())
+                    .districtId(RandomStringUtils.randomAlphanumeric(8))
                     // 来源 outpatient:门诊 inpatient:住院
                     // [可为空, 上层将校验非空时的参数值]
                     .sourceType(SourceType.INPATIENT.getCode())
