@@ -64,7 +64,7 @@ public class BillsHelper extends AbstractBills {
          */
         List<BillsVo> list = new ArrayList<>(2048);
         try {
-            list.addAll(BillsMock.mock());
+            list.addAll(BillsMock.mock(dto));
         } catch (Exception exception) {
             return Outcome.fail(exception.getMessage());
         }

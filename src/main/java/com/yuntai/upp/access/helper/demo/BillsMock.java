@@ -1,6 +1,8 @@
 package com.yuntai.upp.access.helper.demo;
 
+import com.yuntai.upp.client.basic.util.BigDecimalUtil;
 import com.yuntai.upp.client.basic.util.UUIDUtil;
+import com.yuntai.upp.client.fresh.model.dto.bills.BillsDto;
 import com.yuntai.upp.client.fresh.model.vo.bills.BillsVo;
 import com.yuntai.upp.sdk.enums.BizType;
 import com.yuntai.upp.sdk.enums.ChannelType;
@@ -8,9 +10,9 @@ import com.yuntai.upp.sdk.enums.CheckBillsPayType;
 import com.yuntai.upp.sdk.enums.CheckBillsStatType;
 import com.yuntai.upp.sdk.enums.SourceType;
 import com.yuntai.upp.sdk.enums.TradeType;
+import lombok.NonNull;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +31,12 @@ public class BillsMock {
 
     /**
      * @description 数据模拟(真实场景禁止使用,仅供开发使用)
-     * @return java.util.List<com.yuntai.upp.client.basic.model.vo.bills.BillVo>
+     * @param dto 云端下发参数
+     * @return java.util.List<com.yuntai.upp.client.fresh.model.vo.bills.BillsVo>
      * @author jinren@hsyuntai.com
-     * @date 2019-06-22 10:13
+     * @date 2019/12/23 09:17
      */
-    public static List<BillsVo> mock() throws Exception {
+    public static List<BillsVo> mock(@NonNull BillsDto dto) throws Exception {
         List<BillsVo> vos = new ArrayList<>();
 
         /* 模拟数据,仅供无 HIS 接口时,工程测试使用 - start */
@@ -51,13 +54,13 @@ public class BillsMock {
                     // 真实场景可通过起始时间进行转换
                     // end_time - start_time <= 24H && start_time >= 00:00
                     // [不可为空, 参数返回后必校验]
-                    .billsDate(LocalDate.now())
+                    .billsDate(dto.getStartTime().toLocalDate())
                     // pay:支付 refundFee:退款
                     // [不可为空, 参数返回后必校验]
                     .tradeType(Math.random() > 0.5D ? TradeType.PAY.getCode() : TradeType.REFUND.getCode())
                     // 注意!!! 金额数字没有负数,取绝对值
                     // [不可为空, 参数返回后必校验]
-                    .tradeFee(new BigDecimal(Math.random() * 100).abs().setScale(2, BigDecimal.ROUND_HALF_UP))
+                    .tradeFee(BigDecimalUtil.convert(Math.random() * 100).abs().setScale(2, BigDecimal.ROUND_HALF_UP))
                     // 交易时间
                     // [不可为空, 参数返回后必校验]
                     .tradeTime(LocalDateTime.now())
