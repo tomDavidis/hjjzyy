@@ -27,6 +27,7 @@ import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -63,36 +64,64 @@ public class MockUtil {
      * @date 2019/11/19 14:53
      */
     public static <I> I mock(@NonNull I model,
-                  @NonNull Field field,
-                  @NonNull Annotation annotation) {
+                             @NonNull Field field,
+                             @NonNull Annotation annotation) {
         field.setAccessible(true);
         try {
-            if (annotation instanceof NotNull) {
+            if (annotation instanceof NotNull && model instanceof Map) {
+                ((Map) model).put(field.getName(), null);
+            } else if (annotation instanceof NotNull) {
                 field.set(model, null);
+            } else if (annotation instanceof NotBlank && model instanceof Map) {
+                ((Map) model).put(field.getName(), "");
             } else if (annotation instanceof NotBlank) {
                 field.set(model, "");
+            } else if (annotation instanceof Length && model instanceof Map) {
+                ((Map) model).put(field.getName(), RandomStringUtils.randomAlphanumeric(((Length) annotation).max() + 1));
             } else if (annotation instanceof Length) {
                 field.set(model, RandomStringUtils.randomAlphanumeric(((Length) annotation).max() + 1));
+            } else if (annotation instanceof EnumOf && model instanceof Map) {
+                ((Map) model).put(field.getName(), "test");
             } else if (annotation instanceof EnumOf) {
                 field.set(model, "test");
+            } else if (annotation instanceof Future && model instanceof Map) {
+                ((Map) model).put(field.getName(), LocalDateTime.now());
             } else if (annotation instanceof Future) {
                 field.set(model, LocalDateTime.now());
+            } else if (annotation instanceof Range && Objects.equals(field.getType(), Long.class) && model instanceof Map) {
+                ((Map) model).put(field.getName(), -1L);
             } else if (annotation instanceof Range && Objects.equals(field.getType(), Long.class)) {
                 field.set(model, -1L);
+            } else if (annotation instanceof Range && Objects.equals(field.getType(), Integer.class) && model instanceof Map) {
+                ((Map) model).put(field.getName(), -1);
             } else if (annotation instanceof Range && Objects.equals(field.getType(), Integer.class)) {
                 field.set(model, -1);
+            } else if (annotation instanceof PastOrPresent && Objects.equals(field.getType(), LocalDateTime.class) && model instanceof Map) {
+                ((Map) model).put(field.getName(), LocalDateTime.now().plusDays(1));
             } else if (annotation instanceof PastOrPresent && Objects.equals(field.getType(), LocalDateTime.class)) {
                 field.set(model, LocalDateTime.now().plusDays(1));
+            } else if (annotation instanceof PastOrPresent && Objects.equals(field.getType(), LocalDate.class) && model instanceof Map) {
+                ((Map) model).put(field.getName(), LocalDate.now().plusDays(1));
             } else if (annotation instanceof PastOrPresent && Objects.equals(field.getType(), LocalDate.class)) {
                 field.set(model, LocalDate.now().plusDays(1));
-            }  else if (annotation instanceof Pattern) {
+            } else if (annotation instanceof Pattern && model instanceof Map) {
+                ((Map) model).put(field.getName(), ",test");
+            } else if (annotation instanceof Pattern) {
                 field.set(model, ",test");
+            } else if (annotation instanceof Digits && model instanceof Map) {
+                ((Map) model).put(field.getName(), BigDecimalUtil.convert(Math.pow(10, (((Digits) annotation).integer() + 1))));
             } else if (annotation instanceof Digits) {
                 field.set(model, BigDecimalUtil.convert(Math.pow(10, (((Digits) annotation).integer() + 1))));
+            } else if (annotation instanceof DecimalMin && model instanceof Map) {
+                ((Map) model).put(field.getName(), BigDecimalUtil.convert(((DecimalMin) annotation).value()).subtract(BigDecimal.ONE).setScale(2, BigDecimal.ROUND_HALF_UP));
             } else if (annotation instanceof DecimalMin) {
                 field.set(model, BigDecimalUtil.convert(((DecimalMin) annotation).value()).subtract(BigDecimal.ONE).setScale(2, BigDecimal.ROUND_HALF_UP));
+            } else if (annotation instanceof Min && model instanceof Map) {
+                ((Map) model).put(field.getName(), ((Min) annotation).value() - 1L);
             } else if (annotation instanceof Min) {
                 field.set(model, ((Min) annotation).value() - 1L);
+            } else if (annotation instanceof Max && model instanceof Map) {
+                ((Map) model).put(field.getName(), ((Max) annotation).value() + 1L);
             } else if (annotation instanceof Max) {
                 field.set(model, ((Max) annotation).value() + 1L);
             } else {

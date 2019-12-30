@@ -18,6 +18,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
@@ -30,7 +31,7 @@ import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
  * @date 2019/11/8 16:23
  * @copyright 版权归 HSYUNTAI 所有
  */
-public class PaymentCallbackTest extends AbstractAccess<PaymentCallbackDto> {
+public class PaymentCallbackTest extends AbstractAccess<HashMap<String, Object>> {
 
     /**
      * @description 正常场景-数据
@@ -66,7 +67,7 @@ public class PaymentCallbackTest extends AbstractAccess<PaymentCallbackDto> {
         Arrays.stream(PaymentCallbackDto.class.getDeclaredFields())
                 .forEach(field -> Arrays.stream(field.getDeclaredAnnotations())
                         .forEach(annotation -> {
-                            PaymentCallbackDto model = MockUtil.mock(PaymentCallbackMock.normal(), field, annotation);
+                            HashMap<String, Object> model = MockUtil.mock(PaymentCallbackMock.normal(), field, annotation);
                             ResultPack pack = super.send(InnerCmdType.PAYMENT_CALLBACK, model);
                             Assert.assertEquals(pack.getKind(), ResultKind.ERROR_BUSINESS.getKind());
                         }));

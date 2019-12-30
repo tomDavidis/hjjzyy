@@ -14,7 +14,6 @@ import com.yuntai.upp.client.config.hdp.HdpClientInstance;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.bills.BillsDto;
 import com.yuntai.upp.sdk.core.DataObject;
-import com.yuntai.upp.sdk.core.ResultObject;
 import com.yuntai.upp.sdk.interfaces.Signable;
 import com.yuntai.upp.sdk.util.SignUtil;
 import org.junit.Assert;
@@ -24,6 +23,7 @@ import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
@@ -37,7 +37,7 @@ import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
  * @date 2019-06-14 13:47
  * @copyright 版权归 HSYUNTAI 所有
  */
-public class BillsTest extends AbstractAccess<BillsDto> {
+public class BillsTest extends AbstractAccess<HashMap<String, Object>> {
 
     /**
      * @description 正常场景
@@ -68,8 +68,8 @@ public class BillsTest extends AbstractAccess<BillsDto> {
      */
     @Test
     public void testMock() {
-        BillsDto dto = BillsMock.normal();
-        ResultObject<DataObject> result = BillsMock.mock();
+        HashMap<String, Object> dto = BillsMock.normal();
+        DataObject result = BillsMock.mock();
         PowerMockito.when(HdpClientInstance.send(Mockito.any(InnerCmdType.class), Mockito.any(Signable.class), Mockito.any()))
                 .thenReturn(result);
         ResultPack pack = super.send(InnerCmdType.BILLS, dto);
@@ -93,7 +93,7 @@ public class BillsTest extends AbstractAccess<BillsDto> {
         Arrays.stream(BillsDto.class.getDeclaredFields())
                 .forEach(field -> Arrays.stream(field.getDeclaredAnnotations())
                         .forEach(annotation -> {
-                            BillsDto model = MockUtil.mock(BillsMock.normal(), field, annotation);
+                            HashMap<String, Object> model = MockUtil.mock(BillsMock.normal(), field, annotation);
                             ResultPack pack = super.send(InnerCmdType.BILLS, model);
                             Assert.assertEquals(pack.getKind(), ResultKind.ERROR_BUSINESS.getKind());
                         }));

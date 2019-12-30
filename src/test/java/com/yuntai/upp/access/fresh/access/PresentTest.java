@@ -17,6 +17,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
@@ -30,7 +31,7 @@ import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
  * @date 2019-06-24 16:27
  * @copyright 版权归 HSYUNTAI 所有
  */
-public class PresentTest extends AbstractAccess<PresentDto> {
+public class PresentTest extends AbstractAccess<HashMap<String, Object>> {
 
     /**
      * @description 正常场景-数据
@@ -62,7 +63,7 @@ public class PresentTest extends AbstractAccess<PresentDto> {
         Arrays.stream(PresentDto.class.getDeclaredFields())
                 .forEach(field -> Arrays.stream(field.getDeclaredAnnotations())
                         .forEach(annotation -> {
-                            PresentDto model = MockUtil.mock(PresentMock.normal(), field, annotation);
+                            HashMap<String, Object> model = MockUtil.mock(PresentMock.normal(), field, annotation);
                             ResultPack pack = super.send(InnerCmdType.PRESENT, model);
                             Assert.assertEquals(pack.getKind(), ResultKind.ERROR_BUSINESS.getKind());
                         }));

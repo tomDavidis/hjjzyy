@@ -18,6 +18,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 import static com.yuntai.upp.client.config.constant.ConstantInstance.ISV_ID;
 import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
@@ -30,7 +31,7 @@ import static com.yuntai.upp.client.config.constant.ConstantInstance.PARTNER_ID;
  * @date 2019-09-06 11:13
  * @copyright 版权归 HSYUNTAI 所有
  */
-public class RefundCallbackTest extends AbstractAccess<RefundCallbackDto> {
+public class RefundCallbackTest extends AbstractAccess<HashMap<String, Object>> {
 
     /**
      * @description 正常场景-数据
@@ -66,7 +67,7 @@ public class RefundCallbackTest extends AbstractAccess<RefundCallbackDto> {
         Arrays.stream(RefundCallbackDto.class.getDeclaredFields())
                 .forEach(field -> Arrays.stream(field.getDeclaredAnnotations())
                         .forEach(annotation -> {
-                            RefundCallbackDto model = MockUtil.mock(RefundCallbackMock.normal(), field, annotation);
+                            HashMap<String, Object> model = MockUtil.mock(RefundCallbackMock.normal(), field, annotation);
                             ResultPack pack = super.send(InnerCmdType.REFUND_CALLBACK, model);
                             Assert.assertEquals(pack.getKind(), ResultKind.ERROR_BUSINESS.getKind());
                         }));
