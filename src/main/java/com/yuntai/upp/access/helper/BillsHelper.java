@@ -54,13 +54,13 @@ public class BillsHelper extends AbstractBills {
          * partnerId                - 存放的为商户标识, 数据类型为 Long
          *                          非空必填(上层已校验)
          *
-         * startTime                - 需要导出账单数据的起始时间, 数据类型为 LocalTimeDate[可使用DateUtil.formateDate()方法进行格式化]
+         * startTime                - 需要导出账单数据的起始时间, 数据类型为 LocalDateTime [可使用DateUtil.formateDate()方法进行格式化]
          *                          非空必填(上层已校验)
-         *                          格式为yyyy-MM-dd HH:mm:ss, 无需要校验格式正确性(上层已校验)
+         *                          格式为 yyyy-MM-dd HH:mm:ss, 无需要校验格式正确性(上层已校验)
          *
-         * endTime                  - 需要导出账单数据的终止时间, 数据类型为 LocalTimeDate[可使用DateUtil.formateDate()方法进行格式化]
+         * endTime                  - 需要导出账单数据的终止时间, 数据类型为 LocalDateTime [可使用DateUtil.formateDate()方法进行格式化]
          *                          非空必填(上层已校验)
-         *                          格式为yyyy-MM-dd HH:mm:ss, 无需要校验格式正确性(上层已校验)
+         *                          格式为 yyyy-MM-dd HH:mm:ss, 无需要校验格式正确性(上层已校验)
          */
         List<BillsVo> list = new ArrayList<>(2048);
         try {

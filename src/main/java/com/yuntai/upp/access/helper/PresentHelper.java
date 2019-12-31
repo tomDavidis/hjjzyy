@@ -60,9 +60,9 @@ public class PresentHelper extends AbstractPresent {
          *
          * payemntNo     - HIS流水(必填)
          *
-         * gmtCreate     - 交易创建时间, 数据类型为 LocalTimeDate[可使用DateUtil.formateDate()方法进行格式化]
+         * gmtCreate     - 交易创建时间, 数据类型为 LocalDate [可使用DateUtil.formateDate()方法进行格式化]
          *               非空必填(上层已校验)
-         *               格式为yyyy-MM-dd HH:mm:ss, 无需要校验格式正确性(上层已校验)
+         *               格式为 yyyy-MM-dd HH:mm:ss, 无需要校验格式正确性(上层已校验)
          *
          * outPaymentNo & inPaymentNo & payemntNo 字段进行进一步具体例子解释
          *
