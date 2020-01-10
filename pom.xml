@@ -74,7 +74,6 @@
             <version>2.0.1</version>
             <scope>compile</scope>
         </dependency>
-
         <!-- 【第三方jar引用 end】 -->
     </dependencies>
 
