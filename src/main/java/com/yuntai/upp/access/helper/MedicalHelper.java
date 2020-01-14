@@ -1,7 +1,7 @@
 package com.yuntai.upp.access.helper;
 
 import com.yuntai.upp.access.helper.demo.MedicalMock;
-import com.yuntai.upp.client.fresh.handler.active.medical.AbstractMedical;
+import com.yuntai.upp.client.fresh.handler.downstream.medical.AbstractMedical;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.medical.MedicalDto;
 import com.yuntai.upp.client.fresh.model.vo.medical.MedicalVo;

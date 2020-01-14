@@ -53,7 +53,7 @@ public class DetailService implements DetailTunnel {
         /* 策略禁止修改 */
         YuntaiBillsVo data = null;
         try {
-            data = StrategyContext.passive(dto, InnerCmdType.YUNTAI_BILLS);
+            data = StrategyContext.upstream(dto, InnerCmdType.YUNTAI_BILLS);
         } catch (Exception exception) {
             return Outcome.fail(exception.getMessage());
         }
@@ -108,7 +108,7 @@ public class DetailService implements DetailTunnel {
         /* 策略禁止修改 */
         ChannelBillsVo data = null;
         try {
-            data = StrategyContext.passive(dto, InnerCmdType.CHANNEL_BILLS);
+            data = StrategyContext.upstream(dto, InnerCmdType.CHANNEL_BILLS);
         } catch (Exception exception) {
             return Outcome.fail(exception.getMessage());
         }

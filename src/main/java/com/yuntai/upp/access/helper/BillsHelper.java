@@ -1,7 +1,7 @@
 package com.yuntai.upp.access.helper;
 
 import com.yuntai.upp.access.helper.demo.BillsMock;
-import com.yuntai.upp.client.fresh.handler.active.bills.AbstractBills;
+import com.yuntai.upp.client.fresh.handler.downstream.bills.AbstractBills;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.bills.BillsDto;
 import com.yuntai.upp.client.fresh.model.vo.bills.BillsVo;

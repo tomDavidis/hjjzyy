@@ -1,7 +1,7 @@
 package com.yuntai.upp.access.helper;
 
 import com.yuntai.upp.access.helper.demo.PresentMock;
-import com.yuntai.upp.client.fresh.handler.active.present.AbstractPresent;
+import com.yuntai.upp.client.fresh.handler.downstream.present.AbstractPresent;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.present.PresentDto;
 import com.yuntai.upp.client.fresh.model.vo.present.PresentVo;

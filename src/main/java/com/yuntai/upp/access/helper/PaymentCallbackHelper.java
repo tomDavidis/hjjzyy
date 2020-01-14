@@ -1,7 +1,7 @@
 package com.yuntai.upp.access.helper;
 
 import com.yuntai.upp.access.helper.demo.PaymentCallbackMock;
-import com.yuntai.upp.client.fresh.handler.active.paymentcallback.AbstractPaymentCallback;
+import com.yuntai.upp.client.fresh.handler.downstream.paymentcallback.AbstractPaymentCallback;
 import com.yuntai.upp.client.fresh.model.bo.Outcome;
 import com.yuntai.upp.client.fresh.model.dto.paymentcallback.PaymentCallbackDto;
 import com.yuntai.upp.client.fresh.model.vo.paymentcallback.PaymentCallbackVo;
