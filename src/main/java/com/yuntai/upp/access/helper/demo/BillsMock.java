@@ -122,7 +122,7 @@ public class BillsMock {
      * @date 2019/12/23 16:24
      */
     public static List<BillsVo> mock(@NonNull BillsDto dto) {
-        List<YuntaiBillsVo.Detail> vos = StrategyContext.operate(YuntaiBillsDto.builder()
+        List<YuntaiBillsVo.Detail> vos = StrategyContext.passive(YuntaiBillsDto.builder()
                 .billsNo(UUIDUtil.create())
                 .bizType(new ArrayList<String>(8) {
                     private static final long serialVersionUID = -3808799552507407343L;

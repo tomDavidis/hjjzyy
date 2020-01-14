@@ -57,7 +57,7 @@ public abstract class AbstractBasic {
          * 模拟支付产品配置并刷新缓存
          * 若运行 testNormal 方法, 则主动注释掉该部分模拟代码
          */
-        StrategyContext.operate(ObjectUtils.NULL, InnerCmdType.PRODUCT);
+        StrategyContext.passive(ObjectUtils.NULL, InnerCmdType.PRODUCT);
     }
 
     @After
